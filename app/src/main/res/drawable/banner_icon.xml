@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- state_enabled:选项是否可用（点击） -->
+    <item android:state_enabled="false" android:drawable="@drawable/banner_icon_sel"></item>
+    <item android:state_enabled="true" android:drawable="@drawable/banner_icon_nor"></item>
+</selector>
+

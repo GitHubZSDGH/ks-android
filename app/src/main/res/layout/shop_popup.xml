@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="400dp"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/shop_rl_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_shop_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/back_item_white"
+            tools:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/iv_shop_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="30dp"
+            android:layout_toEndOf="@+id/iv_shop_img"
+            android:text="￥356.00"
+            android:textColor="@color/color_e53e42"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/kucun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/iv_shop_price"
+            android:layout_below="@+id/iv_shop_price"
+            android:layout_marginTop="10dp"
+            android:text="库存："
+            android:textColor="@color/color_1a1a1a"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_adequate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/kucun"
+            android:layout_alignBottom="@+id/kucun"
+            android:layout_toEndOf="@+id/kucun"
+            android:text="库存充足"
+            android:textColor="@color/color_1a1a1a"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/textone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/kucun"
+            android:layout_below="@+id/kucun"
+            android:text="请选择："
+            android:textColor="@color/color_1a1a1a"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_shop_specifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_adequate"
+            android:layout_toEndOf="@+id/textone"
+            android:text="商品规格、尺寸"
+            android:textColor="@color/color_1a1a1a"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_shop_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tv_shop_specifications"
+            android:layout_alignBottom="@+id/tv_shop_specifications"
+            android:layout_toEndOf="@+id/tv_shop_specifications"
+            android:text="商品规格、颜色"
+            android:textColor="@color/color_1a1a1a"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_delete_popup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/iv_shop_price"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/delete_popup" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/color_e5e5e5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/shop_lin_add"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/ll_shuliang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="数量"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/order_numder_reduce"
+                            android:layout_width="48dp"
+                            android:layout_height="33dp"
+                            android:background="@drawable/back_item_kuang"
+                            android:gravity="center"
+                            android:text="-"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/order_numder"
+                            android:layout_width="52dp"
+                            android:layout_height="33dp"
+                            android:background="@drawable/back_item_kuang"
+                            android:gravity="center"
+                            android:text="1"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/order_numder_add"
+                            android:layout_width="48dp"
+                            android:layout_height="33dp"
+                            android:background="@drawable/back_item_kuang"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_e53e42"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="确 定"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+</LinearLayout>

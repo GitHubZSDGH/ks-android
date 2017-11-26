@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">HLSC</string>
+
+    <string name="listview_header_hint_normal">下拉刷新</string>
+    <string name="listview_header_hint_release">释放刷新</string>
+    <string name="listview_loading">加载中...</string>
+    <string name="nomore_loading">全部数据加载完毕</string>
+    <string name="refreshing">加载中...</string>
+    <string name="refresh_done">更新完成</string>
+    <string name="listview_header_last_time">上次更新时间：</string>
+    <string name="loading_done">loading done</string>
+
+    <string name="tab_home">首页</string>
+    <string name="tab_fenlei">分类</string>
+    <string name="tab_dingzhi">消息</string>
+    <string name="tab_gonglue">购物车</string>
+    <string name="tab_my">我的</string>
+    <string name="regist_now_toast">该用户已被注册</string>
+    <string name="regist_toast">注册成功</string>
+    <string name="regist_noPwd_toast">2次密码不对</string>
+    <string name="regist_virrton_no_toast">验证码不正确</string>
+    <string name="lately_seach_text">最近搜索</string>
+    <string name="lately_seach_texts">热门搜索</string>
+
+</resources>

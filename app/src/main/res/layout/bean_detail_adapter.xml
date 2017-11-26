@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/record_img"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="18dp"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="15dp"
+    android:layout_marginLeft="12dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="充值"
+            android:textSize="15sp"
+            android:textColor="#333333"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:textSize="15sp"
+            android:textColor="#333333"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个联豆"
+            android:textSize="15sp"
+            android:textColor="#333333"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(2017-10-31)"
+            android:textSize="12sp"
+            android:layout_marginLeft="3dp"
+            android:textColor="#999999"/>
+        <TextView
+            android:id="@+id/acceptance_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已受理"
+            android:textSize="12sp"
+            android:layout_marginLeft="63dp"
+            android:textColor="#666666"
+            android:layout_marginRight="21dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="3dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联豆订单号："
+            android:textSize="12sp"
+            android:textColor="#999999"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18210198046896523"
+            android:textSize="12sp"
+            android:textColor="#999999"/>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="14dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/copy2"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>
+</LinearLayout>

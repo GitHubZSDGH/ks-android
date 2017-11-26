@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="main_bg" format="reference|color"/>
+    <attr name="main_textcolor" format="reference|color"/>
+
+
+    <attr name="bookimage" format="reference|color" />
+    <attr name="tvcolor" format="reference|color" />
+
+
+    <attr name="tabs_bg" format="color|reference" />
+    <attr name="content_bg" format="color|reference" />
+    <attr name="item_home_bg" format="color|reference"/>
+    <attr name="xlistview_divider_color" format="color|reference"/>
+    <attr name="item_text_color" format="color|reference"/>
+    <attr name="item_title_color" format="color|reference"/>
+
+    <attr name="integerValue" format="integer" />
+    <attr name="booleanValue" format="boolean" />
+    <attr name="dimensionValue" format="dimension" />
+    <attr name="stringValue" format="string" />
+    <attr name="referenceValue" format="color|reference" />
+    <attr name="imageValue" format="reference"/>
+
+    <attr name="curVisibility">
+        <enum name="show" value="0" />
+        <!-- Not displayed, but taken into account during layout (space is left for it). -->
+        <enum name="inshow" value="1" />
+        <!-- Completely hidden, as if the view had not been added. -->
+        <enum name="hide" value="2" />
+    </attr>
+
+    <declare-styleable name="BGASwipeItemLayout">
+        <attr name="bga_sil_swipeDirection" format="enum">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+        <attr name="bga_sil_bottomMode" format="enum">
+            <enum name="pullOut" value="0" />
+            <enum name="layDown" value="1" />
+        </attr>
+        <attr name="bga_sil_springDistance" format="dimension" />
+        <attr name="bga_sil_swipeAble" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension|reference"/>
+        <attr name="border_color" format="color|reference"/>
+
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="LinkBuilder">
+        <attr name="defaultLinkColor" format="color" />
+        <attr name="defaultTextColorOfHighlightedLink" format="color" />
+    </declare-styleable>
+
+    <attr name="linkBuilderStyle" format="reference" />
+
+
+    <declare-styleable name="PinEntryEditText">
+        <attr name="pinAnimationType" format="enum">
+            <enum name="popIn" value="0" />
+            <enum name="fromBottom" value="1" />
+            <enum name="none" value="-1" />
+        </attr>
+        <attr name="pinCharacterMask" format="string" />
+        <attr name="pinRepeatedHint" format="string" />
+        <attr name="pinLineStroke" format="dimension" />
+        <attr name="pinLineStrokeSelected" format="dimension" />
+        <attr name="pinCharacterSpacing" format="dimension" />
+        <attr name="pinTextBottomPadding" format="dimension" />
+        <attr name="pinLineColors" format="color" />
+        <attr name="pinBackgroundDrawable" format="reference" />
+        <attr name="pinBackgroundIsSquare" format="boolean" />
+    </declare-styleable>
+
+    <attr name="Image_mache_put" format="color|reference" />
+
+    <!--滑动删除控件 SlideDeleteLayout-->
+    <declare-styleable name="SlideDeleteLayout">
+        <attr name="slide_width" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="VerticalSwitchTextView">
+        <attr name="switchDuaration" format="integer"/>
+        <attr name="idleDuaration" format="integer"/>
+        <attr name="switchOrientation">
+            <enum name="up"  value="0"/>
+            <enum name="down"  value="1"/>
+        </attr>
+        <attr name="alignment">
+            <enum name="center" value="0"/>
+            <enum name="left" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
+    </declare-styleable>
+
+
+
+    <!-- Banner图小点 -->
+    <declare-styleable name="CircleIndicator">
+        <attr name="ci_radius" format="dimension" />
+        <attr name="ci_margin" format="dimension" />
+        <attr name="ci_background" format="color|integer" />
+        <attr name="ci_selected_background" format="color|integer" />
+        <attr name="ci_gravity">
+            <enum name="left" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+        <attr name="ci_mode">
+            <enum name="inside" value="0" />
+            <enum name="outside" value="1" />
+            <enum name="solo" value="2" />
+        </attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="FlowLayout">
+        <attr name="flow" format="boolean" />
+        <attr name="childSpacing" format="enum|dimension">
+            <enum name="auto" value="-65536" />
+        </attr>
+        <attr name="childSpacingForLastRow" format="enum|dimension">
+            <enum name="auto" value="-65536" />
+            <enum name="align" value="-65537" />
+        </attr>
+        <attr name="rowSpacing" format="enum|dimension">
+            <enum name="auto" value="-65536" />
+        </attr>
+        <attr name="rtl" format="boolean" />
+        <attr name="maxRows" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="SnapUpCountDownTimerView">
+        <attr name="viewSize" format="integer"/>
+    </declare-styleable>
+</resources>

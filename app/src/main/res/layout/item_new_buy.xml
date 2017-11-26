@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_all"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingRight="10dp">
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/default_errow"/>
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="奥尔滨精华液啦啦啦"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:id="@+id/tv_money"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/corlorsearch"
+        android:text="150.00"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/old_money"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="120"
+        
+        android:textSize="16sp"
+        android:gravity="center"
+        />
+
+</LinearLayout>

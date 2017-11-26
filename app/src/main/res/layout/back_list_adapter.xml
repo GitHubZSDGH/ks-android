@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:id="@+id/back_item_linear"
+    android:layout_width="335dp"
+    android:layout_height="110dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="13dp"
+    android:orientation="horizontal"
+    >
+    
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginLeft="18dp"
+        android:src="@drawable/bankcardpayment3"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="9dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="招商银行卡"
+            android:textSize="16sp"
+            android:textColor="#ffffff"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="储蓄卡"
+            android:textSize="14sp"
+            android:layout_marginTop="2dp"
+            android:textColor="#ffffff"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="xxxxxxxxxxxxx5632"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            />
+    </LinearLayout>
+</LinearLayout>
+    <ImageView
+        android:layout_width="335dp"
+        android:layout_height="76dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="13dp"
+        android:src="@drawable/back_list_img3"/>
+</FrameLayout>
+</LinearLayout>

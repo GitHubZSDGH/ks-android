@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#ffffff">
+        <ImageView
+            android:id="@+id/search_activity_img"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:src="@drawable/nav_return3"
+
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:layout_marginRight="13dp"
+            android:background="@drawable/search_activity_edittext"
+            android:padding="5dp"
+            >
+            <ImageView
+                android:id="@+id/seach_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/nav_search"/>
+            <EditText
+                android:id="@+id/search_activity_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="帮您找你想要的商品"
+                android:textSize="12sp"
+                android:layout_marginLeft="9dp"
+                android:layout_centerInParent="true"
+
+                android:background="@null"
+                android:layout_toRightOf="@id/seach_img"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginRight="13dp"
+            android:textColor="#1a1a1a"
+            />
+    </LinearLayout>
+</LinearLayout>

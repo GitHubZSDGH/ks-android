@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="home_seach_history_list">
+        <item>爱丽小屋</item>
+        <item>面膜</item>
+        <item>洗面奶</item>
+        <item>资生堂</item>
+        <item>商品</item>
+        <item>口红</item>
+        <item>洗面奶</item>
+        <item>资生堂</item>
+        <item>悦诗风吟</item>
+        <item>口红</item>
+        <item>洗面奶</item>
+        <item>资生堂</item>
+    </string-array>
+
+</resources>

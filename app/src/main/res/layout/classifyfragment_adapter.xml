@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/blank"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#DCDBDB"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        />
+    <com.hualian.hlsc.UI.ClassIfGridGridView
+        android:id="@+id/gridView_classify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3">
+    </com.hualian.hlsc.UI.ClassIfGridGridView>
+</LinearLayout>

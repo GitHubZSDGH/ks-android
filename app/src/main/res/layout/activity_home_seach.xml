@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/search_activity" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/seach_activity_title_height"
+        android:background="@color/color_f5f5f5"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:paddingLeft="@dimen/home_seach_text_padding"
+            android:text="@string/lately_seach_text" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:src="@mipmap/ic_launcher" />
+    </LinearLayout>
+
+
+    <hlks.hualiangou.com.ks_android.view.FlowLayout
+        android:id="@+id/seach_flowLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="10dp"
+        app:childSpacing="10dp"
+        app:rowSpacing="10dp"></hlks.hualiangou.com.ks_android.view.FlowLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/seach_activity_title_height"
+        android:background="@color/color_f5f5f5"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:paddingLeft="@dimen/home_seach_text_padding"
+            android:text="@string/lately_seach_texts" />
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:src="@mipmap/ic_launcher" />
+    </LinearLayout>
+
+
+    <hlks.hualiangou.com.ks_android.view.FlowLayout
+        android:id="@+id/seach_flowLayout_hot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="10dp"
+        app:childSpacing="10dp"
+        app:rowSpacing="10dp"></hlks.hualiangou.com.ks_android.view.FlowLayout>
+</LinearLayout>

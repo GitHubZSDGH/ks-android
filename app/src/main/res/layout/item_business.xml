@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="@color/color_fcfcfc"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<CheckBox
+    android:layout_centerVertical="true"
+    android:id="@+id/item_checkBox"
+    android:layout_width="wrap_content"
+    android:button="@null"
+    android:background="@drawable/shoppingcheckbox"
+    android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/item_title"
+        android:textColor="@color/color_1a1a1a"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@drawable/shop"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/item_checkBox"
+        android:layout_centerVertical="true"
+        android:text="北京腾讯有限公司"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/item_delete"
+        android:paddingRight="10dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+android:src="@drawable/shopping_delete"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
