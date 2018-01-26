@@ -29,6 +29,7 @@
             android:textColor="#1a1a1a" />
 
         <TextView
+            android:id="@+id/item_order_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -61,6 +62,7 @@
             android:layout_marginLeft="@dimen/px24"
             android:layout_marginTop="@dimen/px16"
             android:layout_toRightOf="@id/item_order_shop_head"
+            android:lines="2"
             android:text="Apple AirPods 蓝牙无线耳机 无线耳机 MMEF2CH/A"
             android:textColor="#1b1a1f"
             android:textSize="14sp" />
@@ -71,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/item_order_shop_name"
             android:layout_marginLeft="@dimen/px24"
-            android:layout_marginTop="@dimen/px22"
+            android:layout_marginTop="@dimen/px10"
             android:layout_toRightOf="@id/item_order_shop_head"
             android:text="洗脸手工皂90g"
             android:textColor="#999999"
@@ -83,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/item_order_shop_lab"
             android:layout_marginLeft="@dimen/px24"
-            android:layout_marginTop="@dimen/px30"
+            android:layout_marginTop="@dimen/px16"
             android:layout_toRightOf="@id/item_order_shop_head"
             android:text="￥369.00"
             android:textColor="#E53E42"
@@ -96,6 +98,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@id/item_order_shop_lab"
             android:layout_marginRight="@dimen/px30"
+            android:layout_marginTop="@dimen/px16"
             android:text="x1"
             android:textColor="#1a1a1a" />
     </RelativeLayout>
