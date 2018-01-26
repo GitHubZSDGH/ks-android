@@ -17,15 +17,20 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 支付宝权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logotu"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logotu"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,8 +50,26 @@
         <activity android:name=".activity.HomeSeachActivity" />
         <activity android:name=".activity.CommoditiesActivity" />
         <activity android:name=".activity.DetailPagesActivity" />
-        <activity android:name=".activity.ConfimOrderActivity"/>
-        <activity android:name=".activity.orderdetails.ReceivingAddressActivity"></activity>
+        <activity android:name=".activity.orderdetails.ConfimOrderActivity" />
+        <activity android:name=".activity.orderdetails.ReceivingAddressActivity" />
+        <activity android:name=".activity.orderdetails.NewAddressShopActivity" />
+        <activity android:name=".activity.zhengce.PrivacyPolicy" />
+        <activity android:name=".activity.zhengce.ZhuCePolicy" />
+        <!-- 支付宝 -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" />
+        <activity android:name=".activity.MsgPagerActivity" />
+        <activity android:name=".activity.main.AccountSettingActivity" />
+        <activity android:name=".activity.main.PersonalInformationActivity" />
+        <activity android:name=".activity.main.AccountSecurityActivity" />
+        <activity android:name=".activity.main.UpdatePsdActivity" />
+        <activity android:name=".activity.main.UpdateNameActivity" />
+        <activity android:name=".activity.main.MainFootActivity" />
+        <activity android:name=".activity.main.MainOrderActivity" />
+        <activity android:name=".activity.main.MainIntegralActivity"></activity>
     </application>
 
 </manifest>

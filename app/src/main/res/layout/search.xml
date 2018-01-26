@@ -1,58 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <LinearLayout
-        android:id="@+id/seach_back"
-        android:layout_width="match_parent"
-        android:layout_height="47dp"
-        android:background="#e53e42"
-        android:gravity="center"
-        android:orientation="horizontal"
-      >
+    android:layout_height="47dp"
+    android:id="@+id/search_bottom"
+    android:orientation="vertical"
+    android:background="@color/color_1b1a1f">
 
         <ImageView
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/imageView3" />
 
-        <RelativeLayout
+        <ImageView
             android:id="@+id/seach_relat"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:background="@drawable/search_etittext"
-            android:padding="5dp">
-
-            <ImageView
-                android:id="@+id/seach_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:src="@drawable/nav_search" />
-
-            <TextView
-                android:id="@+id/home_search_tv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="3dp"
-                android:layout_toRightOf="@id/seach_img"
-                android:background="@null"
-                android:hint="搜索您心爱的"
-                android:textSize="12sp" />
-        </RelativeLayout>
-
-        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:src="@drawable/nav_more" />
-    </LinearLayout>
-</LinearLayout>
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/sousuo"
+            android:paddingLeft="@dimen/dip_10"
+            android:paddingRight="@dimen/dip_10"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_alignTop="@+id/imageView3"
+            android:layout_alignParentEnd="true" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_e5e5e5"
+            android:layout_alignParentBottom="true"/>
+</RelativeLayout>

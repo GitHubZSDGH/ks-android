@@ -11,6 +11,7 @@
         android:background="@color/white">
 
         <ImageView
+            android:id="@+id/return_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -59,7 +60,7 @@
             android:textColor="@color/color_666" />
 
         <LinearLayout
-
+            android:id="@+id/shopingcar_ll_heji"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

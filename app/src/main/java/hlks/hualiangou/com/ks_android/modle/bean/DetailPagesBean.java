@@ -1,5 +1,11 @@
 package hlks.hualiangou.com.ks_android.modle.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.google.gson.annotations.Expose;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +17,7 @@ public class DetailPagesBean extends NoRegisterRespon {
 
 
     /**
-     * msg : {"id":"4","shop_name":"商品测试3","shop_sketch":"","categroy_id":"35","shop_start_money":"403","shop_end_money":"103","sale_num":"3","freight":"10","member_id":1,"member_name":"华联可溯","member_image":"","spec_one":"分类规格1","spec_two":"分类规格2","shop_image":[{"path":"/upload/20171124/f0648f59353b2e4808365cef02253c2f.jpg"}],"shop_features":[],"shop_spec":[{"spec_one_name":"红色","spec_two":[{"id":"173","spec_two_name":"L","stock_num":"50"},{"id":"172","spec_two_name":"XL","stock_num":"50"},{"id":"171","spec_two_name":"XXL","stock_num":"50"}]},{"spec_one_name":"绿色","spec_two":[{"id":"176","spec_two_name":"L","stock_num":"50"},{"id":"177","spec_two_name":"M","stock_num":"50"},{"id":"175","spec_two_name":"XL","stock_num":"50"},{"id":"174","spec_two_name":"XXL","stock_num":"50"}]}]}
+     * msg : {"id":"6","shop_name":"微软（Microsoft）","shop_sketch":"","categroy_id":"5","shop_banner":"/upload/20171201/eca87d64f20a5557bcc44055c3a0c89c.jpg","shop_start_money":"6200.00","shop_end_money":"7288.00","sale_num":"0","freight":"5","member_id":1,"member_name":"华联可溯","member_image":"","spec_one":"尺寸","spec_two":"系统","shop_image":[{"path":"/upload/20171201/a75fa0724cadf34554001a63ca735409.jpg"},{"path":"/upload/20171201/6770c01605755ce4b246d612aed5606e.jpg"},{"path":"/upload/20171201/6770c01605755ce4b246d612aed5606e.jpg"}],"shop_features":[{"path":"/upload/20171201/e96cc655722fa7a539814f7dc716b18f.jpg"},{"path":"/upload/20171201/b5ba33e99f80f21c2fc3f109bfd05913.jpg"}],"shop_spec":[{"spec_one_name":"12.3","spec_two":[{"id":"8","spec_two_name":"4G+128G","stock_num":"80"},{"id":"9","spec_two_name":"8G+128G","stock_num":"60"}]}]}
      */
 
     private MsgBean msg;
@@ -24,30 +30,32 @@ public class DetailPagesBean extends NoRegisterRespon {
         this.msg = msg;
     }
 
-    public static class MsgBean {
+    public static class MsgBean implements Parcelable {
         /**
-         * id : 4
-         * shop_name : 商品测试3
+         * id : 6
+         * shop_name : 微软（Microsoft）
          * shop_sketch :
-         * categroy_id : 35
-         * shop_start_money : 403
-         * shop_end_money : 103
-         * sale_num : 3
-         * freight : 10
+         * categroy_id : 5
+         * shop_banner : /upload/20171201/eca87d64f20a5557bcc44055c3a0c89c.jpg
+         * shop_start_money : 6200.00
+         * shop_end_money : 7288.00
+         * sale_num : 0
+         * freight : 5
          * member_id : 1
          * member_name : 华联可溯
          * member_image :
-         * spec_one : 分类规格1
-         * spec_two : 分类规格2
-         * shop_image : [{"path":"/upload/20171124/f0648f59353b2e4808365cef02253c2f.jpg"}]
-         * shop_features : []
-         * shop_spec : [{"spec_one_name":"红色","spec_two":[{"id":"173","spec_two_name":"L","stock_num":"50"},{"id":"172","spec_two_name":"XL","stock_num":"50"},{"id":"171","spec_two_name":"XXL","stock_num":"50"}]},{"spec_one_name":"绿色","spec_two":[{"id":"176","spec_two_name":"L","stock_num":"50"},{"id":"177","spec_two_name":"M","stock_num":"50"},{"id":"175","spec_two_name":"XL","stock_num":"50"},{"id":"174","spec_two_name":"XXL","stock_num":"50"}]}]
+         * spec_one : 尺寸
+         * spec_two : 系统
+         * shop_image : [{"path":"/upload/20171201/a75fa0724cadf34554001a63ca735409.jpg"},{"path":"/upload/20171201/6770c01605755ce4b246d612aed5606e.jpg"},{"path":"/upload/20171201/6770c01605755ce4b246d612aed5606e.jpg"}]
+         * shop_features : [{"path":"/upload/20171201/e96cc655722fa7a539814f7dc716b18f.jpg"},{"path":"/upload/20171201/b5ba33e99f80f21c2fc3f109bfd05913.jpg"}]
+         * shop_spec : [{"spec_one_name":"12.3","spec_two":[{"id":"8","spec_two_name":"4G+128G","stock_num":"80"},{"id":"9","spec_two_name":"8G+128G","stock_num":"60"}]}]
          */
 
         private String id;
         private String shop_name;
         private String shop_sketch;
         private String categroy_id;
+        private String shop_banner;
         private String shop_start_money;
         private String shop_end_money;
         private String sale_num;
@@ -58,8 +66,19 @@ public class DetailPagesBean extends NoRegisterRespon {
         private String spec_one;
         private String spec_two;
         private List<ShopImageBean> shop_image;
-        private List<?> shop_features;
+        private List<ShopFeaturesBean> shop_features;
         private List<ShopSpecBean> shop_spec;
+
+        public String getShop_num() {
+            return shop_num;
+        }
+
+        public void setShop_num(String shop_num) {
+            this.shop_num = shop_num;
+        }
+
+        @Expose
+        private String shop_num;
 
         public String getId() {
             return id;
@@ -91,6 +110,14 @@ public class DetailPagesBean extends NoRegisterRespon {
 
         public void setCategroy_id(String categroy_id) {
             this.categroy_id = categroy_id;
+        }
+
+        public String getShop_banner() {
+            return shop_banner;
+        }
+
+        public void setShop_banner(String shop_banner) {
+            this.shop_banner = shop_banner;
         }
 
         public String getShop_start_money() {
@@ -173,11 +200,11 @@ public class DetailPagesBean extends NoRegisterRespon {
             this.shop_image = shop_image;
         }
 
-        public List<?> getShop_features() {
+        public List<ShopFeaturesBean> getShop_features() {
             return shop_features;
         }
 
-        public void setShop_features(List<?> shop_features) {
+        public void setShop_features(List<ShopFeaturesBean> shop_features) {
             this.shop_features = shop_features;
         }
 
@@ -189,9 +216,9 @@ public class DetailPagesBean extends NoRegisterRespon {
             this.shop_spec = shop_spec;
         }
 
-        public static class ShopImageBean {
+        public static class ShopImageBean implements Parcelable {
             /**
-             * path : /upload/20171124/f0648f59353b2e4808365cef02253c2f.jpg
+             * path : /upload/20171201/a75fa0724cadf34554001a63ca735409.jpg
              */
 
             private String path;
@@ -203,12 +230,86 @@ public class DetailPagesBean extends NoRegisterRespon {
             public void setPath(String path) {
                 this.path = path;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.path);
+            }
+
+            public ShopImageBean() {
+            }
+
+            protected ShopImageBean(Parcel in) {
+                this.path = in.readString();
+            }
+
+            public static final Creator<ShopImageBean> CREATOR = new Creator<ShopImageBean>() {
+                @Override
+                public ShopImageBean createFromParcel(Parcel source) {
+                    return new ShopImageBean(source);
+                }
+
+                @Override
+                public ShopImageBean[] newArray(int size) {
+                    return new ShopImageBean[size];
+                }
+            };
         }
 
-        public static class ShopSpecBean {
+        public static class ShopFeaturesBean implements Parcelable {
             /**
-             * spec_one_name : 红色
-             * spec_two : [{"id":"173","spec_two_name":"L","stock_num":"50"},{"id":"172","spec_two_name":"XL","stock_num":"50"},{"id":"171","spec_two_name":"XXL","stock_num":"50"}]
+             * path : /upload/20171201/e96cc655722fa7a539814f7dc716b18f.jpg
+             */
+
+            private String path;
+
+            public String getPath() {
+                return path;
+            }
+
+            public void setPath(String path) {
+                this.path = path;
+            }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.path);
+            }
+
+            public ShopFeaturesBean() {
+            }
+
+            protected ShopFeaturesBean(Parcel in) {
+                this.path = in.readString();
+            }
+
+            public static final Creator<ShopFeaturesBean> CREATOR = new Creator<ShopFeaturesBean>() {
+                @Override
+                public ShopFeaturesBean createFromParcel(Parcel source) {
+                    return new ShopFeaturesBean(source);
+                }
+
+                @Override
+                public ShopFeaturesBean[] newArray(int size) {
+                    return new ShopFeaturesBean[size];
+                }
+            };
+        }
+
+        public static class ShopSpecBean implements Parcelable {
+            /**
+             * spec_one_name : 12.3
+             * spec_two : [{"id":"8","spec_two_name":"4G+128G","stock_num":"80"},{"id":"9","spec_two_name":"8G+128G","stock_num":"60"}]
              */
 
             private String spec_one_name;
@@ -230,11 +331,11 @@ public class DetailPagesBean extends NoRegisterRespon {
                 this.spec_two = spec_two;
             }
 
-            public static class SpecTwoBean {
+            public static class SpecTwoBean implements Parcelable {
                 /**
-                 * id : 173
-                 * spec_two_name : L
-                 * stock_num : 50
+                 * id : 8
+                 * spec_two_name : 4G+128G
+                 * stock_num : 80
                  */
 
                 private String id;
@@ -264,7 +365,135 @@ public class DetailPagesBean extends NoRegisterRespon {
                 public void setStock_num(String stock_num) {
                     this.stock_num = stock_num;
                 }
+
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeString(this.id);
+                    dest.writeString(this.spec_two_name);
+                    dest.writeString(this.stock_num);
+                }
+
+                public SpecTwoBean() {
+                }
+
+                protected SpecTwoBean(Parcel in) {
+                    this.id = in.readString();
+                    this.spec_two_name = in.readString();
+                    this.stock_num = in.readString();
+                }
+
+                public static final Creator<SpecTwoBean> CREATOR = new Creator<SpecTwoBean>() {
+                    @Override
+                    public SpecTwoBean createFromParcel(Parcel source) {
+                        return new SpecTwoBean(source);
+                    }
+
+                    @Override
+                    public SpecTwoBean[] newArray(int size) {
+                        return new SpecTwoBean[size];
+                    }
+                };
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.spec_one_name);
+                dest.writeList(this.spec_two);
+            }
+
+            public ShopSpecBean() {
+            }
+
+            protected ShopSpecBean(Parcel in) {
+                this.spec_one_name = in.readString();
+                this.spec_two = new ArrayList<SpecTwoBean>();
+                in.readList(this.spec_two, SpecTwoBean.class.getClassLoader());
+            }
+
+            public static final Creator<ShopSpecBean> CREATOR = new Creator<ShopSpecBean>() {
+                @Override
+                public ShopSpecBean createFromParcel(Parcel source) {
+                    return new ShopSpecBean(source);
+                }
+
+                @Override
+                public ShopSpecBean[] newArray(int size) {
+                    return new ShopSpecBean[size];
+                }
+            };
         }
+
+        public MsgBean() {
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.id);
+            dest.writeString(this.shop_name);
+            dest.writeString(this.shop_sketch);
+            dest.writeString(this.categroy_id);
+            dest.writeString(this.shop_banner);
+            dest.writeString(this.shop_start_money);
+            dest.writeString(this.shop_end_money);
+            dest.writeString(this.sale_num);
+            dest.writeString(this.freight);
+            dest.writeInt(this.member_id);
+            dest.writeString(this.member_name);
+            dest.writeString(this.member_image);
+            dest.writeString(this.spec_one);
+            dest.writeString(this.spec_two);
+            dest.writeTypedList(this.shop_image);
+            dest.writeTypedList(this.shop_features);
+            dest.writeTypedList(this.shop_spec);
+            dest.writeString(this.shop_num);
+        }
+
+        protected MsgBean(Parcel in) {
+            this.id = in.readString();
+            this.shop_name = in.readString();
+            this.shop_sketch = in.readString();
+            this.categroy_id = in.readString();
+            this.shop_banner = in.readString();
+            this.shop_start_money = in.readString();
+            this.shop_end_money = in.readString();
+            this.sale_num = in.readString();
+            this.freight = in.readString();
+            this.member_id = in.readInt();
+            this.member_name = in.readString();
+            this.member_image = in.readString();
+            this.spec_one = in.readString();
+            this.spec_two = in.readString();
+            this.shop_image = in.createTypedArrayList(ShopImageBean.CREATOR);
+            this.shop_features = in.createTypedArrayList(ShopFeaturesBean.CREATOR);
+            this.shop_spec = in.createTypedArrayList(ShopSpecBean.CREATOR);
+            this.shop_num = in.readString();
+        }
+
+        public static final Creator<MsgBean> CREATOR = new Creator<MsgBean>() {
+            @Override
+            public MsgBean createFromParcel(Parcel source) {
+                return new MsgBean(source);
+            }
+
+            @Override
+            public MsgBean[] newArray(int size) {
+                return new MsgBean[size];
+            }
+        };
     }
 }

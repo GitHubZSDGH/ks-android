@@ -3,15 +3,18 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
+        android:id="@+id/seach_back"
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:background="#ffffff">
+        android:background="@color/color_1b1a1f">
         <ImageView
             android:id="@+id/search_activity_img"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
             android:src="@drawable/nav_return3"
 
             android:paddingLeft="13dp"
@@ -45,6 +48,7 @@
                 android:layout_toRightOf="@id/seach_img"/>
         </RelativeLayout>
         <TextView
+            android:id="@+id/title_seach"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="搜索"

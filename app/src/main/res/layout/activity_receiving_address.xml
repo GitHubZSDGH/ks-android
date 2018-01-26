@@ -10,7 +10,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/color_1b1a1f">
 
         <ImageView
             android:id="@+id/receiving_address_return"
@@ -28,6 +29,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:textSize="18dp"
+            android:textColor="@color/white"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="收货地址" />
@@ -39,12 +41,13 @@
     <ListView
         android:id="@+id/ll_receiving_address"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/new_add_address">
 
     </ListView>
         <TextView
             android:id="@+id/new_add_address"
-            android:layout_width="280dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/address_shep"
             android:textColor="@color/white"
@@ -52,9 +55,6 @@
             android:gravity="center"
             android:text="新增地址"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="45dp"
-
             />
     </RelativeLayout>
 </LinearLayout>

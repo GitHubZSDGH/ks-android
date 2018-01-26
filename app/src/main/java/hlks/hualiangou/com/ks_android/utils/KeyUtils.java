@@ -14,4 +14,8 @@ public class KeyUtils {
      * 保存用户id的key值
      */
     public static final String USER_ID = "user_id";
+    /**
+     * 保存用户账号的key值
+     */
+    public static final String USER_PHONE = "user_phone";
 }

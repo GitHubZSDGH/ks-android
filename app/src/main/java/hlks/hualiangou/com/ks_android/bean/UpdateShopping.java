@@ -1,7 +1,5 @@
 package hlks.hualiangou.com.ks_android.bean;
 
-import java.util.List;
-
 /**
  * 项目名称:
  * 类描述:
@@ -12,59 +10,65 @@ import java.util.List;
  */
 public class UpdateShopping {
 
-    private List<ShopingBean> shoping;
+    /**
+     * shop_id : 商品id
+     * staff : 1:删除。0:修改
+     * shop_num : 商品数量
+     * shop_money : 商品总额
+     */
 
-    public List<ShopingBean> getShoping() {
-        return shoping;
+    private String shop_spec_id;
+    private String staff;
+    private String shop_num;
+    private String shop_money;
+    private  String cart_id;
+    private  String shop_id;
+
+    public String getShop_spec_id() {
+        return shop_spec_id;
     }
 
-    public void setShoping(List<ShopingBean> shoping) {
-        this.shoping = shoping;
+    public void setShop_spec_id(String shop_spec_id) {
+        this.shop_spec_id = shop_spec_id;
     }
 
-    public static class ShopingBean {
-        /**
-         * shop_id : 商品id
-         * staff : 1:删除。0:修改
-         * shop_num : 商品数量
-         * shop_money : 商品总额
-         */
+    public String getStaff() {
+        return staff;
+    }
 
-        private String shop_id;
-        private String staff;
-        private String shop_num;
-        private String shop_money;
+    public void setStaff(String staff) {
+        this.staff = staff;
+    }
 
-        public String getShop_id() {
-            return shop_id;
-        }
+    public String getShop_num() {
+        return shop_num;
+    }
 
-        public void setShop_id(String shop_id) {
-            this.shop_id = shop_id;
-        }
+    public void setShop_num(String shop_num) {
+        this.shop_num = shop_num;
+    }
 
-        public String getStaff() {
-            return staff;
-        }
+    public String getShop_money() {
+        return shop_money;
+    }
 
-        public void setStaff(String staff) {
-            this.staff = staff;
-        }
+    public void setShop_money(String shop_money) {
+        this.shop_money = shop_money;
+    }
 
-        public String getShop_num() {
-            return shop_num;
-        }
+    public String getCart_id() {
+        return cart_id;
+    }
 
-        public void setShop_num(String shop_num) {
-            this.shop_num = shop_num;
-        }
+    public void setCart_id(String cart_id) {
+        this.cart_id = cart_id;
+    }
 
-        public String getShop_money() {
-            return shop_money;
-        }
+    public String getShop_id() {
+        return shop_id;
+    }
 
-        public void setShop_money(String shop_money) {
-            this.shop_money = shop_money;
-        }
+    public void setShop_id(String shop_id) {
+        this.shop_id = shop_id;
     }
 }

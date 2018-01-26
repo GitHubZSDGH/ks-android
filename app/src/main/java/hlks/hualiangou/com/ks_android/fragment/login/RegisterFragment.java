@@ -1,13 +1,18 @@
 package hlks.hualiangou.com.ks_android.fragment.login;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,6 +24,7 @@ import com.tsy.sdk.myokhttp.MyOkHttp;
 import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
 import com.tsy.sdk.myokhttp.response.IResponseHandler;
 import com.tsy.sdk.myokhttp.util.ParamsUtils;
+import com.tsy.sdk.myokhttp.util.ToastUtils;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -28,10 +34,15 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import hlks.hualiangou.com.ks_android.R;
 import hlks.hualiangou.com.ks_android.activity.LoginActivity;
+import hlks.hualiangou.com.ks_android.activity.zhengce.PrivacyPolicy;
+import hlks.hualiangou.com.ks_android.activity.zhengce.ZhuCePolicy;
 import hlks.hualiangou.com.ks_android.base.BaseFragment;
+import hlks.hualiangou.com.ks_android.config.FragmentBuilder;
 import hlks.hualiangou.com.ks_android.modle.bean.LoginBean;
 import hlks.hualiangou.com.ks_android.modle.bean.NoRegisterRespon;
 import hlks.hualiangou.com.ks_android.modle.url.UrlUtilds;
@@ -77,6 +88,11 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
     @BindView(R.id.register_Linear)
     LinearLayout registerLinear;
     Unbinder unbinder;
+    @BindView(R.id.register_xieyi)
+    TextView registerXieyi;
+    @BindView(R.id.yinsi_xieyi)
+    TextView yinsiXieyi;
+    Unbinder unbinder1;
 
     //成员变量
     private View v;
@@ -126,6 +142,7 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
     public void onDestroyView() {
         super.onDestroyView();
 //        unbinder.unbind();
+        unbinder1.unbind();
     }
 
     private void setOnClick() {
@@ -149,121 +166,110 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
 
             }
         });
-        registerPhone.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (!editable.toString().equals("") && editable.length() == 11) {
-                    PhoneText();//发起网络请求
-                }
-            }
-        });
     }
 
     //手机号输入请求
     private void PhoneText() {
-        Register_phone = registerPhone.getText().toString();//用户名
-        String build = ParamsUtils.getInstance()
-                .params("api", "user/userValid")
-                .params("appid", UrlUtilds.APPID)
-                .params("t", time)
-                .params("token", "")
-                .params("uid", "")
-                .params("username", Register_phone)
-                .build();
-        myOkHttp = new MyOkHttp();
-        myOkHttp.post()
-                .url(UrlUtilds.PhoneText)
-                .addParam("s", build)
-                .addParam("api", "user/userValid")
-                .addParam("appid", UrlUtilds.APPID)
-                .addParam("t", time)
-                .addParam("token", "")
-                .addParam("uid", "")
-                .addParam("username", Register_phone)
-                .tag(this)
-                .enqueue(new GsonResponseHandler<LoginBean>() {
 
-                    @Override
-                    public void onFailure(int statusCode, String error_msg) {
-                        Log.e("TAG", "onFailure==" + error_msg);
-                    }
-
-                    @Override
-                    public void onSuccess(int statusCode, LoginBean response) {
-                        Log.e("TAG", "onsuccful===" + response.toString());
-
-
-                    }
-
-                    @Override
-                    public void onSuccfulString(int code, String message) {
-
-                    }
-                });
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.get_code:
                 mobile = registerPhone.getText().toString();
-                if (!mobile.equals("") && mobile != null) {
-                    note();
-//                    getCode.setBackgroundResource(R.drawable.gray_get_code);
-//                    getCode.setTextSize(16);
-//                    getCode.setEnabled(false);
-//                    timer.schedule(task, 1000, 1000);
-                    final int count = 60;
-                    Observable<Long> longObservable = Observable.interval(0, 1, TimeUnit.SECONDS)
-                            .take(count + 1)
-                            .map(new Function<Long, Long>() {
+                if (!TextUtils.isEmpty(registerPhone.getText())) {
+
+                    Register_phone = registerPhone.getText().toString();//用户名
+                    String build = ParamsUtils.getInstance()
+                            .params("api", "user/userValid")
+                            .params("appid", UrlUtilds.APPID)
+                            .params("t", time)
+                            .params("token", "")
+                            .params("uid", "")
+                            .params("username", Register_phone)
+                            .build();
+                    myOkHttp = new MyOkHttp();
+                    myOkHttp.post()
+                            .url(UrlUtilds.PhoneText)
+                            .addParam("s", build)
+                            .addParam("api", "user/userValid")
+                            .addParam("appid", UrlUtilds.APPID)
+                            .addParam("t", time)
+                            .addParam("token", "")
+                            .addParam("uid", "")
+                            .addParam("username", Register_phone)
+                            .tag(this)
+                            .enqueue(new GsonResponseHandler<LoginBean>() {
+
                                 @Override
-                                public Long apply(@NonNull Long aLong) throws Exception {
-                                    return count - aLong;
+                                public void onFailure(int statusCode, String error_msg) {
+                                    Log.e("TAG", "onFailure==" + error_msg);
                                 }
-                            }).doOnSubscribe(new Consumer<Disposable>() {
+
                                 @Override
-                                public void accept(Disposable disposable) throws Exception {
-                                    getCode.setEnabled(false);
+                                public void onSuccess(int statusCode, LoginBean response) {
+                                    Log.e("TAG", "onsuccful===" + response.toString());
+
+
                                 }
-                            }).observeOn(AndroidSchedulers.mainThread());//操作UI主要在UI线程
 
-                    longObservable.subscribe(new Observer<Long>() {
-                        @Override
-                        public void onSubscribe(@NonNull Disposable d) {
-                            disposable = d;
-                        }
+                                @Override
+                                public void onSuccfulString(int code, String message) {
+                                    if ("存在".equals(message)) {
+                                        ToastUtils.showSingleToast("此用户已注册");
+                                    } else {
+                                        note();
 
-                        @Override
-                        public void onNext(@NonNull Long aLong) {
-                            try {
-                                getCode.setText(aLong + "秒后重发");
-                            } catch (Exception e) {
+                                        final int count = 60;
+                                        Observable<Long> longObservable = Observable.interval(0, 1, TimeUnit.SECONDS)
+                                                .take(count + 1)
+                                                .map(new Function<Long, Long>() {
+                                                    @Override
+                                                    public Long apply(@NonNull Long aLong) throws Exception {
+                                                        return count - aLong;
+                                                    }
+                                                }).doOnSubscribe(new Consumer<Disposable>() {
+                                                    @Override
+                                                    public void accept(Disposable disposable) throws Exception {
+                                                        getCode.setEnabled(false);
+                                                    }
+                                                }).observeOn(AndroidSchedulers.mainThread());//操作UI主要在UI线程
 
-                            }
-                        }
+                                        longObservable.subscribe(new Observer<Long>() {
+                                            @Override
+                                            public void onSubscribe(@NonNull Disposable d) {
+                                                disposable = d;
+                                            }
 
-                        @Override
-                        public void onError(@NonNull Throwable e) {
+                                            @Override
+                                            public void onNext(@NonNull Long aLong) {
+                                                try {
+                                                    getCode.setText(aLong + "秒后重发");
+                                                } catch (Exception e) {
 
-                        }
+                                                }
+                                            }
 
-                        @Override
-                        public void onComplete() {
-                            getCode.setText("发送验证码");
-                            getCode.setEnabled(true);
-                        }
-                    });
-                    getCode.setEnabled(false);
+                                            @Override
+                                            public void onError(@NonNull Throwable e) {
+
+                                            }
+
+                                            @Override
+                                            public void onComplete() {
+                                                getCode.setText("发送验证码");
+                                                getCode.setEnabled(true);
+                                            }
+                                        });
+                                        getCode.setEnabled(false);
+
+
+                                    }
+                                }
+                            });
+
 
                 } else {
                     Toast.makeText(getActivity(), "手机号码不能为空", Toast.LENGTH_SHORT).show();
@@ -300,10 +306,11 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
                 case 0:
                     if (ret == 0) {
                         Toast.makeText(getActivity(), "注册成功，请登录使用", Toast.LENGTH_SHORT).show();
-                        LoginFragment loginFragment = new LoginFragment();
-                        getFragmentManager().beginTransaction().
-                                replace(R.id.Login_Register, loginFragment)
-                                .commitAllowingStateLoss();
+                        RegisterFragment loginFragment = new RegisterFragment();
+                        FragmentBuilder.getInstance(baseActivity)
+                                .start(LoginFragment.class)
+                                .add(R.id.Login_Register)
+                                .commit();
                         LoginActivity activity = (LoginActivity) getActivity();
                         activity.ShowSelectPicture(2);
                     } else if (ret == -100) {
@@ -430,10 +437,14 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
                             //改用户已被注册
                             case "100":
                                 Toast.makeText(getContext(), R.string.regist_now_toast, Toast.LENGTH_SHORT).show();
+
                                 break;
                             //注册成功
                             case "0":
                                 Toast.makeText(getContext(), R.string.regist_toast, Toast.LENGTH_SHORT).show();
+                                Message msg = new Message();
+                                msg.what = 0;
+                                handler.sendMessage(msg);
                                 break;
                             default:
 //                                if (!TextUtils.isEmpty(response.getMsg())) {
@@ -456,4 +467,25 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
                 });
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder1 = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @OnClick({R.id.register_xieyi, R.id.yinsi_xieyi})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.register_xieyi:
+                Intent intent = new Intent(baseActivity, ZhuCePolicy.class);
+                startActivity(intent);
+                break;
+            case R.id.yinsi_xieyi:
+                Intent intent1 = new Intent(baseActivity, PrivacyPolicy.class);
+                startActivity(intent1);
+                break;
+        }
+    }
 }

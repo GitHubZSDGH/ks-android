@@ -4,76 +4,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="250dp"
-    android:background="@drawable/login_top"
-    android:fitsSystemWindows="true"
-    android:clipToPadding="true">
-<RadioButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
-    android:button="@null"
-    android:drawableTop="@mipmap/ic_launcher"
-    android:text="联合"
-    android:gravity="center_horizontal"/>
-    <LinearLayout
+    <!--android:background="@drawable/loginbackground"-->
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        >
-        <RelativeLayout
-            android:id="@+id/Register_RelativeLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@null"
-                android:text="注册"
-                android:layout_centerInParent="true"
-                android:textSize="12sp"
-                />
-            <ImageView
-                android:id="@+id/Register_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/triangle3x"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:visibility="gone"
-                />
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/Login_RelativeLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@null"
-                android:text="登录"
-                android:textSize="12sp"
-                android:layout_centerInParent="true"
-                />
-            <ImageView
-                android:id="@+id/login_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-               android:src="@drawable/triangle3x"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                />
-        </RelativeLayout>
+        android:layout_height="240dp"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true">
 
-    </LinearLayout>
-</RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="94dp"
+            android:background="@drawable/kuang_login"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/Register_RelativeLayout"
+                android:layout_width="@dimen/dip_82"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dip_34"
+                >
+
+
+
+                <ImageView
+                    android:id="@+id/Register_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/jindi"
+                    android:visibility="gone"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:button="@null"
+                    android:text="注册"
+                    android:textSize="@dimen/text_size_28" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/Login_RelativeLayout"
+                android:layout_width="@dimen/dip_82"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dip_34"
+                >
+
+
+
+                <ImageView
+                    android:id="@+id/login_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/jindi" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:button="@null"
+                    android:text="登录"
+                    android:textSize="@dimen/text_size_28" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
     <FrameLayout
         android:id="@+id/Login_Register"
         android:layout_width="match_parent"

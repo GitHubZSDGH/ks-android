@@ -8,10 +8,10 @@
 <CheckBox
     android:layout_centerVertical="true"
     android:id="@+id/item_checkBox"
-    android:layout_width="wrap_content"
+    android:layout_width="24dp"
     android:button="@null"
     android:background="@drawable/shoppingcheckbox"
-    android:layout_height="wrap_content" />
+    android:layout_height="24dp" />
     <TextView
         android:id="@+id/item_title"
         android:textColor="@color/color_1a1a1a"
@@ -28,8 +28,9 @@
         android:paddingRight="10dp"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-android:src="@drawable/shopping_delete"
+        android:src="@drawable/shopping_delete"
 
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 </RelativeLayout>

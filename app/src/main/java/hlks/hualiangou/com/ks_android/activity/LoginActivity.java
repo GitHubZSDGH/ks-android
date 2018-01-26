@@ -13,6 +13,8 @@ import hlks.hualiangou.com.ks_android.config.FragmentBuilder;
 import hlks.hualiangou.com.ks_android.fragment.login.LoginFragment;
 import hlks.hualiangou.com.ks_android.fragment.login.RegisterFragment;
 
+import static hlks.hualiangou.com.ks_android.App.baseActivity;
+
 /**
  * 项目名称:
  * 类描述:登录页面
@@ -34,6 +36,11 @@ public class LoginActivity extends BaseActivity {
     @Override
     public int getLayoutId() {
         return R.layout.login_activity;
+    }
+
+    @Override
+    public int[] hideSoftByEditViewIds() {
+        return super.hideSoftByEditViewIds();
     }
 
     @Override
@@ -60,15 +67,16 @@ public class LoginActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.Register_RelativeLayout:
-                getSupportFragmentManager().beginTransaction().
-                        replace(R.id.Login_Register,registerFragment)
-                        .commitAllowingStateLoss();
+                FragmentBuilder.getInstance(baseActivity).start(RegisterFragment.class)
+                        .add(R.id.Login_Register)
+                         .commit();
                 RegisterImg.setVisibility(View.VISIBLE);
                 loginImg.setVisibility(View.GONE);
                 break;
             case R.id.Login_RelativeLayout:
-                getSupportFragmentManager().beginTransaction().
-                        replace(R.id.Login_Register,loginFragment).commitAllowingStateLoss();
+                FragmentBuilder.getInstance(baseActivity).start(LoginFragment.class)
+                        .add(R.id.Login_Register)
+                        .commit();
                 RegisterImg.setVisibility(View.GONE);
                 loginImg.setVisibility(View.VISIBLE);
                 break;

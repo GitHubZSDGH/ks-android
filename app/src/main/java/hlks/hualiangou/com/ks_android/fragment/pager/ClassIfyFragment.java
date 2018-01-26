@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ import java.util.List;
 import hlks.hualiangou.com.ks_android.App;
 import hlks.hualiangou.com.ks_android.R;
 import hlks.hualiangou.com.ks_android.activity.CommoditiesActivity;
+import hlks.hualiangou.com.ks_android.activity.HomeSeachActivity;
 import hlks.hualiangou.com.ks_android.base.BaseAdapterb.BaseRecyclerAdapter;
 import hlks.hualiangou.com.ks_android.base.BaseAdapterb.ViewHolder;
 import hlks.hualiangou.com.ks_android.base.BaseFragment;
@@ -49,6 +51,7 @@ public class ClassIfyFragment extends BaseFragment implements AdapterView.OnItem
     private ScrollView rv_right;
     private ImageView lfyreturn;
     private LinearLayout linearLayout;
+    private RelativeLayout fenleiSeach;
     private String time;//当前时间戳
     private List<ClassIfygragmentBean.MsgBean> menuList1 = new ArrayList<>();  //左侧集合
     private List<ClassIfygragmentBean.MsgBean.TwoBean> menuList2 = new ArrayList<>();  //左侧集合
@@ -59,7 +62,7 @@ public class ClassIfyFragment extends BaseFragment implements AdapterView.OnItem
     private ClassIfygragmentBean classIfygragmentBean;
     private View lastView;
     private MainListener mainCLicter;
-    private HomePagerFragment homePagerFragment;//首页
+
 
     @Override
     public int getLayoutId() {
@@ -72,20 +75,26 @@ public class ClassIfyFragment extends BaseFragment implements AdapterView.OnItem
         rv_right = (ScrollView) view.findViewById(R.id.rv_right);
         linearLayout = view.findViewById(R.id.category_lin);
         lfyreturn = view.findViewById(R.id.return_lfy);
+        fenleiSeach = view.findViewById(R.id.fenlei_seach);
+        fenleiSeach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(baseActivity, HomeSeachActivity.class));
+            }
+        });
         lfyreturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentBuilder.getInstance(App.baseActivity)
-                        .start(HomePagerFragment.class)
-                        .add(R.id.main_home)
-                        .commit();
-                mainCLicter.onCheckdListener();
-//                homePagerFragment = new HomePagerFragment();
+
 //                baseActivity.getSupportFragmentManager().beginTransaction().
 //                        replace(R.id.main_home, homePagerFragment)
 //                        .commitAllowingStateLoss();
 //                StatusBarCompat.setStatusBarColor(baseActivity, getResources()
 //                        .getColor(R.color.corlorsearch), true);
+                FragmentBuilder.getInstance(baseActivity)
+                        .start(HomeFragmentPaer.class)
+                        .add(R.id.main_home)
+                        .commit();
             }
         });
         Date dt = new Date();
@@ -163,11 +172,11 @@ public class ClassIfyFragment extends BaseFragment implements AdapterView.OnItem
             lastView = ifyLeftAdapter.getFirsiView();
         }
 
-        lastView.setBackgroundResource(R.drawable.bg2);
+        lastView.setBackgroundResource(R.color.white);
         ((TextView) lastView.findViewById(R.id.tv_title)).setTextColor(Color.parseColor("#323437"));
         if (view != null) {
-            view.setBackgroundResource(R.drawable.type_item_background_selector);
             ((TextView) view.findViewById(R.id.tv_title)).setTextColor(Color.parseColor("#fd3f3f"));
+            view.setBackgroundResource(R.drawable.type_item_background_selector);
             ifyLeftAdapter.setmSelect(i);
             ifyLeftAdapter.setView(view);
             lastView = view;
@@ -189,14 +198,15 @@ public class ClassIfyFragment extends BaseFragment implements AdapterView.OnItem
             TextView textView = new TextView(baseActivity);
             textView.setText(twoBean.getCategroy_name());
             textView.setTextColor(baseActivity.getResources().getColor(R.color.color_1a1a1a));
-            textView.setPadding(0, 0, 0, (int) DimenUtils.pxToDp(10));
+            textView.setPadding(0, (int) DimenUtils.pxToDp(50), 0, (int) DimenUtils.pxToDp(50));
             textView.setGravity(Gravity.LEFT);
-            textView.setTextSize(DimenUtils.pxToSp(50));
+            textView.setTextSize(DimenUtils.pxToSp(40));
             RecyclerView recyclerView = new RecyclerView(baseActivity);
             GridLayoutManager manager = new GridLayoutManager(baseActivity, 3);
             recyclerView.setLayoutManager(manager);
+            recyclerView.setBackgroundColor(baseActivity.getResources().getColor(R.color.white));
             recyclerView.setPadding(0, 0, 0, 0);
-            BaseRecyclerAdapter<ClassIfygragmentBean.MsgBean.TwoBean.ThreeBean> baseRecyclerAdapter = new BaseRecyclerAdapter<ClassIfygragmentBean.MsgBean.TwoBean.ThreeBean>(twoBean.getThree(), R.layout.item_grid_category) {
+            final BaseRecyclerAdapter<ClassIfygragmentBean.MsgBean.TwoBean.ThreeBean> baseRecyclerAdapter = new BaseRecyclerAdapter<ClassIfygragmentBean.MsgBean.TwoBean.ThreeBean>(twoBean.getThree(), R.layout.item_grid_category) {
 
                 @Override
                 protected void conver(ViewHolder holder, ClassIfygragmentBean.MsgBean.TwoBean.ThreeBean modle, int position) {
@@ -211,8 +221,10 @@ public class ClassIfyFragment extends BaseFragment implements AdapterView.OnItem
             baseRecyclerAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent intent = new Intent(getActivity(), CommoditiesActivity.class);
-                    intent.putExtra("categroy_id", twoBean.getThree().get(i).getId());
+                    Intent intent = new Intent(baseActivity, CommoditiesActivity.class);
+                    intent.putExtra("isnet", true);
+                    intent.putExtra("commodities", twoBean.getThree().get(i).getId());
+                    intent.putExtra("fenleiname",twoBean.getThree().get(i).getCategroy_name());
                     startActivity(intent);
 //
 

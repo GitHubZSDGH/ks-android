@@ -5,15 +5,20 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Stack;
 
@@ -23,6 +28,7 @@ import hlks.hualiangou.com.ks_android.utils.KeyBoardUtils;
 
 
 /**
+ * 编写人：老田
  * Created by localadmin on 2017/7/28.
  */
    //所有的activity继承AutoLayoutActivity
@@ -32,9 +38,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     private static boolean isActive;
     private boolean isSearchEditTextCeanter = false;
     private KeyBordListener keyBordListener;
-
+private int[] ids;
     /**
-     * 用来保存所有已打开的Activity
+     * 用来保存所有已打开的Activity这有坑
      */
     private static Stack<Activity> listActivity = new Stack<Activity>();
 
@@ -49,24 +55,55 @@ public abstract class BaseActivity extends AppCompatActivity {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         setContentView(getLayoutId());
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            //透明状态栏
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            //透明导航栏
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                //        这段代码不能动，会有全局bug 稍后修改
+                if (!isEMUI3_1()) {
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                }
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.TRANSPARENT);
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            }
+        }
+
+
+
         App.baseActivity = this;
+        //这段代码不能动，会有全局bug 稍后修改
 //        getSupportActionBar().hide();
         ButterKnife.bind(this);
         initView();
         loadData();
         setListener();
     }
+    public static boolean isEMUI3_1() {
+        if ("EmotionUI_3.1".equals(getEmuiVersion())) {
+            return true;
+        }
+        return false;
+    }
+
+    private static String getEmuiVersion(){
+        Class<?> classType = null;
+        try {
+            classType = Class.forName("android.os.SystemProperties");
+            Method getMethod = classType.getDeclaredMethod("get", String.class);
+            return (String)getMethod.invoke(classType, "ro.build.version.emui");
+        } catch (Exception e){
+        }
+        return "";
+    }
+
 
     public void setKeyBordListener(KeyBordListener keyBordListener) {
         this.keyBordListener = keyBordListener;
     }
-
+    //这段代码不能动，稍后会用到 如果我走了，但愿后来的哥们千万记住了
     public void setKeyBordListenerNull() {
         keyBordListener = null;
     }
@@ -181,6 +218,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         return false;
     }
 
+
+
+
     /**
      * 传入EditText的Id
      * 没有传入的EditText不做处理
@@ -188,7 +228,10 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @return id 数组
      */
     public int[] hideSoftByEditViewIds() {
-        return null;
+        return ids;
+    }
+    public void hideEditext(int[] ids){
+        this.ids = ids;
     }
 
     /**

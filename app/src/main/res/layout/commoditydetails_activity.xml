@@ -6,7 +6,8 @@
     android:id="@+id/commoditydetails_Relative"
     android:layout_width="match_parent"
     android:layout_height="47dp"
-    android:layout_alignParentTop="true">
+    android:layout_alignParentTop="true"
+    android:background="@color/color_1b1a1f">
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,14 +21,14 @@
         android:text="商品详情"
         android:textSize="20sp"
         android:layout_centerInParent="true"
-        android:textColor="#1a1a1a"/>
+        android:textColor="@color/white"/>
     <ImageView
         android:id="@+id/nav_moreimg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
-        android:src="@drawable/nav_more3"
+        android:src="@drawable/gengduo"
         android:layout_marginRight="13dp"/>
     <ImageView
 
@@ -394,7 +395,7 @@
          android:id="@+id/service_img"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:src="@drawable/service2"
+         android:src="@drawable/service"
          android:layout_centerInParent="true"
         />
      <TextView

@@ -54,15 +54,17 @@ public class ParamsUtils {
         }
 
         sb = sb.deleteCharAt(sb.length() - 1);
-        Log.e("TAG","sb===="+sb.toString());
-        String stt = URLEncoder.encode(sb.toString());
+        String trim = sb.toString().replace(" ","");
+        Log.e("TAG","http&===="+sb.toString());
+        String stt = URLEncoder.encode(trim);
         String construct_key = ModelUtilds.construct_key;//签名密钥
         if (construct_key.contains("-_")) {
             construct_key = construct_key.replaceAll("-_", "+/");
         }
         String stringha = HMACSHA1.hmac_sha1(construct_key, stt);
+        Log.e("ParamsUtils", "s===="+stringha);
         map.clear();
-        return stringha;
+        return stringha.trim();
 
     }
 }

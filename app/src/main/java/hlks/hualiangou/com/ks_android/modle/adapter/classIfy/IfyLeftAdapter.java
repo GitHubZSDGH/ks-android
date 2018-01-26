@@ -94,6 +94,11 @@ public class IfyLeftAdapter extends BaseAdapter {
             convertView.setBackgroundResource(R.drawable.bg2);  //其他项背景
             holder.tv_name.setTextColor(Color.parseColor("#323437"));
         }
+
+        convertView.setBackgroundResource(R.color.white);
+        if (position==0){
+            convertView.setBackgroundResource(R.drawable.lift_back);
+        }
         if (position == mSelect) {
             this.view = convertView;
         }

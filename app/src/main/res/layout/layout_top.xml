@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hankkin.library.GradationScrollView
-    android:id="@+id/scrollview"
+<com.hankkin.library.GradationScrollView android:id="@+id/scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+ <!--差一个占位图-->
 
-        <ImageView
+        <com.youth.banner.Banner
             android:id="@+id/iv_good_detai_img"
             android:layout_width="match_parent"
             android:layout_height="340dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher"
-            android:visibility="visible" />
-
+            app:indicator_height="6dp"
+            app:indicator_margin="6dp"
+            app:indicator_width="6dp"
+            ></com.youth.banner.Banner>
         <LinearLayout
             android:id="@+id/ll_offset"
             android:layout_width="match_parent"
@@ -33,9 +35,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="#1a1a1a"
-                android:text="法国 Chanel 香奈儿 炫亮魅力丝绒唇膏" />
+                tools:text="法国 Chanel 香奈儿 炫亮魅力丝绒唇膏" />
 
 
             <LinearLayout
@@ -52,7 +54,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="#e53e42"
-                    android:text="25646券" />
+                    tools:text="￥25646" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -68,7 +70,7 @@
                         android:paddingRight="@dimen/spacing_tinyer"
                         android:textSize="16sp"
                         android:textColor="#cccccc"
-                        android:text="25646券" />
+                        tools:text="25646券" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -100,7 +102,7 @@
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textColor="#666666"
-                    android:text="快递：￥0.00" />
+                    tools:text="快递：￥0.00" />
 
                 <TextView
                     android:id="@+id/xiaoliang_nab"
@@ -111,7 +113,7 @@
                     android:layout_marginLeft="10dp"
                     android:textSize="16sp"
                     android:textColor="#666666"
-                    android:text="销量：236件" />
+                    tools:text="销量：236件" />
 
                 <TextView
                     android:id="@+id/fahuodidian"
@@ -122,7 +124,7 @@
                     android:layout_marginLeft="10dp"
                     android:textColor="#666666"
                     android:textSize="16sp"
-                    android:text="北京顺义" />
+                    android:text="北京" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -170,7 +172,8 @@
                 android:drawablePadding="10px"
                 android:text="商家认证"
                 android:textColor="#666666"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_weight="1"
@@ -181,7 +184,8 @@
                 android:drawablePadding="@dimen/spacing_tiny"
                 android:text="商家认证"
                 android:textColor="#666666"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="gone"/>
             <TextView
                 android:layout_weight="3"
                 android:layout_width="wrap_content"
@@ -190,7 +194,54 @@
         </LinearLayout>
 
         <include layout="@layout/layout_line" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            >
+            <RelativeLayout
+                android:id="@+id/shop_details"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:text="商品详情"
+                    android:layout_centerInParent="true"
+                    android:textSize="15sp"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/shop_evaluate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:text="商品评价"
+                    android:textSize="15sp"
+                    android:layout_centerInParent="true"
+                    />
 
+            </RelativeLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/shop_details_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
         <!--<LinearLayout-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
@@ -272,7 +323,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_smaller"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <com.hankkin.library.CircleImageView
                     android:layout_width="100dp"
@@ -361,7 +413,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="进入商家" />
+                android:text="进入商家"
+                android:visibility="gone"/>
             <com.hankkin.library.NoScrollListView
                 android:id="@+id/nlv_"
                 android:layout_width="match_parent"
@@ -372,7 +425,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/grey_normal_bg"
-            android:padding="@dimen/spacing_smallest">
+            android:padding="@dimen/spacing_smallest"
+            android:visibility="gone">
 
             <!--<View-->
                 <!--android:layout_width="wrap_content"-->

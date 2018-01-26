@@ -6,6 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
+        android:background="@color/color_1b1a1f"
         >
     <RelativeLayout
         android:id="@+id/go_back"
@@ -19,7 +20,9 @@
             android:id="@+id/go_back_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/next_left"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:src="@drawable/nav_return3"
 
             />
         <TextView
@@ -27,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="返回"
+            android:textColor="@color/white"
             android:layout_toRightOf="@id/go_back_img"
             android:layout_marginLeft="5dp"
             android:textSize="14sp"/>
@@ -35,9 +39,7 @@
             android:id="@+id/title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_centerInParent="true"
-
             android:textSize="20sp"
             android:textStyle="bold"
             />

@@ -1,8 +1,10 @@
 package hlks.hualiangou.com.ks_android.fragment.login;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -25,7 +27,9 @@ import java.util.List;
 import hlks.hualiangou.com.ks_android.R;
 import hlks.hualiangou.com.ks_android.activity.LoginActivity;
 import hlks.hualiangou.com.ks_android.activity.MainActivity;
+import hlks.hualiangou.com.ks_android.activity.zhengce.PrivacyPolicy;
 import hlks.hualiangou.com.ks_android.base.BaseFragment;
+import hlks.hualiangou.com.ks_android.config.FragmentBuilder;
 import hlks.hualiangou.com.ks_android.modle.bean.LoginBean;
 import hlks.hualiangou.com.ks_android.modle.bean.LoginRespon;
 import hlks.hualiangou.com.ks_android.modle.bean.NoRegisterRespon;
@@ -65,6 +69,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     private String time;//当前时间戳
     private List<LoginRespon> list = new ArrayList<LoginRespon>();
     private MyOkHttp myOkHttp;
+    private ProgressDialog dialog;
+    private TextView mYinSi;
 
     @Override
     public int getLayoutId() {
@@ -77,6 +83,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         mlogin_password_et = (EditText) view.findViewById(R.id.login_password_et);
         mforget_tv = (TextView) view.findViewById(R.id.forget_tv);
         mlogin_btn = (Button) view.findViewById(R.id.login_btn);
+        mYinSi = view.findViewById(R.id.login_yinsi);
+        mYinSi.setOnClickListener(this);
         Date dt = new Date();
         time = String.valueOf(dt.getTime());
 //        mlogin_phone_et.setText("15933269431");
@@ -121,8 +129,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 .params("uid", "")
                 .params("username", mUserName)
                 .build();
-              myOkHttp = new MyOkHttp();
-              myOkHttp.post()
+        myOkHttp = new MyOkHttp();
+        myOkHttp.post()
                 .url(UrlUtilds.PhoneText)
                 .addParam("s", build)
                 .addParam("api", "user/userValid")
@@ -148,12 +156,37 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
                     @Override
                     public void onSuccfulString(int code, String message) {
-                        if (!TextUtils.isEmpty(message)) {
-//                            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-//                            Log.e("TAG", "onSuccfulString===" + message);
+                        if (!message.equals("存在")) {
+                            myDialogText();
                         }
                     }
                 });
+    }
+
+    private void myDialogText() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog);
+        builder.setView(R.layout.login_popu);
+        final AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        TextView textView = (TextView) dialog.findViewById(R.id.pop_tv);
+        TextView textView1 = (TextView) dialog.findViewById(R.id.forget_popu_tv);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        textView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentBuilder.getInstance(baseActivity)
+                        .start(RegisterFragment.class)
+                        .add(R.id.Login_Register)
+                        .commit();
+                dialog.dismiss();
+            }
+        });
     }
 
     @Override
@@ -165,10 +198,17 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 //                startActivity(intent);
                 break;
             case R.id.login_btn://登录
+                dialog = new ProgressDialog(baseActivity);
+
                 Login();
+                break;
+            case R.id.login_yinsi://隐私政策
+                Intent intent1 = new Intent(baseActivity, PrivacyPolicy.class);
+                startActivity(intent1);
                 break;
         }
     }
+
 
     private void Login() {
         mUserName = mlogin_phone_et.getText().toString();//用户名
@@ -205,16 +245,19 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                             @Override
                             public void onSuccess(int statusCode, LoginBean response) {
 //                                Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getActivity(),MainActivity.class);
-                                intent.putExtra("Token",response.getMsgX().getToken());
-                                intent.putExtra("UID",response.getMsgX().getStaffNum());
-                                startActivityForResult(intent, 1);
+//                                Intent intent = new Intent(getActivity(),MainActivity.class);
+//                                intent.putExtra("Token",response.getMsgX().getToken());
+//                                intent.putExtra("UID",response.getMsgX().getStaffNum());
+//                                startActivityForResult(intent, 1);
                                 String ret = response.getRet();
                                 String token = response.getMsgX().getToken();
                                 String uid = response.getMsgX().getStaffNum();
-                                SharedPreferencesUtils.add(KeyUtils.USER_TOKEN,token);
-                                SharedPreferencesUtils.add(KeyUtils.USER_ID,uid);
-                                Log.d("LoginFragment","uid====="+ uid);
+                                SharedPreferencesUtils.add(KeyUtils.USER_TOKEN, token);
+                                SharedPreferencesUtils.add(KeyUtils.USER_ID, uid);
+                                SharedPreferencesUtils.add(KeyUtils.USER_PHONE,mlogin_phone_et.getText().toString());
+                                baseActivity.finish();
+//                                Log.d("LoginFragment","uid====="+ uid);
+
                             }
 
                             @Override
@@ -224,7 +267,10 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
                             @Override
                             public void onSuccfulString(int code, String message) {
+                                if (message.equals("密码错误")){
 
+                                    myDialogJieSuan();
+                                }
                             }
                         });
 
@@ -240,15 +286,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
             switch (msg.what) {
                 case 0:
                     if (ret == 100) {
-                        //    Toast.makeText(getActivity(), "请检查用户名密码是否正确", Toast.LENGTH_SHORT).show();
-                        forgetLoginPopuwindow = new ForgetLoginPopuwindow(getActivity(), new ForgetLoginPopuwindow.NewOnClickListener() {
-                            @Override
-                            public void okClickListener() {
-
-                            }
-                        });
-                        forgetLoginPopuwindow.showAtLocation(mlogin_btn, Gravity.CENTER
-                                , 0, 0);
+                        myDialogJieSuan();
                     } else {
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         intent.putExtra("Token", TOken);
@@ -270,8 +308,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                                 activity.ShowSelectPicture(1);
                             }
                         });
-                        lp.showAtLocation(mlogin_phone_et, Gravity.CENTER
-                                , 0, 0);
+                        lp.showAtLocation(mlogin_phone_et, Gravity.CENTER, 0, 0);
                     }
                     break;
                 case 2:
@@ -281,4 +318,18 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
             }
         }
     };
+    private void myDialogJieSuan() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog);
+        builder.setView(R.layout.login_dialog_custom);
+        final AlertDialog dialoga = builder.create();
+        dialoga.setCanceledOnTouchOutside(false);
+        dialoga.show();
+        TextView textView1 = (TextView) dialoga.findViewById(R.id.home_dialog);
+        textView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialoga.dismiss();
+            }
+        });
+    }
 }

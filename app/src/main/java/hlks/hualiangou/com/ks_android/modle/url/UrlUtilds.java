@@ -13,7 +13,8 @@ public class UrlUtilds {
     public final static String construct_key = "hh8bf094169a40a3bd188ba37ebe872v&";
     public final static String APPID = "1610001";
     //接口域名地址
-    public final static String URL = "http://shop.elliotngok.xin/api/";
+//    public final static String URL = "http://shop.elliotngok.xin/api/";
+    public final static String URL = "http://dev.api.chinatonect.com/api/";
     //短信验证地址
     public final static String NotURL = "http://m.5c.com.cn/api/send/index.php";
     //图片域名地址
@@ -67,9 +68,13 @@ public class UrlUtilds {
     //修改用户收货地址
     public final static String UPDATE_USER_ADDR = URL + "addr/updateUserAddr";
     //用户删除收货地址
-    public final static String DELEDTU_SERADDR = URL + "addr/deledtUserAddr";
+    public final static String DELEDT_USERADDR = URL + "addr/deledtUserAddr";
     //修改用户头像
     public final static String UPDATE_HEADER = URL + "users/updateHeader";
+    //支付宝支付接口
+    public final static String PAY_ORDER = URL + "pay/payOrder";
+    //搜索页面
+    public final static String GET_KEY = URL + "keyword/getKey";
 
 
 }

@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="corlorsearch">#e53e42</color>
+    <color name="province_line_border">#C7C7C7</color>
     <color name="color_ffffff">#ffffff</color>
     <color name="black">#000</color>
     <color name="background">#f1f1f1</color>
@@ -13,6 +14,7 @@
     <color name="color_f5f5f5">#F5F5F5</color>
     <color name="color_666666">#666666</color>
     <color name="color_1a1a1a">#1a1a1a</color>
+    <color name="color_4c4c4c">#4c4c4c</color>
     <color name="color_333333">#333333</color>
     <color name="color_e53e42">#e53e42</color>
     <color name="color_a1a1a1">#a1a1a1</color>
@@ -27,4 +29,52 @@
     <color name="original_border_color">#F18459</color>
     <color name="grey_normal_bg">#EEEEEE</color>
     <color name="color_e5e5e5">#e5e5e5</color>
+    <color name="color_1b1a1f">#1B1A1F</color>
+    <color name="color_bea571">#BEA571</color>
+
+    <color name="qmui_config_color_transparent">#00000000</color>
+    <color name="qmui_config_color_white">#ffffff</color>
+    <color name="qmui_config_color_75_white">#C0FFFFFF</color>
+    <color name="qmui_config_color_50_white">#80FFFFFF</color>
+    <color name="qmui_config_color_25_white">#40FFFFFF</color>
+    <color name="qmui_config_color_15_white">#26FFFFFF</color>
+    <color name="qmui_config_color_10_white">#19FFFFFF</color>
+
+    <color name="qmui_config_color_pure_black">#000000</color>
+    <color name="qmui_config_color_75_pure_black">#C0000000</color>
+    <color name="qmui_config_color_60_pure_black">#99000000</color>
+    <color name="qmui_config_color_50_pure_black">#80000000</color>
+    <color name="qmui_config_color_25_pure_black">#40000000</color>
+    <color name="qmui_config_color_15_pure_black">#26000000</color>
+    <color name="qmui_config_color_10_pure_black">#19000000</color>
+
+
+
+    <color name="qmui_config_color_blue">#1B88EE</color>
+    <color name="qmui_config_color_50_blue">#801B88EE</color>
+    <color name="qmui_config_color_red">#FA3A3A</color>
+    <color name="qmui_config_color_separator">#DEE0E2</color>
+    <color name="qmui_config_color_separator_darken">#D4D6D8</color>
+    <color name="qmui_config_color_background">#F4F5F7</color>
+    <color name="qmui_config_color_background_pressed">#EEEFF1</color>
+    <color name="qmui_config_color_black">#212832</color>
+    <color name="qmui_config_color_link">#547FB0</color>
+    <color name="qmui_config_color_pressed">#EEEEF0</color>
+
+    <color name="qmui_config_color_gray_1">#353C46</color>
+    <color name="qmui_config_color_gray_2">#49505A</color>
+    <color name="qmui_config_color_gray_3">#5D646E</color>
+    <color name="qmui_config_color_gray_4">#717882</color>
+    <color name="qmui_config_color_gray_5">#858C96</color>
+    <color name="qmui_config_color_gray_6">#99A0AA</color>
+    <color name="qmui_config_color_gray_7">#ADB4BE</color>
+    <color name="qmui_config_color_gray_8">#C4C8D0</color>
+    <color name="qmui_config_color_gray_9">#D8DCE4</color>
+
+
+    <color name="qmui_drawable_color_list_separator">#DEE0E2</color>
+    <color name="qmui_drawable_color_list_pressed">#DEE0E2</color>
+
+    <color name="tabColorNormal">#ABABAB</color>
+    <color name="tabColorSelected">@color/colorPrimary</color>
 </resources>

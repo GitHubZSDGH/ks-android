@@ -17,10 +17,13 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.tsy.sdk.myokhttp.MyOkHttp;
 import com.tsy.sdk.myokhttp.util.ToastUtils;
 
+import java.util.Map;
+
 import hlks.hualiangou.com.ks_android.base.BaseActivity;
 import hlks.hualiangou.com.ks_android.base.BaseFragment;
 import hlks.hualiangou.com.ks_android.utils.SharedPreferencesUtils;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 
@@ -42,11 +45,17 @@ public class App extends Application {
         SharedPreferencesUtils.init(this);
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        myOkHttp = new MyOkHttp(new OkHttpClient.Builder().addInterceptor(logging).build());
+        myOkHttp = new MyOkHttp(new OkHttpClient.Builder().addInterceptor(logging)
+
+                .build());
         lastSparse = new SparseArray<>();
         mContext = this;
         ToastUtils.init(this);
         initRefrush();
+
+    }
+
+    private void addParams(Request request, String method, Request.Builder requestBuilder, Map<String, String> params) {
 
     }
 

@@ -12,8 +12,9 @@ import java.util.List;
  */
 public class Seachbean extends NoRegisterRespon {
 
+
     /**
-     * msg : {"shop":[{"id":"2","shop_name":"测试商品","shop_end_money":"102","image_path":"/upload/20171027/7ba6150d3271554021432643b30917d7.jpg","comment_num":"9","shop_staff":"0","good_commont":0},{"id":"4","shop_name":"商品测试3","shop_end_money":"103","image_path":"/upload/20171027/7ba6150d3271554021432643b30917d7.jpg","comment_num":"3","shop_staff":"0","good_commont":0},{"id":"5","shop_name":"商品测试4","shop_end_money":"104","image_path":"/upload/20171027/7ba6150d3271554021432643b30917d7.jpg","comment_num":"4","shop_staff":"0","good_commont":0}],"page":"1","page_num":6}
+     * msg : {"shop":[{"id":36,"shop_name":"一叶子补水保湿面膜清爽控油收缩毛孔深层锁水细肤面膜贴专柜正品","shop_end_money":"149.00","image_path":"/upload/20171204/64a8b4b9c65bc329d2e24eb6dd392e47.jpg","comment_num":0,"shop_staff":0,"is_integral":0,"integral":"0","good_commont":"0"}],"page":"1","page_num":1}
      */
 
     private MsgBean msg;
@@ -28,9 +29,9 @@ public class Seachbean extends NoRegisterRespon {
 
     public static class MsgBean {
         /**
-         * shop : [{"id":"2","shop_name":"测试商品","shop_end_money":"102","image_path":"/upload/20171027/7ba6150d3271554021432643b30917d7.jpg","comment_num":"9","shop_staff":"0","good_commont":0},{"id":"4","shop_name":"商品测试3","shop_end_money":"103","image_path":"/upload/20171027/7ba6150d3271554021432643b30917d7.jpg","comment_num":"3","shop_staff":"0","good_commont":0},{"id":"5","shop_name":"商品测试4","shop_end_money":"104","image_path":"/upload/20171027/7ba6150d3271554021432643b30917d7.jpg","comment_num":"4","shop_staff":"0","good_commont":0}]
+         * shop : [{"id":36,"shop_name":"一叶子补水保湿面膜清爽控油收缩毛孔深层锁水细肤面膜贴专柜正品","shop_end_money":"149.00","image_path":"/upload/20171204/64a8b4b9c65bc329d2e24eb6dd392e47.jpg","comment_num":0,"shop_staff":0,"is_integral":0,"integral":"0","good_commont":"0"}]
          * page : 1
-         * page_num : 6
+         * page_num : 1
          */
 
         private String page;
@@ -63,28 +64,32 @@ public class Seachbean extends NoRegisterRespon {
 
         public static class ShopBean {
             /**
-             * id : 2
-             * shop_name : 测试商品
-             * shop_end_money : 102
-             * image_path : /upload/20171027/7ba6150d3271554021432643b30917d7.jpg
-             * comment_num : 9
+             * id : 36
+             * shop_name : 一叶子补水保湿面膜清爽控油收缩毛孔深层锁水细肤面膜贴专柜正品
+             * shop_end_money : 149.00
+             * image_path : /upload/20171204/64a8b4b9c65bc329d2e24eb6dd392e47.jpg
+             * comment_num : 0
              * shop_staff : 0
+             * is_integral : 0
+             * integral : 0
              * good_commont : 0
              */
 
-            private String id;
+            private int id;
             private String shop_name;
             private String shop_end_money;
             private String image_path;
-            private String comment_num;
-            private String shop_staff;
-            private int good_commont;
+            private int comment_num;
+            private int shop_staff;
+            private int is_integral;
+            private String integral;
+            private String good_commont;
 
-            public String getId() {
+            public int getId() {
                 return id;
             }
 
-            public void setId(String id) {
+            public void setId(int id) {
                 this.id = id;
             }
 
@@ -112,27 +117,43 @@ public class Seachbean extends NoRegisterRespon {
                 this.image_path = image_path;
             }
 
-            public String getComment_num() {
+            public int getComment_num() {
                 return comment_num;
             }
 
-            public void setComment_num(String comment_num) {
+            public void setComment_num(int comment_num) {
                 this.comment_num = comment_num;
             }
 
-            public String getShop_staff() {
+            public int getShop_staff() {
                 return shop_staff;
             }
 
-            public void setShop_staff(String shop_staff) {
+            public void setShop_staff(int shop_staff) {
                 this.shop_staff = shop_staff;
             }
 
-            public int getGood_commont() {
+            public int getIs_integral() {
+                return is_integral;
+            }
+
+            public void setIs_integral(int is_integral) {
+                this.is_integral = is_integral;
+            }
+
+            public String getIntegral() {
+                return integral;
+            }
+
+            public void setIntegral(String integral) {
+                this.integral = integral;
+            }
+
+            public String getGood_commont() {
                 return good_commont;
             }
 
-            public void setGood_commont(int good_commont) {
+            public void setGood_commont(String good_commont) {
                 this.good_commont = good_commont;
             }
         }
