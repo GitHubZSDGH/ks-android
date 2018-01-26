@@ -23,6 +23,7 @@ import hlks.hualiangou.com.ks_android.fragment.order.AllOrderFragment;
 import hlks.hualiangou.com.ks_android.fragment.order.BackOrderFragment;
 import hlks.hualiangou.com.ks_android.fragment.order.EstimateFragment;
 import hlks.hualiangou.com.ks_android.fragment.order.ObligationOrderFragment;
+import hlks.hualiangou.com.ks_android.fragment.order.OrderFragment;
 import hlks.hualiangou.com.ks_android.fragment.order.ShipmentorderFragment;
 import hlks.hualiangou.com.ks_android.utils.UI.BadgeView;
 
@@ -67,11 +68,15 @@ public class MainOrderActivity extends BaseActivity implements View.OnClickListe
         BackOrderFragment backOrderFragment = new BackOrderFragment();
         ShipmentorderFragment shipmentorderFragment = new ShipmentorderFragment();
         EstimateFragment estimateFragment = new EstimateFragment();
-        mFragmentList.add(allOrderFragment);
-        mFragmentList.add(obligationOrderFragment);
-        mFragmentList.add(backOrderFragment);
-        mFragmentList.add(shipmentorderFragment);
-        mFragmentList.add(estimateFragment);
+        for(int i = 0;i<5;i++){
+            OrderFragment orderFragment = new OrderFragment();
+            mFragmentList.add(orderFragment);
+        }
+//        mFragmentList.add(allOrderFragment);
+//        mFragmentList.add(obligationOrderFragment);
+//        mFragmentList.add(backOrderFragment);
+//        mFragmentList.add(shipmentorderFragment);
+//        mFragmentList.add(estimateFragment);
         mPageTitleList.add("全部");
         mPageTitleList.add("待付款");
         mPageTitleList.add("待发货");

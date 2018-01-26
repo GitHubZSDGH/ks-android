@@ -76,6 +76,11 @@ public class UrlUtilds {
     //搜索页面
     public final static String GET_KEY = URL + "keyword/getKey";
 
+    /**
+     * 获取订单列表
+     */
+    public final static String GET_ORDER_LIST = URL + "myself/order";
+
 
 }
 

@@ -10,6 +10,8 @@ import hlks.hualiangou.com.ks_android.base.BaseFragment;
  */
 
 public class AllOrderFragment extends BaseFragment {
+    private final String TAG = getClass().getSimpleName();
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_page;
@@ -22,11 +24,12 @@ public class AllOrderFragment extends BaseFragment {
 
     @Override
     public void loadData() {
-
     }
 
     @Override
     public void setListener() {
 
     }
+
+
 }
