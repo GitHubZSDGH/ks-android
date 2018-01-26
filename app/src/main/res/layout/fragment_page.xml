@@ -2,8 +2,6 @@
 <ExpandableListView android:id="@+id/shopping_expandListView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_above="@id/shopping_bottom_rel"
-    android:layout_below="@id/titlebar_rel"
     android:layout_marginTop="10dp"
     android:visibility="visible"
     xmlns:android="http://schemas.android.com/apk/res/android" />
