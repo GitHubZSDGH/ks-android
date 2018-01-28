@@ -18,12 +18,7 @@ import java.util.List;
 import hlks.hualiangou.com.ks_android.R;
 import hlks.hualiangou.com.ks_android.activity.main.adapter.SimpleFragmentPagerAdapter;
 import hlks.hualiangou.com.ks_android.base.BaseActivity;
-import hlks.hualiangou.com.ks_android.fragment.order.AllOrderFragment;
-import hlks.hualiangou.com.ks_android.fragment.order.BackOrderFragment;
-import hlks.hualiangou.com.ks_android.fragment.order.EstimateFragment;
-import hlks.hualiangou.com.ks_android.fragment.order.ObligationOrderFragment;
 import hlks.hualiangou.com.ks_android.fragment.order.OrderFragment;
-import hlks.hualiangou.com.ks_android.fragment.order.ShipmentorderFragment;
 import hlks.hualiangou.com.ks_android.utils.UI.BadgeView;
 
 public class MainOrderActivity extends BaseActivity implements View.OnClickListener {
@@ -63,11 +58,7 @@ public class MainOrderActivity extends BaseActivity implements View.OnClickListe
         /**
          * 全部订单、待付款、待发货、待收货、待评价
          */
-        AllOrderFragment allOrderFragment = new AllOrderFragment();
-        ObligationOrderFragment obligationOrderFragment = new ObligationOrderFragment();
-        BackOrderFragment backOrderFragment = new BackOrderFragment();
-        ShipmentorderFragment shipmentorderFragment = new ShipmentorderFragment();
-        EstimateFragment estimateFragment = new EstimateFragment();
+
         for (int i = 0; i < 5; i++) {
             Bundle bundle = new Bundle();
             bundle.putString("orderType", String.valueOf((i + 1)));
@@ -75,11 +66,7 @@ public class MainOrderActivity extends BaseActivity implements View.OnClickListe
             orderFragment.setArguments(bundle);
             mFragmentList.add(orderFragment);
         }
-//        mFragmentList.add(allOrderFragment);
-//        mFragmentList.add(obligationOrderFragment);
-//        mFragmentList.add(backOrderFragment);
-//        mFragmentList.add(shipmentorderFragment);
-//        mFragmentList.add(estimateFragment);
+
         mPageTitleList.add("全部");
         mPageTitleList.add("待付款");
         mPageTitleList.add("待发货");

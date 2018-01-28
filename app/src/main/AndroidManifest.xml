@@ -69,7 +69,8 @@
         <activity android:name=".activity.main.UpdateNameActivity" />
         <activity android:name=".activity.main.MainFootActivity" />
         <activity android:name=".activity.main.MainOrderActivity" />
-        <activity android:name=".activity.main.MainIntegralActivity"></activity>
+        <activity android:name=".activity.main.MainIntegralActivity" />
+        <activity android:name=".activity.main.order.OrderDetailsActivity"></activity>
     </application>
 
 </manifest>

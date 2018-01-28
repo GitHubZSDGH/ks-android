@@ -2,6 +2,7 @@ package hlks.hualiangou.com.ks_android.fragment.pager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import hlks.hualiangou.com.ks_android.activity.LoginActivity;
 import hlks.hualiangou.com.ks_android.activity.main.AccountSettingActivity;
 import hlks.hualiangou.com.ks_android.activity.main.MainOrderActivity;
 import hlks.hualiangou.com.ks_android.base.BaseFragment;
+import hlks.hualiangou.com.ks_android.config.FragmentBuilder;
 import hlks.hualiangou.com.ks_android.utils.KeyUtils;
 import hlks.hualiangou.com.ks_android.utils.SharedPreferencesUtils;
 import hlks.hualiangou.com.ks_android.utils.UserUtils;
@@ -66,6 +68,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
         siginLogin.setOnClickListener(this);
         mUserId = view.findViewById(R.id.userid);
         mRoundedImageView = (RoundedImageView) view.findViewById(R.id.roundedImageView);
+        mRoundedImageView.setOnClickListener(this);
         mUserid = (TextView) view.findViewById(R.id.userid);
         mGuanzhu = (LinearLayout) view.findViewById(R.id.guanzhu);
         mGuanzhu.setOnClickListener(this);
@@ -145,9 +148,40 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
             case R.id.shezhizhongxin:
                 startActivity(new Intent(baseActivity, AccountSettingActivity.class));
                 break;
-            case R.id.wodejifen:
+            case R.id.roundedImageView:
+                if (UserUtils.getToken().isEmpty()) {
+                    myDialogText();
+                    return;
+                }
                 break;
+
         }
     }
+    private void myDialogText() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog);
+        builder.setView(R.layout.shop_dialog_custom);
+        final AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        TextView textView = (TextView) dialog.findViewById(R.id.home_dialog_determine);
+        TextView textView1 = (TextView) dialog.findViewById(R.id.home_dialog);
 
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(baseActivity, LoginActivity.class));
+                dialog.dismiss();
+            }
+        });
+        textView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentBuilder.getInstance(baseActivity)
+                        .start(ClassIfyFragment.class)
+                        .add(R.id.main_home)
+                        .commit();
+                dialog.dismiss();
+            }
+        });
+    }
 }
