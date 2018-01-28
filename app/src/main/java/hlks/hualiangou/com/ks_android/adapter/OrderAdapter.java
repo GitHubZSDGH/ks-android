@@ -1,6 +1,7 @@
 package hlks.hualiangou.com.ks_android.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.SectionIndexer;
@@ -43,6 +44,9 @@ public class OrderAdapter extends ListAdapter<OrderDataBean.MsgBean.OrderListBea
         final TextView leftButton = (TextView) viewHolder.findView(R.id.item_order_shop_already_by);
         final TextView rightButton = (TextView) viewHolder.findView(R.id.item_order_shop_delete);
         int storeId = getSectionForPosition(position);
+        if (viewHolder == null || shopBean == null) {
+            return;
+        }
         if (position == getPositionForSection(storeId)) {
             //商家显示的时候
             storeRel.setVisibility(View.VISIBLE);
@@ -94,7 +98,7 @@ public class OrderAdapter extends ListAdapter<OrderDataBean.MsgBean.OrderListBea
                 @Override
                 public void onClick(View view) {
                     if (orderClickListener != null) {
-                        orderClickListener.leftButtonCLick(((String) leftButton.getTag()), shopBean.getOrder_number());
+                        orderClickListener.leftButtonCLick(((String) leftButton.getTag()), shopBean.getStoreIndex());
                     }
                 }
             });
@@ -102,11 +106,25 @@ public class OrderAdapter extends ListAdapter<OrderDataBean.MsgBean.OrderListBea
                 @Override
                 public void onClick(View view) {
                     if (orderClickListener != null) {
-                        orderClickListener.rightButtonClick(((String) rightButton.getTag()), shopBean.getOrder_number());
+                        orderClickListener.rightButtonClick(((String) rightButton.getTag()), shopBean.getStoreIndex());
                     }
                 }
             });
-//            storeMoney.setText("共"+shopBean.getShop_num()+"件商品");
+            String money = "";
+            String freight = "";
+            if (shopBean.getIs_integral() == 1) {
+                money = shopBean.getIntegral_num() + "积分";
+                if(!shopBean.getOrderState().equals("4")){
+                    freight = "/" + shopBean.getIntegral_num() + "积分";
+                }
+            } else {
+                money = shopBean.getShopMoney();
+                freight = "\t(含运费￥"+shopBean.getFreight()+")";
+            }
+
+
+            String content = "共" + shopBean.getShopNum() + "件商品\t合计：￥<big>" + money + "</big>" + freight;
+            storeMoney.setText((Html.fromHtml(content)));
         } else {
             storeMoney.setVisibility(View.GONE);
             rightButton.setVisibility(View.GONE);
@@ -232,9 +250,17 @@ public class OrderAdapter extends ListAdapter<OrderDataBean.MsgBean.OrderListBea
     }
 
     public interface OrderClickListener {
-        void leftButtonCLick(String type, String order);
+        /**
+         * @param type       左边的type order_type
+         * @param orderIndex 商家集合对应索引
+         */
+        void leftButtonCLick(String type, int orderIndex);
 
-        void rightButtonClick(String type, String order);
+        /**
+         * @param type       order_pay
+         * @param orderIndex 商家集合对应索引
+         */
+        void rightButtonClick(String type, int orderIndex);
 
     }
 }

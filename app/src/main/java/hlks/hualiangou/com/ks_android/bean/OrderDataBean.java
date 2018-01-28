@@ -108,6 +108,33 @@ public class OrderDataBean {
         }
 
         public static class OrderListBean {
+            @Override
+            public String toString() {
+                return "OrderListBean{" +
+                        "order_number='" + order_number + '\'' +
+                        ", order_money='" + order_money + '\'' +
+                        ", order_staff='" + order_staff + '\'' +
+                        ", freight='" + freight + '\'' +
+                        ", user_remind=" + user_remind +
+                        ", create_time='" + create_time + '\'' +
+                        ", order_addr='" + order_addr + '\'' +
+                        ", buyer_name='" + buyer_name + '\'' +
+                        ", buyer_phone='" + buyer_phone + '\'' +
+                        ", pay_time='" + pay_time + '\'' +
+                        ", shop_send_time='" + shop_send_time + '\'' +
+                        ", finish_time='" + finish_time + '\'' +
+                        ", is_integral=" + is_integral +
+                        ", integral_num='" + integral_num + '\'' +
+                        ", order_type='" + order_type + '\'' +
+                        ", order_pay='" + order_pay + '\'' +
+                        ", member_id=" + member_id +
+                        ", member_name='" + member_name + '\'' +
+                        ", member_image='" + member_image + '\'' +
+                        ", shop=" + shop +
+                        '}';
+            }
+
+
             /**
              * order_number : 2018011930114529
              * order_money : 4.00
@@ -435,16 +462,117 @@ public class OrderDataBean {
                 @Expose
                 private String order_pay;
 
-                public String getOrder_number() {
-                    return order_number;
-                }
 
-                public void setOrder_number(String order_number) {
-                    this.order_number = order_number;
-                }
+
+
+
+                /**
+                 * 商家名字
+                 */
+                @Expose
+                private String storeName;
+
+                /**
+                 * 商家的一个logo
+                 */
+                @Expose
+                private String storeHead;
+
+                /**
+                 * 订单状态
+                 * 1待付款 2已付款 3交易成功 4交易关闭 5申请退款 6退款完成
+                 */
+                @Expose
+                private String orderState;
+                /**
+                 * 运费
+                 */
+                @Expose
+                private String freight;
+
+
+
+
+                /**
+                 * 是否使用积分
+                 * 1 可以
+                 * 0 不可以
+                 */
+                @Expose
+                private int is_integral;
+
+                /**
+                 * 积分数量
+                 */
+                @Expose
+                private String integral_num;
+
+
+                /**
+                 * 商家的index
+                 * {@link OrderDataBean.MsgBean.OrderListBean {@link #getOrder_list()}}
+                 */
+                @Expose
+                private int storeIndex;
+
+
+                /**
+                 * 商品数量
+                 *
+                 */
+                @Expose
+                private int shopNum;
 
                 @Expose
-                private String order_number;
+                private String shopMoney;
+
+                public String getShopMoney() {
+                    return shopMoney;
+                }
+
+                public void setShopMoney(String shopMoney) {
+                    this.shopMoney = shopMoney;
+                }
+
+                public int getShopNum() {
+                    return shopNum;
+                }
+
+                public void setShopNum(int shopNum) {
+                    this.shopNum = shopNum;
+                }
+
+                public String getFreight() {
+                    return freight;
+                }
+
+                public void setFreight(String freight) {
+                    this.freight = freight;
+                }
+
+                public int getIs_integral() {
+                    return is_integral;
+                }
+
+                public void setIs_integral(int is_integral) {
+                    this.is_integral = is_integral;
+                }
+
+                public String getIntegral_num() {
+                    return integral_num;
+                }
+
+                public void setIntegral_num(String integral_num) {
+                    this.integral_num = integral_num;
+                }
+
+                public int getStoreIndex() {
+                    return storeIndex;
+                }
+
+                public void setStoreIndex(int storeIndex) {
+                    this.storeIndex = storeIndex;
+                }
 
                 public String getOrder_type() {
                     return order_type;
@@ -494,19 +622,6 @@ public class OrderDataBean {
                     this.orderState = orderState;
                 }
 
-                @Expose
-                private String storeName;
-
-
-                @Expose
-                private String storeHead;
-
-                /**
-                 * 订单状态
-                 * 1待付款 2已付款 3交易成功 4交易关闭 5申请退款 6退款完成
-                 */
-                @Expose
-                private String orderState;
 
                 public int getShop_id() {
                     return shop_id;
