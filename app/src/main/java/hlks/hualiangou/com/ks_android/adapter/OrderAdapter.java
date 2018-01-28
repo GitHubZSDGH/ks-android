@@ -69,6 +69,12 @@ public class OrderAdapter extends ListAdapter<OrderDataBean.MsgBean.OrderListBea
                 case "6":
                     orderState.setText("退款完成");
                     break;
+                case "7":
+                    orderState.setText("交易成功");
+                    break;
+                case "8":
+                    orderState.setText("订单异常");
+                    break;
                 default:
                     orderState.setText("未知参数");
                     break;

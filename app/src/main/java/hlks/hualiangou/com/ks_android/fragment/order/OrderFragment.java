@@ -65,7 +65,7 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
 
     @Override
     public void loadData() {
-        loadOrderList("1");
+
     }
 
     @Override

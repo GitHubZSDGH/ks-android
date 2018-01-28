@@ -80,6 +80,7 @@ public class PostparamsBuilder extends OkHttpRequestBuilderHasParam<PostparamsBu
                 instance.params(key, params.get(key));
             }
             String build = instance.build();
+            Log.e("Myokhttp", "paramas===>" + params.toString());
             builder.add("s",build);
         }
     }
