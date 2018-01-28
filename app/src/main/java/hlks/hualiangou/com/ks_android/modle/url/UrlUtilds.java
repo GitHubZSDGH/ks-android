@@ -80,7 +80,31 @@ public class UrlUtilds {
      * 获取订单列表
      */
     public final static String GET_ORDER_LIST = URL + "myself/order";
+    /**
+     * 提醒发货
+     */
+    public final static String GET_REMIND = URL + "myself/remind";
+    /**
+     * 取消订单
+     */
+    public final static String GET_CANCEL_ORDER = URL + "myself/cancelOrder";
+    /**
+     *确认收货
+     */
+    public final static String GET_QUERY_RECE = URL + "myself/queryRece";
+    /**
+     *申请退款
+     */
+    public final static String GET_QUEST_REFUND = URL + "myself/questRefund";
+    /**
+     * 删除订单
+     */
+    public final static String GET_DELORDER = URL + "myself/delOrder";
 
+    /**
+     * 撤销申请退款
+     */
+    public final static String GET_CANCEL_REFUND = URL + "myself/cancelRefund";
 
 }
 

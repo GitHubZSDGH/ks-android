@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
+import com.tsy.sdk.myokhttp.response.RawResponseHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,13 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
     private OrderAdapter myAdapter;
     private String orderType;
     private List<OrderDataBean.MsgBean.OrderListBean> order_list;
+
+    /**
+     *URL API;
+     */
+    private String URL="";
+    private String API="";
+    private String ordernumber="";
 
     @Override
     public int getLayoutId() {
@@ -138,18 +146,94 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
                     }
                 });
     }
-
+    /**
+     * 1:取消订单
+     * 2:再次购买
+     * 3：查看物流。
+     * 4:提醒发货
+     * 5:已提醒发货
+     * 6评论
+     * 7:撤销申请
+     */
 
     @Override
     public void leftButtonCLick(String type, int orderIndex) {
         OrderDataBean.MsgBean.OrderListBean orderListBean = order_list.get(orderIndex);
-        Log.e(TAG, "orderListBean===>" + orderListBean.toString());
-
+        Log.e(TAG, "orderListBean===>"+orderListBean.toString());
+        switch (type) {
+            case "1":
+                URL= UrlUtilds.GET_CANCEL_ORDER;
+                API = "myself/cancelOrder";
+                ordernumber = orderListBean.getOrder_number();
+                initDateOkhttp();
+                break;
+            case "2":
+//                URL= UrlUtilds.GET_CANCEL_ORDER;
+//                API = "myself/cancelOrder";
+//                ordernumber = orderListBean.getOrder_number();
+//                initDateOkhttp();
+                break;
+            case "3":
+//                URL= UrlUtilds.GET_CANCEL_ORDER;
+//                API = "myself/cancelOrder";
+//                ordernumber = orderListBean.getOrder_number();
+//                initDateOkhttp();
+                break;
+            case "4":
+                URL= UrlUtilds.GET_REMIND;
+                API = "myself/remind";
+                ordernumber = orderListBean.getOrder_number();
+                initDateOkhttp();
+                break;
+            case "5":
+//                URL= UrlUtilds.GET_CANCEL_ORDER;
+//                API = "myself/cancelOrder";
+//                ordernumber = orderListBean.getOrder_number();
+//                initDateOkhttp();
+                break;
+            case "6":
+//                URL= UrlUtilds.GET_CANCEL_ORDER;
+//                API = "myself/cancelOrder";
+//                ordernumber = orderListBean.getOrder_number();
+//                initDateOkhttp();
+                break;
+            case "7":
+                URL= UrlUtilds.GET_CANCEL_REFUND;
+                API = "myself/cancelRefund";
+                ordernumber = orderListBean.getOrder_number();
+                initDateOkhttp();
+                break;
+        }
     }
-
+/**
+ * 1: 付款
+ * 2: 确认收货
+ * 3：删除订单
+ * 4: 联系客服
+ */
     @Override
     public void rightButtonClick(String type, int orderIndex) {
+        OrderDataBean.MsgBean.OrderListBean orderListBean = order_list.get(orderIndex);
+        switch (type) {
+            case "1":
+//                URL=
+                break;
+            case "2":
+                 URL= UrlUtilds.GET_QUERY_RECE;
+                 API = "myself/queryRece";
+                 ordernumber = orderListBean.getOrder_number();
+                 initDateOkhttp();
+                break;
+            case "3":
+                URL= UrlUtilds.GET_DELORDER;
+                API = "myself/delOrder";
+                ordernumber = orderListBean.getOrder_number();
+                initDateOkhttp();
+                break;
+            case "4":
 
+                break;
+        }
     }
 
     @Override
@@ -160,4 +244,27 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
         intent.putExtra("orderBean",orderListBean);
         startActivity(intent);
     }
+
+    private void initDateOkhttp() {
+        App.myOkHttp
+                .postParams()
+                .url(URL)
+                .addParam("api", API)
+                .addParam("appid", UrlUtilds.APPID)
+                .addParam("t", String.valueOf(System.currentTimeMillis()))
+                .addParam("token", UserUtils.getToken())
+                .addParam("order_number",ordernumber)
+                .enqueue(new RawResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, String response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, String error_msg) {
+
+                    }
+                });
+    }
+
 }
