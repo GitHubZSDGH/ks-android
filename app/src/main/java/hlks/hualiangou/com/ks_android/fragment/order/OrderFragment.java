@@ -1,9 +1,11 @@
 package hlks.hualiangou.com.ks_android.fragment.order;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
@@ -13,6 +15,7 @@ import java.util.List;
 
 import hlks.hualiangou.com.ks_android.App;
 import hlks.hualiangou.com.ks_android.R;
+import hlks.hualiangou.com.ks_android.activity.main.order.OrderDetailsActivity;
 import hlks.hualiangou.com.ks_android.adapter.OrderAdapter;
 import hlks.hualiangou.com.ks_android.base.BaseFragment;
 import hlks.hualiangou.com.ks_android.bean.OrderDataBean;
@@ -31,7 +34,7 @@ import hlks.hualiangou.com.ks_android.utils.UserUtils;
  */
 
 
-public class OrderFragment extends BaseFragment implements OrderAdapter.OrderClickListener {
+public class OrderFragment extends BaseFragment implements OrderAdapter.OrderClickListener, AdapterView.OnItemClickListener {
     private ListView mListView;
     private final String TAG = getClass().getSimpleName();
 
@@ -52,6 +55,8 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
         myAdapter = new OrderAdapter(baseActivity, mList, R.layout.item_order);
         myAdapter.setOrderClickListener(this);
         mListView.setAdapter(myAdapter);
+
+        mListView.setOnItemClickListener(this);
 
 
     }
@@ -138,12 +143,21 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
     @Override
     public void leftButtonCLick(String type, int orderIndex) {
         OrderDataBean.MsgBean.OrderListBean orderListBean = order_list.get(orderIndex);
-        Log.e(TAG, "orderListBean===>"+orderListBean.toString());
+        Log.e(TAG, "orderListBean===>" + orderListBean.toString());
 
     }
 
     @Override
     public void rightButtonClick(String type, int orderIndex) {
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Intent intent = new Intent(baseActivity, OrderDetailsActivity.class);
+        int storeIndex = mList.get(i).getStoreIndex();
+        OrderDataBean.MsgBean.OrderListBean orderListBean = order_list.get(storeIndex);
+        intent.putExtra("orderBean",orderListBean);
+        startActivity(intent);
     }
 }

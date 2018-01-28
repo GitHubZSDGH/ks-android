@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:paddingLeft="@dimen/px24"
+    android:paddingTop="@dimen/px12"
+    android:background="#fafafa"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/item_order_shop_head"
+        android:layout_width="@dimen/px196"
+        android:layout_height="@dimen/px200"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/item_order_shop_name"
+        android:layout_width="@dimen/px420"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px24"
+        android:layout_marginTop="@dimen/px16"
+        android:layout_toRightOf="@id/item_order_shop_head"
+        android:lines="2"
+        android:text="Apple AirPods 蓝牙无线耳机 无线耳机 MMEF2CH/A"
+        android:textColor="#1b1a1f"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/item_order_shop_lab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_order_shop_name"
+        android:layout_marginLeft="@dimen/px24"
+        android:layout_marginTop="@dimen/px10"
+        android:layout_toRightOf="@id/item_order_shop_head"
+        android:text="洗脸手工皂90g"
+        android:textColor="#999999"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/item_order_shop_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_order_shop_lab"
+        android:layout_marginLeft="@dimen/px24"
+        android:layout_marginTop="@dimen/px16"
+        android:layout_toRightOf="@id/item_order_shop_head"
+        android:text="￥369.00"
+        android:textColor="#E53E42"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/item_order_shop_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/item_order_shop_lab"
+        android:layout_marginRight="@dimen/px30"
+        android:layout_marginTop="@dimen/px16"
+        android:text="x1"
+        android:textColor="#1a1a1a" />
+
+</RelativeLayout>

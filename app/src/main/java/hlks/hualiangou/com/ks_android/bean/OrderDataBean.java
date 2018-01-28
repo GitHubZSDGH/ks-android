@@ -1,7 +1,11 @@
 package hlks.hualiangou.com.ks_android.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -107,7 +111,8 @@ public class OrderDataBean {
             this.order_list = order_list;
         }
 
-        public static class OrderListBean {
+        public static class OrderListBean implements Parcelable {
+
             @Override
             public String toString() {
                 return "OrderListBean{" +
@@ -389,7 +394,7 @@ public class OrderDataBean {
                 this.shop = shop;
             }
 
-            public static class ShopBean {
+            public static class ShopBean implements Parcelable {
 
 
                 /**
@@ -686,7 +691,142 @@ public class OrderDataBean {
                 public void setSpec_two_name(String spec_two_name) {
                     this.spec_two_name = spec_two_name;
                 }
+
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeInt(this.shop_id);
+                    dest.writeString(this.shop_name);
+                    dest.writeInt(this.shop_num);
+                    dest.writeString(this.shop_total);
+                    dest.writeString(this.shop_price);
+                    dest.writeString(this.image_path);
+                    dest.writeString(this.spec_one_name);
+                    dest.writeString(this.spec_two_name);
+                    dest.writeInt(this.storeId);
+                    dest.writeString(this.order_type);
+                    dest.writeString(this.order_pay);
+                    dest.writeString(this.storeName);
+                    dest.writeString(this.storeHead);
+                    dest.writeString(this.orderState);
+                    dest.writeString(this.freight);
+                    dest.writeInt(this.is_integral);
+                    dest.writeString(this.integral_num);
+                    dest.writeInt(this.storeIndex);
+                    dest.writeInt(this.shopNum);
+                    dest.writeString(this.shopMoney);
+                }
+
+                public ShopBean() {
+                }
+
+                protected ShopBean(Parcel in) {
+                    this.shop_id = in.readInt();
+                    this.shop_name = in.readString();
+                    this.shop_num = in.readInt();
+                    this.shop_total = in.readString();
+                    this.shop_price = in.readString();
+                    this.image_path = in.readString();
+                    this.spec_one_name = in.readString();
+                    this.spec_two_name = in.readString();
+                    this.storeId = in.readInt();
+                    this.order_type = in.readString();
+                    this.order_pay = in.readString();
+                    this.storeName = in.readString();
+                    this.storeHead = in.readString();
+                    this.orderState = in.readString();
+                    this.freight = in.readString();
+                    this.is_integral = in.readInt();
+                    this.integral_num = in.readString();
+                    this.storeIndex = in.readInt();
+                    this.shopNum = in.readInt();
+                    this.shopMoney = in.readString();
+                }
+
+                public static final Creator<ShopBean> CREATOR = new Creator<ShopBean>() {
+                    @Override
+                    public ShopBean createFromParcel(Parcel source) {
+                        return new ShopBean(source);
+                    }
+
+                    @Override
+                    public ShopBean[] newArray(int size) {
+                        return new ShopBean[size];
+                    }
+                };
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.order_number);
+                dest.writeString(this.order_money);
+                dest.writeString(this.order_staff);
+                dest.writeString(this.freight);
+                dest.writeInt(this.user_remind);
+                dest.writeString(this.create_time);
+                dest.writeString(this.order_addr);
+                dest.writeString(this.buyer_name);
+                dest.writeString(this.buyer_phone);
+                dest.writeString(this.pay_time);
+                dest.writeString(this.shop_send_time);
+                dest.writeString(this.finish_time);
+                dest.writeInt(this.is_integral);
+                dest.writeString(this.integral_num);
+                dest.writeString(this.order_type);
+                dest.writeString(this.order_pay);
+                dest.writeInt(this.member_id);
+                dest.writeString(this.member_name);
+                dest.writeString(this.member_image);
+                dest.writeList(this.shop);
+            }
+
+            public OrderListBean() {
+            }
+
+            protected OrderListBean(Parcel in) {
+                this.order_number = in.readString();
+                this.order_money = in.readString();
+                this.order_staff = in.readString();
+                this.freight = in.readString();
+                this.user_remind = in.readInt();
+                this.create_time = in.readString();
+                this.order_addr = in.readString();
+                this.buyer_name = in.readString();
+                this.buyer_phone = in.readString();
+                this.pay_time = in.readString();
+                this.shop_send_time = in.readString();
+                this.finish_time = in.readString();
+                this.is_integral = in.readInt();
+                this.integral_num = in.readString();
+                this.order_type = in.readString();
+                this.order_pay = in.readString();
+                this.member_id = in.readInt();
+                this.member_name = in.readString();
+                this.member_image = in.readString();
+                this.shop = new ArrayList<ShopBean>();
+                in.readList(this.shop, ShopBean.class.getClassLoader());
+            }
+
+            public static final Parcelable.Creator<OrderListBean> CREATOR = new Parcelable.Creator<OrderListBean>() {
+                @Override
+                public OrderListBean createFromParcel(Parcel source) {
+                    return new OrderListBean(source);
+                }
+
+                @Override
+                public OrderListBean[] newArray(int size) {
+                    return new OrderListBean[size];
+                }
+            };
         }
     }
 }

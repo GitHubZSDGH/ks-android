@@ -118,8 +118,9 @@
 
     <TextView
         android:id="@+id/item_order_shop_delete"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/px158"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_alignParentRight="true"
         android:layout_below="@id/item_order_shop_allMoney"
         android:layout_marginBottom="@dimen/px10"
@@ -132,7 +133,8 @@
 
     <TextView
         android:id="@+id/item_order_shop_already_by"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/px158"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_below="@id/item_order_shop_allMoney"
         android:layout_marginRight="@dimen/px22"
