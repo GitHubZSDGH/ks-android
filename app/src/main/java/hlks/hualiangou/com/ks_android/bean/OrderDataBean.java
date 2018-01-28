@@ -411,6 +411,57 @@ public class OrderDataBean {
                 @Expose
                 private int storeId;
 
+
+                /**
+                 * 订单类型 第一个button
+                 * 1:取消订单
+                 * 2:再次购买
+                 * 3：查看物流。
+                 * 4:提醒发货
+                 * 5:已提醒发货
+                 * 6评论
+                 * 7:撤销申请
+                 */
+                @Expose
+                private String order_type;
+
+                /**
+                 * 第二个button
+                 * 1: 付款
+                 * 2: 确认收货
+                 * 3：删除订单
+                 * 4: 联系客服
+                 */
+                @Expose
+                private String order_pay;
+
+                public String getOrder_number() {
+                    return order_number;
+                }
+
+                public void setOrder_number(String order_number) {
+                    this.order_number = order_number;
+                }
+
+                @Expose
+                private String order_number;
+
+                public String getOrder_type() {
+                    return order_type;
+                }
+
+                public void setOrder_type(String order_type) {
+                    this.order_type = order_type;
+                }
+
+                public String getOrder_pay() {
+                    return order_pay;
+                }
+
+                public void setOrder_pay(String order_pay) {
+                    this.order_pay = order_pay;
+                }
+
                 public int getStoreId() {
                     return storeId;
                 }
@@ -445,7 +496,6 @@ public class OrderDataBean {
 
                 @Expose
                 private String storeName;
-
 
 
                 @Expose

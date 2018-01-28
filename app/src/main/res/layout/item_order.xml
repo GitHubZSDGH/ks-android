@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+
     android:background="@color/white">
 
     <RelativeLayout
@@ -124,7 +126,7 @@
         android:layout_marginTop="@dimen/px14"
         android:background="@drawable/bg_item_order_delete"
         android:padding="@dimen/px12"
-        android:text="删除订单"
+        tools:text="删除订单"
         android:textColor="#CEB47D" />
 
     <TextView
@@ -137,6 +139,6 @@
         android:layout_toLeftOf="@id/item_order_shop_delete"
         android:background="@drawable/bg_item_order_already_buy"
         android:padding="@dimen/px12"
-        android:text="再次购买" />
+        tools:text="再次购买" />
 
 </RelativeLayout>

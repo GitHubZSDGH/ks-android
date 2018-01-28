@@ -1,5 +1,6 @@
 package hlks.hualiangou.com.ks_android.fragment.order;
 
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +37,7 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
 
     private List<OrderDataBean.MsgBean.OrderListBean.ShopBean> mList;
     private OrderAdapter myAdapter;
+    private String orderType;
 
     @Override
     public int getLayoutId() {
@@ -49,6 +51,16 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
         myAdapter = new OrderAdapter(baseActivity, mList, R.layout.item_order);
         myAdapter.setOrderClickListener(this);
         mListView.setAdapter(myAdapter);
+
+
+    }
+
+    @Override
+    public void getBundle(Bundle bundle) {
+        super.getBundle(bundle);
+        orderType = bundle.getString("orderType", "-1");
+        Log.e(TAG, "orderType===>" + orderType);
+        loadOrderList(orderType);
     }
 
     @Override
@@ -89,9 +101,12 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
                             for (OrderDataBean.MsgBean.OrderListBean.ShopBean shopBean : shop) {
                                 shopBean.setOrderState(orderListBean.getOrder_staff());
                                 shopBean.setStoreHead(orderListBean.getMember_image());
-                                if(!TextUtils.isEmpty(orderListBean.getMember_name())){
+                                shopBean.setOrder_pay(orderListBean.getOrder_pay());
+                                shopBean.setOrder_type(orderListBean.getOrder_type());
+                                shopBean.setOrder_number(orderListBean.getOrder_number());
+                                if (!TextUtils.isEmpty(orderListBean.getMember_name())) {
                                     shopBean.setStoreName(orderListBean.getMember_name());
-                                }else{
+                                } else {
                                     shopBean.setStoreName("未知商家");
                                 }
                                 Log.e(TAG, "orderState===>" + orderListBean.getOrder_staff());
@@ -111,13 +126,14 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
                 });
     }
 
-    @Override
-    public void deleteOrderClick(int position) {
 
+    @Override
+    public void leftButtonCLick(String type, String order) {
+        Log.e(TAG, "type===>" + type);
     }
 
     @Override
-    public void alreadrOrderClick(int position) {
-
+    public void rightButtonClick(String type, String order) {
+        Log.e(TAG, "playTYpe===>" + type);
     }
 }

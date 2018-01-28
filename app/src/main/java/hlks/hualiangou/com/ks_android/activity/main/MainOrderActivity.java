@@ -1,16 +1,15 @@
 package hlks.hualiangou.com.ks_android.activity.main;
 
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -42,6 +41,7 @@ public class MainOrderActivity extends BaseActivity implements View.OnClickListe
     private List<Fragment> mFragmentList = new ArrayList<Fragment>();
     private List<Integer> mBadgeCountList = new ArrayList<Integer>();
     private List<BadgeView> mBadgeViews;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_main_order;
@@ -68,8 +68,11 @@ public class MainOrderActivity extends BaseActivity implements View.OnClickListe
         BackOrderFragment backOrderFragment = new BackOrderFragment();
         ShipmentorderFragment shipmentorderFragment = new ShipmentorderFragment();
         EstimateFragment estimateFragment = new EstimateFragment();
-        for(int i = 0;i<5;i++){
+        for (int i = 0; i < 5; i++) {
+            Bundle bundle = new Bundle();
+            bundle.putString("orderType", String.valueOf((i + 1)));
             OrderFragment orderFragment = new OrderFragment();
+            orderFragment.setArguments(bundle);
             mFragmentList.add(orderFragment);
         }
 //        mFragmentList.add(allOrderFragment);
@@ -110,6 +113,7 @@ public class MainOrderActivity extends BaseActivity implements View.OnClickListe
                 break;
         }
     }
+
     private void initBadgeViews() {
         if (mBadgeViews == null) {
             mBadgeViews = new ArrayList<BadgeView>();
