@@ -21,7 +21,7 @@ import hlks.hualiangou.com.ks_android.base.BaseActivity;
 import hlks.hualiangou.com.ks_android.fragment.order.OrderFragment;
 import hlks.hualiangou.com.ks_android.utils.UI.BadgeView;
 
-public class MainOrderActivity extends BaseActivity implements View.OnClickListener {
+public class MainOrderActivity extends BaseActivity implements View.OnClickListener ,OrderFragment.TabCountListener{
 
     private ImageView mGoBackImg;
     private RelativeLayout mGoBack;
@@ -36,6 +36,13 @@ public class MainOrderActivity extends BaseActivity implements View.OnClickListe
     private List<Fragment> mFragmentList = new ArrayList<Fragment>();
     private List<Integer> mBadgeCountList = new ArrayList<Integer>();
     private List<BadgeView> mBadgeViews;
+    private int index;
+
+    private OrderFragment.TabCountListener tabCountListener;
+
+    public OrderFragment.TabCountListener getTabCountListener() {
+        return tabCountListener;
+    }
 
     @Override
     public int getLayoutId() {
@@ -81,6 +88,9 @@ public class MainOrderActivity extends BaseActivity implements View.OnClickListe
                 mFragmentList, mPageTitleList, mBadgeCountList);
         mMainOrderVp.setAdapter(mPagerAdapter);
         mMainOrderTab.setupWithViewPager(mMainOrderVp);
+        index = getIntent().getIntExtra("index", 0);
+        mMainOrderVp.setCurrentItem(index);
+        mMainOrderTab.getTabAt(index).select();
         initBadgeViews();
         setUpTabBadge();
     }
@@ -142,5 +152,10 @@ public class MainOrderActivity extends BaseActivity implements View.OnClickListe
 
         // 需加上以下代码,不然会出现更新Tab角标后,选中的Tab字体颜色不是选中状态的颜色
         mMainOrderTab.getTabAt(mMainOrderTab.getSelectedTabPosition()).getCustomView().setSelected(true);
+    }
+
+    @Override
+    public void count(int one, int two, int three, int four, int five) {
+
     }
 }

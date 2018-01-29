@@ -1,11 +1,8 @@
 package hlks.hualiangou.com.ks_android.fragment.pager;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -134,13 +131,16 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
             case R.id.zuji:
                 break;
             case R.id.daifukuan:
-                startActivity(new Intent(baseActivity, MainOrderActivity.class));
+                startActivity(new Intent(baseActivity, MainOrderActivity.class).putExtra("index",1));
                 break;
             case R.id.daifahuo:
+                startActivity(new Intent(baseActivity, MainOrderActivity.class).putExtra("index",2));
                 break;
             case R.id.dashouhuo:
+                startActivity(new Intent(baseActivity, MainOrderActivity.class).putExtra("index",3));
                 break;
             case R.id.tuihuotuikuan:
+                startActivity(new Intent(baseActivity, MainOrderActivity.class).putExtra("index",4));
                 break;
             case R.id.pingtaitongzhi:
                 break;

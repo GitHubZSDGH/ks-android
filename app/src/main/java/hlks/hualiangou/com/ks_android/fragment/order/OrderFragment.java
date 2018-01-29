@@ -9,9 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
 import com.tsy.sdk.myokhttp.response.RawResponseHandler;
 
@@ -20,6 +17,7 @@ import java.util.List;
 
 import hlks.hualiangou.com.ks_android.App;
 import hlks.hualiangou.com.ks_android.R;
+import hlks.hualiangou.com.ks_android.activity.main.MainOrderActivity;
 import hlks.hualiangou.com.ks_android.activity.main.order.OrderDetailsActivity;
 import hlks.hualiangou.com.ks_android.adapter.OrderAdapter;
 import hlks.hualiangou.com.ks_android.base.BaseFragment;
@@ -54,6 +52,7 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
     private String URL="";
     private String API="";
     private String ordernumber="";
+    private TabCountListener listener;
 
     @Override
     public int getLayoutId() {
@@ -62,6 +61,7 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
 
     @Override
     public void initView(View view) {
+        listener = ((MainOrderActivity)baseActivity).getTabCountListener();
         mListView = view.findViewById(R.id.order_list);
         smartRefreshLayout = view.findViewById(R.id.home_paget_refresh);
         mList = new ArrayList<>();
@@ -289,6 +289,10 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
 
                     }
                 });
+    }
+
+    public interface  TabCountListener{
+        void count(int one, int two, int three, int four, int five);
     }
 
 }
