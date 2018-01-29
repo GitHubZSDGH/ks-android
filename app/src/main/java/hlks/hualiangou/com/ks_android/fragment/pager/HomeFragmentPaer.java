@@ -1,6 +1,7 @@
 package hlks.hualiangou.com.ks_android.fragment.pager;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -229,7 +230,7 @@ public class HomeFragmentPaer extends BaseFragment implements View.OnClickListen
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 HomefragmentBean.MsgBean.SpikeBean.SpikeShopBean spikeShopBean = miaoshaList.get(i);
                 Intent intent = new Intent(baseActivity, DetailPagesActivity.class);
-                intent.putExtra("shop_id", spikeShopBean.getId());
+                intent.putExtra("shop_id", String.valueOf(spikeShopBean.getId()));
 
                 startActivity(intent);
             }
@@ -239,7 +240,7 @@ public class HomeFragmentPaer extends BaseFragment implements View.OnClickListen
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 HomefragmentBean.MsgBean.RecommendBean tuijianShopBean = tuijianList.get(i);
                 Intent intent = new Intent(baseActivity, DetailPagesActivity.class);
-                intent.putExtra("shop_id", tuijianShopBean.getId());
+                intent.putExtra("shop_id", String.valueOf(tuijianShopBean.getId()));
                 startActivity(intent);
             }
         });
@@ -248,7 +249,7 @@ public class HomeFragmentPaer extends BaseFragment implements View.OnClickListen
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 HomefragmentBeanbottom.MsgBean.ShopHostBean.ShopBean rexiaoBean = rexiaoList.get(i);
                 Intent intent = new Intent(baseActivity, DetailPagesActivity.class);
-                intent.putExtra("shop_id", rexiaoBean.getId());
+                intent.putExtra("shop_id", String.valueOf(rexiaoBean.getId()));
                 startActivity(intent);
             }
         });
@@ -258,8 +259,8 @@ public class HomeFragmentPaer extends BaseFragment implements View.OnClickListen
 
                 HomefragmentBean.MsgBean.FeaturedBean.ShopBean jingxuanBean = jingxuanList.get(i);
                 Intent intent = new Intent(baseActivity, DetailPagesActivity.class);
-                intent.putExtra("shop_id", jingxuanBean.getId());
-                Log.e("onItemClick: ", jingxuanBean.getId()+"");
+                intent.putExtra("shop_id", String.valueOf(jingxuanBean.getId()));
+                Log.e("onItemClick: ", String.valueOf(jingxuanBean.getId()));
                 startActivity(intent);
 
             }
@@ -269,7 +270,7 @@ public class HomeFragmentPaer extends BaseFragment implements View.OnClickListen
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 HomefragmentBean.MsgBean.FeaturedBean.ShopBean jingxuanBean1 = jingxuanList1.get(i);
                 Intent intent = new Intent(baseActivity, DetailPagesActivity.class);
-                intent.putExtra("shop_id", jingxuanBean1.getId());
+                intent.putExtra("shop_id", String.valueOf(jingxuanBean1.getId()));
                 startActivity(intent);
             }
         });
@@ -279,7 +280,7 @@ public class HomeFragmentPaer extends BaseFragment implements View.OnClickListen
 
                 HomefragmentBean.MsgBean.FeaturedBean.ShopBean jingxuanBean2 = jingxuanList2.get(i);
                 Intent intent = new Intent(baseActivity, DetailPagesActivity.class);
-                intent.putExtra("shop_id", jingxuanBean2.getId());
+                intent.putExtra("shop_id", String.valueOf(jingxuanBean2.getId()));
                 startActivity(intent);
             }
         });
@@ -305,6 +306,7 @@ public class HomeFragmentPaer extends BaseFragment implements View.OnClickListen
         mHomeMiaoshaTime.setTime(hh,mm,ss);
         mHomeMiaoshaTime.start();
     }
+
 
 
     @Override

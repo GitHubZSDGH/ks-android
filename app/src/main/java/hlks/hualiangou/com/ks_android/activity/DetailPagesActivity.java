@@ -375,6 +375,14 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
         TextView textView = (TextView) dialog.findViewById(R.id.home_dialog_determine);
+        TextView textView1 = (TextView) dialog.findViewById(R.id.home_dialog);
+        textView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                dialog.dismiss();
+            }
+        });
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

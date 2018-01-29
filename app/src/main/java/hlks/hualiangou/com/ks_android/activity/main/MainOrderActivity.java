@@ -106,8 +106,8 @@ public class MainOrderActivity extends BaseActivity implements View.OnClickListe
             mBadgeViews = new ArrayList<BadgeView>();
             for (int i = 0; i < mFragmentList.size(); i++) {
                 BadgeView tmp = new BadgeView(this);
-                tmp.setBadgeMargin(0, 6, 10, 0);
-                tmp.setTextSize(10);
+                tmp.setBadgeMargin(0, 4, 8, 0);
+                tmp.setTextSize(8);
                 mBadgeViews.add(tmp);
             }
         }

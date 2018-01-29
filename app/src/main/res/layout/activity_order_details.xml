@@ -6,14 +6,7 @@
     android:background="@color/hui"
     android:orientation="vertical"
     tools:context="hlks.hualiangou.com.ks_android.activity.main.order.OrderDetailsActivity">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="vertical"
-        android:background="@color/hui"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -138,7 +131,15 @@
                 android:textSize="@dimen/text_size_14" />
         </LinearLayout>
     </RelativeLayout>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@color/hui"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/px180"
@@ -442,4 +443,76 @@
     </LinearLayout>
     </LinearLayout>
 </ScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="@dimen/dip_46">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/quxiaoxuanze"
+            android:layout_alignBottom="@+id/quxiaoxuanze"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/text_item_kuang"
+            android:paddingBottom="@dimen/dip_2"
+            android:paddingLeft="@dimen/dip_4"
+            android:paddingRight="@dimen/dip_4"
+            android:paddingTop="@dimen/dip_2"
+            android:text="拨打电话"
+            android:textColor="@color/color_1a1a1a"
+            android:textSize="@dimen/text_size_10"
+            android:id="@+id/bodadianhua" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/xuanzequeding"
+            android:layout_alignBottom="@+id/xuanzequeding"
+            android:layout_marginEnd="7dp"
+            android:layout_toStartOf="@+id/xuanzequeding"
+            android:background="@drawable/text_item_kuang"
+            android:paddingBottom="@dimen/dip_2"
+            android:paddingLeft="@dimen/dip_4"
+            android:paddingRight="@dimen/dip_4"
+            android:paddingTop="@dimen/dip_2"
+            android:text="取消选择"
+            android:textColor="@color/color_1a1a1a"
+            android:textSize="@dimen/text_size_10"
+            android:id="@+id/quxiaoxuanze" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/text_item_kuang"
+            android:paddingBottom="@dimen/dip_2"
+            android:paddingLeft="@dimen/dip_4"
+            android:paddingRight="@dimen/dip_4"
+            android:paddingTop="@dimen/dip_2"
+            android:text="选择确定"
+            android:textColor="@color/color_1a1a1a"
+            android:textSize="@dimen/text_size_10"
+            android:id="@+id/xuanzequeding" />
+
+        <TextView
+            android:id="@+id/lianximaijia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/bodadianhua"
+            android:layout_alignBottom="@+id/bodadianhua"
+            android:layout_marginEnd="8dp"
+            android:layout_toStartOf="@+id/bodadianhua"
+            android:background="@drawable/text_item_kuang"
+            android:paddingBottom="@dimen/dip_2"
+            android:paddingLeft="@dimen/dip_4"
+            android:paddingRight="@dimen/dip_4"
+            android:paddingTop="@dimen/dip_2"
+            android:text="联系卖家"
+            android:textColor="@color/color_1a1a1a"
+            android:textSize="@dimen/text_size_10" />
+
+    </RelativeLayout>
 </LinearLayout>

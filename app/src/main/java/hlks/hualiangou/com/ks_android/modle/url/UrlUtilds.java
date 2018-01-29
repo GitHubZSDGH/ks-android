@@ -105,6 +105,10 @@ public class UrlUtilds {
      * 撤销申请退款
      */
     public final static String GET_CANCEL_REFUND = URL + "myself/cancelRefund";
+    /**
+     * 获取用户积分值
+     */
+    public final static String GET_USER_INTEGRAL = URL + "myself/userIntegral";
 
 }
 

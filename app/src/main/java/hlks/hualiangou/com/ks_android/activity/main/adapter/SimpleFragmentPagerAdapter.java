@@ -62,9 +62,10 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
         View target = view.findViewById(R.id.badgeview_target);
 
         BadgeView badgeView = new BadgeView(mContext);
+
         badgeView.setTargetView(target);
-        badgeView.setBadgeMargin(0, 6, 10, 0);
-        badgeView.setTextSize(10);
+        badgeView.setBadgeMargin(0, 0, 0, 0);
+        badgeView.setTextSize(8);
         badgeView.setText(formatBadgeNumber(mBadgeCountList.get(position)));
 
         return view;

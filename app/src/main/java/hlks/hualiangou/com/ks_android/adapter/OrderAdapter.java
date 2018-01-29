@@ -54,6 +54,7 @@ public class OrderAdapter extends ListAdapter<OrderDataBean.MsgBean.OrderListBea
             viewHolder.setText(R.id.item_order_store_name, shopBean.getStoreName());
             TextView orderState = (TextView) viewHolder.findView(R.id.item_order_state);
             //1待付款 2已付款 3交易成功 4交易关闭 5申请退款 6退款完成
+
             switch (shopBean.getOrderState()) {
                 case "1":
                     orderState.setText("待付款");
@@ -92,7 +93,11 @@ public class OrderAdapter extends ListAdapter<OrderDataBean.MsgBean.OrderListBea
             storeMoney.setVisibility(View.VISIBLE);
             rightButton.setVisibility(View.VISIBLE);
             leftButton.setVisibility(View.VISIBLE);
+            if (shopBean.getOrderState()==null||shopBean.getOrderState().isEmpty()){
             setLeftButton(leftButton, shopBean.getOrder_type());
+            }else {
+                leftButton.setVisibility(View.GONE);
+            }
             setrightButton(rightButton, shopBean.getOrder_pay());
             leftButton.setOnClickListener(new View.OnClickListener() {
                 @Override

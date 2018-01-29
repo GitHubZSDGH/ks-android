@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
 import com.tsy.sdk.myokhttp.response.RawResponseHandler;
 
@@ -43,7 +47,7 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
     private OrderAdapter myAdapter;
     private String orderType;
     private List<OrderDataBean.MsgBean.OrderListBean> order_list;
-
+    private SmartRefreshLayout smartRefreshLayout;
     /**
      *URL API;
      */
@@ -59,6 +63,7 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
     @Override
     public void initView(View view) {
         mListView = view.findViewById(R.id.order_list);
+        smartRefreshLayout = view.findViewById(R.id.home_paget_refresh);
         mList = new ArrayList<>();
         myAdapter = new OrderAdapter(baseActivity, mList, R.layout.item_order);
         myAdapter.setOrderClickListener(this);
@@ -79,6 +84,21 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
 
     @Override
     public void loadData() {
+//        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+//            @Override
+//            public void onRefresh(RefreshLayout refreshlayout) {
+//                initOkHttpbottom(refreshlayout);
+//                initOkHttp(refreshlayout);
+//                refreshlayout.finishLoadmore();
+//            }
+//        });
+//        smartRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+//            @Override
+//            public void onLoadmore(RefreshLayout refreshlayout) {
+//                pageCount += 10;
+//                initOkHttpbottom(refreshlayout);
+//            }
+//        });
 
     }
 
@@ -92,7 +112,7 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
     }
-
+//,final RefreshLayout refreshlayout
     private void loadOrderList(String type) {
         App.myOkHttp
                 .postParams()
@@ -137,7 +157,11 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
                             }
                         }
                         myAdapter.notifyDataSetChanged();
-
+//                        if (refreshlayout != null) {
+//
+//                            refreshlayout.finishLoadmore(500, true);
+//                            refreshlayout.finishRefresh(500, true);
+//                        }
                     }
 
                     @Override
@@ -149,10 +173,10 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
     /**
      * 1:取消订单
      * 2:再次购买
-     * 3：查看物流。
+     * 3:查看物流。
      * 4:提醒发货
      * 5:已提醒发货
-     * 6评论
+     * 6:评论
      * 7:撤销申请
      */
 
@@ -216,7 +240,7 @@ public class OrderFragment extends BaseFragment implements OrderAdapter.OrderCli
         OrderDataBean.MsgBean.OrderListBean orderListBean = order_list.get(orderIndex);
         switch (type) {
             case "1":
-//                URL=
+
                 break;
             case "2":
                  URL= UrlUtilds.GET_QUERY_RECE;

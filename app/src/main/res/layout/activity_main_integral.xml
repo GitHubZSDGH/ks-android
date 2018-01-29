@@ -94,19 +94,60 @@
             android:text="当前积分"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_14" />
-    </RelativeLayout>
-    <android.support.design.widget.TabLayout
-        android:id="@+id/main_integral_tab"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dip_54"
-        android:background="@color/white">
-    </android.support.design.widget.TabLayout>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/main_integral_vp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/dip_8"
-        android:background="@color/white">
 
-    </android.support.v4.view.ViewPager>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="26dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/bangzhu" />
+    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            >
+            <RelativeLayout
+                android:id="@+id/shop_details"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:text="积分明细"
+                    android:layout_centerInParent="true"
+                    android:textSize="15sp"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/shop_evaluate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:text="积分作用"
+                    android:textSize="15sp"
+                    android:layout_centerInParent="true"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/shop_details_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 </LinearLayout>

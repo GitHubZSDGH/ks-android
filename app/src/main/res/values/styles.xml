@@ -139,8 +139,8 @@
     !-- TabLayout样式 -->
     <style name="TabLayoutStyle" parent="Widget.Design.TabLayout">
         <!--<item name="tabBackground">@drawable/bg_list_item_selector</item>-->
-        <item name="tabIndicatorColor">@color/colorPrimary</item>
-        <item name="tabSelectedTextColor">@color/colorPrimary</item>
+        <item name="tabIndicatorColor">@color/color_bea571</item>
+        <item name="tabSelectedTextColor">@color/color_bea571</item>
         <item name="tabTextAppearance">@style/TabTextAppearence</item>
         <item name="tabGravity">fill</item>
         <item name="tabMode">fixed</item>

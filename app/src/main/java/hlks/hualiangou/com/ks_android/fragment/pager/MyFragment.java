@@ -13,6 +13,7 @@ import android.widget.TextView;
 import hlks.hualiangou.com.ks_android.R;
 import hlks.hualiangou.com.ks_android.activity.LoginActivity;
 import hlks.hualiangou.com.ks_android.activity.main.AccountSettingActivity;
+import hlks.hualiangou.com.ks_android.activity.main.MainIntegralActivity;
 import hlks.hualiangou.com.ks_android.activity.main.MainOrderActivity;
 import hlks.hualiangou.com.ks_android.base.BaseFragment;
 import hlks.hualiangou.com.ks_android.config.FragmentBuilder;
@@ -102,11 +103,11 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
     public void loadData() {
         if (!UserUtils.getToken().isEmpty()) {
 //            startActivity(new Intent(baseActivity, LoginActivity.class));
-
             mUserId.setText(UserUtils.getUserPhone().toString());
             return;
         } else {
-
+            myDialogText();
+            return;
         }
     }
 
@@ -149,14 +150,15 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(baseActivity, AccountSettingActivity.class));
                 break;
             case R.id.roundedImageView:
-                if (UserUtils.getToken().isEmpty()) {
-                    myDialogText();
-                    return;
-                }
+
+                break;
+            case R.id.wodejifen:
+                startActivity(new Intent(baseActivity, MainIntegralActivity.class));
                 break;
 
         }
     }
+
     private void myDialogText() {
         AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog);
         builder.setView(R.layout.shop_dialog_custom);

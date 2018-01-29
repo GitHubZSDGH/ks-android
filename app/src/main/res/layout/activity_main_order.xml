@@ -76,7 +76,9 @@
         android:id="@+id/main_order_tab"
         style="@style/TabLayoutStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+
+        />
     <android.support.v4.view.ViewPager
         android:id="@+id/main_order_vp"
         android:layout_width="match_parent"
