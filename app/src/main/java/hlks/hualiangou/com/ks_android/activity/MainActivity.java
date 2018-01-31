@@ -1,9 +1,14 @@
 package hlks.hualiangou.com.ks_android.activity;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.IdRes;
+import android.support.v7.app.AlertDialog;
+import android.view.KeyEvent;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import hlks.hualiangou.com.ks_android.R;
@@ -149,6 +154,32 @@ public class MainActivity extends BaseActivity  {
 //        homeButton2.setChecked(true);
 //    }
 
+
+    private long firstTime = 0;
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+            long secondTime = System.currentTimeMillis();
+            if (secondTime - firstTime > 2000) {
+                Toast toast = new Toast(this);
+                // 找到toast布局的位置
+                View layout = View.inflate(this, R.layout.shop_dialog_custom2, null);
+                // 设置toast文本，把设置好的布局传进来
+                toast.setView(layout);
+                // 设置土司显示在屏幕的位置
+//                        toast.setGravity(Gravity.FILL_HORIZONTAL|Gravity.TOP,0,70);
+                // 显示土司
+                toast.show();
+
+//                myDialogJieSuan();
+            firstTime = secondTime;
+            return true;
+        } else {
+            System.exit(0);
+        }
+    }
+        return super.onKeyUp(keyCode, event);
+    }
 
 
 }

@@ -175,7 +175,7 @@ public class ClassIfyFragment extends BaseFragment implements AdapterView.OnItem
         lastView.setBackgroundResource(R.color.white);
         ((TextView) lastView.findViewById(R.id.tv_title)).setTextColor(Color.parseColor("#323437"));
         if (view != null) {
-            ((TextView) view.findViewById(R.id.tv_title)).setTextColor(Color.parseColor("#fd3f3f"));
+            ((TextView) view.findViewById(R.id.tv_title)).setTextColor(Color.parseColor("#323437"));
             view.setBackgroundResource(R.drawable.type_item_background_selector);
             ifyLeftAdapter.setmSelect(i);
             ifyLeftAdapter.setView(view);

@@ -65,6 +65,25 @@ public class DetailPagesBean extends NoRegisterRespon {
         private String member_image;
         private String spec_one;
         private String spec_two;
+        private String is_integral;
+        private String integral;
+
+        public String getIs_integral() {
+            return is_integral;
+        }
+
+        public void setIs_integral(String is_integral) {
+            this.is_integral = is_integral;
+        }
+
+        public String getIntegral() {
+            return integral;
+        }
+
+        public void setIntegral(String integral) {
+            this.integral = integral;
+        }
+
         private List<ShopImageBean> shop_image;
         private List<ShopFeaturesBean> shop_features;
         private List<ShopSpecBean> shop_spec;
@@ -457,6 +476,8 @@ public class DetailPagesBean extends NoRegisterRespon {
             dest.writeString(this.member_image);
             dest.writeString(this.spec_one);
             dest.writeString(this.spec_two);
+            dest.writeString(this.is_integral);
+            dest.writeString(this.integral);
             dest.writeTypedList(this.shop_image);
             dest.writeTypedList(this.shop_features);
             dest.writeTypedList(this.shop_spec);
@@ -478,6 +499,8 @@ public class DetailPagesBean extends NoRegisterRespon {
             this.member_image = in.readString();
             this.spec_one = in.readString();
             this.spec_two = in.readString();
+            this.is_integral = in.readString();
+            this.integral = in.readString();
             this.shop_image = in.createTypedArrayList(ShopImageBean.CREATOR);
             this.shop_features = in.createTypedArrayList(ShopFeaturesBean.CREATOR);
             this.shop_spec = in.createTypedArrayList(ShopSpecBean.CREATOR);

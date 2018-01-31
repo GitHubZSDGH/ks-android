@@ -174,7 +174,7 @@
         android:id="@+id/iv_shop_sure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_e53e42"
+        android:background="@color/color_bea571"
         android:gravity="center"
         android:padding="15dp"
         android:text="确 定"

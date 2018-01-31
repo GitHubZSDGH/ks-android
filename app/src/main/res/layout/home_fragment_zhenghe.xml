@@ -6,12 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <include layout="@layout/search"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/home_paget_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ScrollView
+    <hlks.hualiangou.com.ks_android.utils.UI.ObservableScrollView
         android:id="@+id/home_sv"
         android:layout_width="match_parent"
         android:scrollbars="none"
@@ -284,10 +287,16 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="2dp"
                 android:layout_marginTop="15dp"
                 android:src="@drawable/title_hot3" />
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="超高人气 热度来袭" />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/cxRecyclerView"
                 android:layout_width="match_parent"
@@ -296,6 +305,17 @@
                 android:layout_marginTop="10dp" />
         </LinearLayout>
 
-    </ScrollView>
+    </hlks.hualiangou.com.ks_android.utils.UI.ObservableScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        <ImageView
+            android:id="@+id/btn_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/zhiding"
+            android:visibility="invisible"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="106dp"
+            android:layout_marginRight="12dp" />
+    </RelativeLayout>
 </LinearLayout>

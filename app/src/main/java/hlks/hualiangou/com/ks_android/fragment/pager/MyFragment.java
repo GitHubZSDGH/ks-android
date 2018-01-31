@@ -1,8 +1,12 @@
 package hlks.hualiangou.com.ks_android.fragment.pager;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -52,6 +56,12 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout mShezhizhongxin;
     private LinearLayout mHomeSiginLogin;
     private LinearLayout mWodejifen;
+    private RelativeLayout mMyRv;
+    /**
+     * 全部订单
+     */
+    private TextView mQuanbuOrder;
+    private ImageView mImageView6;
 
     //获取布局
     @Override
@@ -94,6 +104,12 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
         mHomeSiginLogin.setOnClickListener(this);
         mWodejifen = (LinearLayout) view.findViewById(R.id.wodejifen);
         mWodejifen.setOnClickListener(this);
+        mUserid.setOnClickListener(this);
+        mMyRv = (RelativeLayout) view.findViewById(R.id.my_rv);
+        mQuanbuOrder = (TextView) view.findViewById(R.id.quanbu_order);
+        mQuanbuOrder.setOnClickListener(this);
+        mImageView6 = (ImageView) view.findViewById(R.id.imageView6);
+        mImageView6.setOnClickListener(this);
     }
 
     @Override
@@ -123,28 +139,34 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
 //                baseActivity.finish();
                 break;
             case R.id.guanzhu:
+                myDialogJieSuan();
                 break;
             case R.id.shoucang:
+                myDialogJieSuan();
                 break;
             case R.id.pingjia:
+                myDialogJieSuan();
                 break;
             case R.id.zuji:
                 break;
             case R.id.daifukuan:
-                startActivity(new Intent(baseActivity, MainOrderActivity.class).putExtra("index",1));
+                startActivity(new Intent(baseActivity, MainOrderActivity.class).putExtra("index", 1));
                 break;
             case R.id.daifahuo:
-                startActivity(new Intent(baseActivity, MainOrderActivity.class).putExtra("index",2));
+                startActivity(new Intent(baseActivity, MainOrderActivity.class).putExtra("index", 2));
                 break;
             case R.id.dashouhuo:
-                startActivity(new Intent(baseActivity, MainOrderActivity.class).putExtra("index",3));
+                startActivity(new Intent(baseActivity, MainOrderActivity.class).putExtra("index", 3));
                 break;
             case R.id.tuihuotuikuan:
-                startActivity(new Intent(baseActivity, MainOrderActivity.class).putExtra("index",4));
+//                startActivity(new Intent(baseActivity, MainOrderActivity.class).putExtra("index", 4));
+                myDialogJieSuan();
                 break;
             case R.id.pingtaitongzhi:
+                myDialogJieSuan();
                 break;
             case R.id.fuwufankui:
+                myDialogJieSuan();
                 break;
             case R.id.shezhizhongxin:
                 startActivity(new Intent(baseActivity, AccountSettingActivity.class));
@@ -156,6 +178,13 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(baseActivity, MainIntegralActivity.class));
                 break;
 
+            case R.id.userid:
+                break;
+            case R.id.quanbu_order:
+                startActivity(new Intent(baseActivity, MainOrderActivity.class).putExtra("index", 0));
+                break;
+            case R.id.imageView6:
+                break;
         }
     }
 
@@ -186,4 +215,25 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
             }
         });
     }
+    private void myDialogJieSuan() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog);
+        builder.setView(R.layout.shop_dialog_custom);
+        final AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        TextView textView = (TextView) dialog.findViewById(R.id.home_dialog_determine);
+        TextView textView1 = (TextView) dialog.findViewById(R.id.dialog_text);
+        TextView textView2 = (TextView) dialog.findViewById(R.id.home_dialog);
+        textView2.setVisibility(View.GONE);
+        textView1.setText("敬请期待");
+        textView.setText("好的");
+        textView.setTextColor(getResources().getColor(R.color.color_bea571));
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
+
 }

@@ -130,8 +130,10 @@ public class MainIntegralActivity extends BaseActivity implements View.OnClickLi
             default:
                 break;
             case R.id.go_back_img:
+                finish();
                 break;
             case R.id.go_back:
+                finish();
                 break;
             case R.id.shop_details:
                 Bundle bundle = new Bundle();

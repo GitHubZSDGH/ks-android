@@ -3,6 +3,7 @@ package hlks.hualiangou.com.ks_android.activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
@@ -141,6 +142,11 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
     private List<DetailPagesBean.MsgBean.ShopFeaturesBean> mshopImage;
     private TextView shopTitle;
     private TextView shopTitle2;
+    /**
+     * 积分
+     */
+    private TextView mMainIntegralXq;
+    private LinearLayout mJifenKuang;
 
 
     @Override
@@ -178,7 +184,7 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
         mIvGoodDetaiBack = (ImageView) findViewById(R.id.iv_good_detai_back);
         mIvGoodDetaiBack.setOnClickListener(this);
         mTvGoodDetailTitleGood = (TextView) findViewById(R.id.tv_good_detail_title_good);
-       //********隐藏分享*******
+        //********隐藏分享*******
         mIvGoodDetaiShop = (ImageView) findViewById(R.id.iv_good_detai_shop);
         mIvGoodDetaiShop.setVisibility(View.GONE);
         mIvGoodDetaiShare = (ImageView) findViewById(R.id.iv_good_detai_share);
@@ -210,6 +216,8 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
         pingLunFragment = new PingLunFragment();
 
 
+        mMainIntegralXq = (TextView) findViewById(R.id.main_integral_xq);
+        mJifenKuang = (LinearLayout) findViewById(R.id.jifen_kuang);
     }
 
 
@@ -230,19 +238,24 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
         shopNum = view.findViewById(R.id.order_numder);
         ImageView shopBack = view.findViewById(R.id.iv_delete_popup);
         LinearLayout shopAdd = view.findViewById(R.id.shop_lin_add);
-        Glide.with(baseActivity).load(UrlUtilds.IMG_URL + msg.getShop_features()).into(shopImage);
+
+        /**
+         * 图片不显示
+         */
+        Glide.with(DetailPagesActivity.this).load(UrlUtilds.IMG_URL + msg.getShop_image().get(0).getPath()).into(shopImage);
+//        Log.e("initShopPage: ",UrlUtilds.IMG_URL + msg.getShop_image().get(0).getPath());
         //创建title
-        if(msg!=null&&!msg.getShop_name().isEmpty()&&!msg.getSpec_one().isEmpty()) {
+        if (msg != null && !msg.getShop_name().isEmpty() && !msg.getSpec_one().isEmpty()) {
             shopTitle = new TextView(this);
 
             shopTitle.setText(msg.getSpec_one());
             shopTitle2 = new TextView(this);
             shopTitle2.setText(msg.getSpec_two());
-        }else {
+        } else {
             return;
         }
         int length = shopSpec.size();
-      //这段代码不能动，会有全局bug 稍后修改
+        //这段代码不能动，会有全局bug 稍后修改
         FlowLayout flowLayout = new FlowLayout(this);
         flowLayout.setRowSpacing(20);
         final FlowLayout flowLayoutPage = new FlowLayout(this);
@@ -302,9 +315,8 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
         lp.alpha = 0.3f;
         getWindow().setAttributes(lp);
 
-        pop.showAtLocation(getWindow().getDecorView(), Gravity.BOTTOM, 0, 0,DetailPagesActivity.this);
+        pop.showAtLocation(getWindow().getDecorView(), Gravity.BOTTOM, 0, 0, DetailPagesActivity.this);
     }
-
 
 
     @Override
@@ -359,7 +371,7 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
     public void loadData() {
         Intent intent = this.getIntent();
         shopId = intent.getStringExtra("shop_id");
-        Log.e("loadData: ", shopId+"");
+        Log.e("loadData: ", shopId + "");
         if (UserUtils.getToken().isEmpty()) {
 //            startActivity(new Intent(baseActivity, LoginActivity.class));
             myDialogText();
@@ -432,7 +444,13 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
                         mTvShopPrice.setText("¥" + response.getMsg().getShop_end_money());
                         mTvGoodDetailDiscount.setText(response.getMsg().getShop_start_money());
                         mKuaidiJiage.setText("快递: ¥" + response.getMsg().getFreight());
-                        mXiaoliangNab.setText("销售量："+response.getMsg().getSale_num() + "件");
+                        mXiaoliangNab.setText("销售量：" + response.getMsg().getSale_num() + "件");
+                        if (response.getMsg().getIs_integral().equals(0)) {
+                            mJifenKuang.setVisibility(View.GONE);
+                        } else {
+                            mJifenKuang.setVisibility(View.VISIBLE);
+                            mMainIntegralXq.setText("可用" + response.getMsg().getIntegral() + " 积分兑换");
+                        }
 //                        Glide.with(baseActivity).load(UrlUtilds.IMG_URL + response.getMsg().getShop_image().get(0).getPath()).into(mIvGoodDetaiImg);
                         List<String> list = new ArrayList<String>();
                         for (DetailPagesBean.MsgBean.ShopImageBean msgBean : msgImage) {
@@ -458,11 +476,33 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
 
                     @Override
                     public void onSuccfulString(int code, String message) {
-                        myDialogText();
+                        Log.e( "onSuccfulString: ", message);
+                        myDialogText1();
                     }
                 });
     }
+    private void myDialogText1() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog);
+        builder.setView(R.layout.shop_dialog_custom);
+        final AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        TextView textView = (TextView) dialog.findViewById(R.id.home_dialog_determine);
+        textView.setVisibility(View.GONE);
+        TextView textView1 = (TextView) dialog.findViewById(R.id.home_dialog);
+        TextView textView2 = (TextView) dialog.findViewById(R.id.dialog_text);
+        textView2.setText("商品信息展示失败");
+        textView1.setTextColor(getResources().getColor(R.color.color_bea571));
+        textView1.setText("好的");
+        textView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                dialog.dismiss();
+            }
+        });
 
+    }
     @Override
     public void setListener() {
 
@@ -478,17 +518,16 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
 
                 break;
             case R.id.tv_good_detail_shop:
-               Intent in = new Intent(DetailPagesActivity.this,MainActivity.class);
-                in.putExtra("fragment",1);
+                Intent in = new Intent(DetailPagesActivity.this, MainActivity.class);
+                in.putExtra("fragment", 1);
                 startActivity(in);
 
                 break;
 
 
-
             //立即购买，跳转到确定订单
             case R.id.tv_good_detail_buy:
-                 checkedName = false;
+                checkedName = false;
                 initShopPage();
                 break;
             case R.id.order_numder_add:
@@ -518,10 +557,10 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
                 WindowManager.LayoutParams lp1 = getWindow().getAttributes();
                 lp1.alpha = 1.0f;
                 getWindow().setAttributes(lp1);
-                if (checkedName!=false){
-                initOkHttpAdd();
-                }else {
-                Bundle bundle = new Bundle();
+                if (checkedName != false) {
+                    initOkHttpAdd();
+                } else {
+                    Bundle bundle = new Bundle();
                     DetailPagesBean.MsgBean bean = new DetailPagesBean.MsgBean();
                     bean.setShop_name(msg.getShop_name());
                     bean.setMember_image(msg.getMember_image());
@@ -532,15 +571,15 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
                     bean.setSale_num(shopNum.getText().toString().trim());
                     bean.setShop_end_money(msg.getShop_end_money());
 
-                ArrayList<DetailPagesBean.MsgBean> list = new ArrayList<>();
-                list.add(msg);
+                    ArrayList<DetailPagesBean.MsgBean> list = new ArrayList<>();
+                    list.add(msg);
 
-                bundle.putParcelableArrayList("details", list);
-                Intent intent = new Intent(DetailPagesActivity.this, ConfimOrderActivity.class);
-                intent.putExtra("bundle", bundle);
-                intent.putExtra("isbuy", true);
-                intent.putExtra("allMoney", String.valueOf(Double.parseDouble(msg.getShop_end_money()) + Double.parseDouble(msg.getFreight())));
-                startActivity(intent);
+                    bundle.putParcelableArrayList("details", list);
+                    Intent intent = new Intent(DetailPagesActivity.this, ConfimOrderActivity.class);
+                    intent.putExtra("bundle", bundle);
+                    intent.putExtra("isbuy", true);
+                    intent.putExtra("allMoney", String.valueOf(Double.parseDouble(msg.getShop_end_money()) + Double.parseDouble(msg.getFreight())));
+                    startActivity(intent);
                 }
                 break;
             case R.id.shop_details:
@@ -551,7 +590,6 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
                         .setBundle(bundle)
                         .add(R.id.shop_details_fragment)
                         .commit();
-
                 break;
             case R.id.shop_evaluate:
                 FragmentBuilder.getInstance(baseActivity)
@@ -599,27 +637,23 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
                         myDialog();
                     }
                 });
-
     }
+
     private void myDialogJieSuan() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog);
-        builder.setView(R.layout.shop_dialog_custom);
+        AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog1);
+        builder.setView(R.layout.shop_dialog_custom1);
         final AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
-        TextView textView = (TextView) dialog.findViewById(R.id.home_dialog_determine);
-        TextView textView1 = (TextView) dialog.findViewById(R.id.dialog_text);
-        TextView textView2 = (TextView) dialog.findViewById(R.id.home_dialog);
-        textView2.setVisibility(View.GONE);
-        textView1.setText("添加购物车成功");
-        textView.setText("确定");
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+
+            public void run() {
                 dialog.dismiss();
             }
-        });
+        }, 2000);
     }
+
     private void myDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog);
         builder.setView(R.layout.shop_dialog_custom);
@@ -637,4 +671,6 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
             }
         });
     }
+
+
 }

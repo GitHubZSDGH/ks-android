@@ -89,7 +89,7 @@ public class IfyLeftAdapter extends BaseAdapter {
         holder.tv_name.setText(mList.get(position).getCategroy_name());
         if (mSelect == position) {
             convertView.setBackgroundResource(R.drawable.type_item_background_selector);  //选中项背景
-            holder.tv_name.setTextColor(Color.parseColor("#fd3f3f"));
+            holder.tv_name.setTextColor(Color.parseColor("#323437"));
         } else {
             convertView.setBackgroundResource(R.drawable.bg2);  //其他项背景
             holder.tv_name.setTextColor(Color.parseColor("#323437"));

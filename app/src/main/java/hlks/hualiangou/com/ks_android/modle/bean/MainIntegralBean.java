@@ -72,6 +72,15 @@ public class MainIntegralBean {
             private String integral_num;
             private String create_time;
             private String integral_remain;
+            private String details_staff;
+
+            public String getDetails_staff() {
+                return details_staff;
+            }
+
+            public void setDetails_staff(String details_staff) {
+                this.details_staff = details_staff;
+            }
 
             public String getIntegral_use() {
                 return integral_use;
@@ -105,6 +114,9 @@ public class MainIntegralBean {
                 this.integral_remain = integral_remain;
             }
 
+            public IntegralListBean() {
+            }
+
             @Override
             public int describeContents() {
                 return 0;
@@ -116,9 +128,7 @@ public class MainIntegralBean {
                 dest.writeString(this.integral_num);
                 dest.writeString(this.create_time);
                 dest.writeString(this.integral_remain);
-            }
-
-            public IntegralListBean() {
+                dest.writeString(this.details_staff);
             }
 
             protected IntegralListBean(Parcel in) {
@@ -126,9 +136,10 @@ public class MainIntegralBean {
                 this.integral_num = in.readString();
                 this.create_time = in.readString();
                 this.integral_remain = in.readString();
+                this.details_staff = in.readString();
             }
 
-            public static final Parcelable.Creator<IntegralListBean> CREATOR = new Parcelable.Creator<IntegralListBean>() {
+            public static final Creator<IntegralListBean> CREATOR = new Creator<IntegralListBean>() {
                 @Override
                 public IntegralListBean createFromParcel(Parcel source) {
                     return new IntegralListBean(source);

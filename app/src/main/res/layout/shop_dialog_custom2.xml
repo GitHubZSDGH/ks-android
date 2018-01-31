@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/dialog_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dip_14"
+            android:paddingRight="@dimen/dip_14"
+            android:paddingBottom="@dimen/dip_4"
+           android:paddingTop="@dimen/dip_4"
+            android:background="@drawable/back_item_hei1"
+            android:gravity="center"
+            android:text="再次点击将退出「华联购」"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+</LinearLayout>

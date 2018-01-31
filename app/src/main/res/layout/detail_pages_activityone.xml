@@ -41,10 +41,13 @@
             android:id="@+id/iv_good_detai_shop"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/iv_good_detai_share"
-            android:paddingLeft="@dimen/spacing_smaller"
-            android:src="@drawable/nav_share3"
-            android:visibility="gone" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="10dp"
+            android:paddingLeft="@dimen/dip_10"
+            android:paddingRight="@dimen/dip_10"
+            android:src="@drawable/more"
+            android:visibility="visible" />
 
         <ImageView
 

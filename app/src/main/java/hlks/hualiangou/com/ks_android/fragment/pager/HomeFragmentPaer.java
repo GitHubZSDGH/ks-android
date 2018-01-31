@@ -36,6 +36,7 @@ import hlks.hualiangou.com.ks_android.modle.adapter.home.zhenghe.HomeTuiJianAdap
 import hlks.hualiangou.com.ks_android.modle.bean.HomefragmentBean;
 import hlks.hualiangou.com.ks_android.modle.bean.HomefragmentBeanbottom;
 import hlks.hualiangou.com.ks_android.modle.url.UrlUtilds;
+import hlks.hualiangou.com.ks_android.utils.UI.ObservableScrollView;
 import hlks.hualiangou.com.ks_android.utils.encryption.NetUtils;
 import hlks.hualiangou.com.ks_android.view.SnapUpCountDownTimerView;
 import hlks.hualiangou.com.ks_android.view.home.FullyGridLayoutManager;
@@ -94,7 +95,9 @@ public class HomeFragmentPaer extends BaseFragment implements View.OnClickListen
     private List<HomefragmentBean.MsgBean.FeaturedBean.ShopBean> jingxuanList1;
     private List<HomefragmentBean.MsgBean.FeaturedBean.ShopBean> jingxuanList2;
     private List<HomefragmentBeanbottom.MsgBean.ShopHostBean.ShopBean> rexiaoList;
-
+//*********Top*****
+private ObservableScrollView scrollView;
+    private ImageView btn_top;
     int timetm;
     int hh;
     int mm;
@@ -107,7 +110,24 @@ public class HomeFragmentPaer extends BaseFragment implements View.OnClickListen
 
     @Override
     public void initView(View view) {
-
+        scrollView = (ObservableScrollView) view.findViewById(R.id.home_sv);
+        btn_top = (ImageView) view.findViewById(R.id.btn_top);
+        scrollView.setOnScollChangedListener(new ObservableScrollView.OnScollChangedListener() {
+            @Override
+            public void onScrollChanged(ObservableScrollView scrollView, int x, int y, int oldx, int oldy) {
+                if(y>600){
+                    btn_top.setVisibility(View.VISIBLE);
+                }else {
+                    btn_top.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+        btn_top.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scrollView.scrollTo(0,0);
+            }
+        });
         //****banner******
         mHomeFragmentBanner = (Banner) view.findViewById(R.id.home_fragment_banner);
         mHomeFragmentBanner.setBannerStyle(CIRCLE_INDICATOR_TITLE);
@@ -146,7 +166,7 @@ public class HomeFragmentPaer extends BaseFragment implements View.OnClickListen
         //****bottom rv******
         mCxRecyclerView = (RecyclerView) view.findViewById(R.id.cxRecyclerView);
         mHomeFragment = (LinearLayout) view.findViewById(R.id.home_fragment);
-        mHomeSv = (ScrollView) view.findViewById(R.id.home_sv);
+//        mHomeSv = (ObservableScrollView) view.findViewById(R.id.home_sv);
         smartRefreshLayout = view.findViewById(R.id.home_paget_refresh);
 
         seachRelat = view.findViewById(R.id.seach_relat);
@@ -170,7 +190,7 @@ public class HomeFragmentPaer extends BaseFragment implements View.OnClickListen
                 return false;
             }
         });
-        mHomeTuijianRv.setLayoutManager(new FullyLinearLayoutManager(baseActivity, LinearLayoutManager.HORIZONTAL, false){
+        mHomeTuijianRv.setLayoutManager(new FullyGridLayoutManager(baseActivity, 3){
             @Override
             public boolean canScrollVertically() {
                 return false;
@@ -455,4 +475,5 @@ public class HomeFragmentPaer extends BaseFragment implements View.OnClickListen
                 break;
         }
     }
+
 }

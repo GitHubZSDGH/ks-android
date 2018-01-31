@@ -40,7 +40,7 @@ public class XiangQingFragment extends BaseFragment {
             ImageView imageView = new ImageView(baseActivity);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             imageView.setLayoutParams(params);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             Glide.with(getContext()).load(UrlUtilds.IMG_URL + shopFeaturesBean.getPath()).into(imageView);
             mListView.addView(imageView);
         }

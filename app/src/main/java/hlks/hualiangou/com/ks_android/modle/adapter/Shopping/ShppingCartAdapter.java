@@ -184,7 +184,7 @@ public class ShppingCartAdapter extends BaseExpandableListAdapter implements Sho
         shopViewHolder.shopMoney.setText("￥" + shopBean.getShop_end_money());
         shopViewHolder.shopCountNum.setText(shopBean.getShop_num());
         shopViewHolder.shopCount.setText(shopBean.getShop_num());
-        shopViewHolder.shopSmallTitle.setText("规格："+shopBean.getShop_spec().getSpec_one_name()+("、"+shopBean.getShop_spec().getSpec_two_name()));
+        shopViewHolder.shopSmallTitle.setText(shopBean.getShop_spec().getSpec_one_name()+("、"+shopBean.getShop_spec().getSpec_two_name()));
         Glide.with(mContext).load(UrlUtilds.IMG_URL+shopBean.getImage_path()).into(shopViewHolder.shopImage);
         Log.d("ShppingCartAdapter", "url++++++"+(UrlUtilds.IMG_URL + shopBean.getImage_path()));
         if(shopBean.getIs_integral()!=0){
