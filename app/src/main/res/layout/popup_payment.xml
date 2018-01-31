@@ -1,195 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/white"
-    android:layout_height="wrap_content">
+    android:orientation="vertical">
+
     <RelativeLayout
         android:id="@+id/pay_rl"
         android:layout_width="match_parent"
         android:layout_height="60dp">
+
         <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_1a1a1a"
-            android:textSize="16sp"
-            android:text="需支付："
             android:layout_centerVertical="true"
             android:layout_marginStart="13dp"
-            android:id="@+id/textView3" />
-          />
+            android:text="需支付："
+            android:textColor="@color/color_1a1a1a"
+            android:textSize="16sp" />
+        />
+
         <TextView
             android:id="@+id/payment_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_e53e42"
-            android:textSize="16sp"
-            android:text="￥ 179.00"
             android:layout_alignBaseline="@+id/textView3"
             android:layout_alignBottom="@+id/textView3"
-            android:layout_toEndOf="@+id/textView3" />
-          />
+            android:layout_toEndOf="@+id/textView3"
+            android:text="￥ 179.00"
+            android:textColor="@color/color_e53e42"
+            android:textSize="16sp" />
+        />
+
         <ImageView
             android:id="@+id/pay_popup_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/delete"
             android:layout_above="@+id/payment_money"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="9dp" />
+            android:layout_marginEnd="9dp"
+            android:src="@drawable/delete" />
+
         <TextView
             android:id="@+id/payment_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_999999"
-            android:textSize="12sp"
-            android:text="预计3日内到达"
+            android:layout_alignEnd="@+id/pay_popup_delete"
             android:layout_below="@+id/payment_money"
-            android:layout_alignEnd="@+id/pay_popup_delete" />
+            android:text="预计3日内到达"
+            android:textColor="@color/color_999999"
+            android:textSize="12sp" />
         />
 
     </RelativeLayout>
- <View
-     android:layout_width="match_parent"
-     android:layout_height="1dp"
-     android:background="@color/hui"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/hui" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="请选择支付方式："/>
+        android:text="请选择支付方式：" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
-        android:background="@color/hui"/>
+        android:background="@color/hui" />
+
     <RelativeLayout
         android:id="@+id/weixin_pay"
         android:layout_width="match_parent"
         android:layout_height="68dp">
+
         <ImageView
             android:id="@+id/weixin_pay_img"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/wechat"
-            android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="14dp" />
+            android:layout_centerVertical="true"
+            android:layout_marginStart="14dp"
+            android:src="@drawable/wechat" />
+
         <TextView
             android:id="@+id/weixin_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_666666"
-            android:textSize="16sp"
-            android:text="微信支付"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/weixin_pay_img"
             android:layout_marginStart="17dp"
-            android:layout_marginTop="11dp" />
+            android:layout_marginTop="11dp"
+            android:layout_toEndOf="@+id/weixin_pay_img"
+            android:text="微信支付"
+            android:textColor="@color/color_666666"
+            android:textSize="16sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_666666"
-            android:textSize="10sp"
-            android:text="推荐安装微信5.0及以上版本的用户使用"
-            android:layout_below="@+id/weixin_text"
             android:layout_alignStart="@+id/weixin_text"
-            android:layout_marginTop="7dp" />
+            android:layout_below="@+id/weixin_text"
+            android:layout_marginTop="7dp"
+            android:text="推荐安装微信5.0及以上版本的用户使用"
+            android:textColor="@color/color_666666"
+            android:textSize="10sp" />
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/wx_state"
+            android:layout_width="@dimen/px24"
+            android:layout_height="@dimen/px16"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/px56"
+            android:src="@mipmap/ic_launcher" />
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/hui"/>
+        android:background="@color/hui" />
+
     <RelativeLayout
         android:id="@+id/alipay_pay"
         android:layout_width="match_parent"
         android:layout_height="68dp">
+
         <ImageView
             android:id="@+id/alipay_pay_img"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/alipay"
-            android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="14dp" />
+            android:layout_centerVertical="true"
+            android:layout_marginStart="14dp"
+            android:src="@drawable/alipay" />
+
         <TextView
             android:id="@+id/alipay_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_666666"
-            android:textSize="16sp"
-            android:text="支付宝支付"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/alipay_pay_img"
             android:layout_marginStart="17dp"
-            android:layout_marginTop="11dp" />
+            android:layout_marginTop="11dp"
+            android:layout_toEndOf="@+id/alipay_pay_img"
+            android:text="支付宝支付"
+            android:textColor="@color/color_666666"
+            android:textSize="16sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_666666"
-            android:textSize="10sp"
-            android:text="推荐安装微信5.0及以上版本的用户使用"
-            android:layout_below="@+id/alipay_text"
             android:layout_alignStart="@+id/alipay_text"
-            android:layout_marginTop="7dp" />
+            android:layout_below="@+id/alipay_text"
+            android:layout_marginTop="7dp"
+            android:text="推荐安装微信5.0及以上版本的用户使用"
+            android:textColor="@color/color_666666"
+            android:textSize="10sp" />
+
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/zfb_state"
+            android:layout_width="@dimen/px24"
+            android:layout_height="@dimen/px16"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/px56"
+            android:src="@mipmap/ic_launcher" />
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/hui"/>
+        android:background="@color/hui" />
+
     <RelativeLayout
         android:id="@+id/yinlian_pay"
         android:layout_width="match_parent"
         android:layout_height="68dp">
+
         <ImageView
             android:id="@+id/bankcard_pay_img"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/integral"
-            android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="14dp" />
+            android:layout_centerVertical="true"
+            android:layout_marginStart="14dp"
+            android:src="@drawable/integral" />
+
         <LinearLayout
             android:id="@+id/ll_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:orientation="horizontal"
-            android:layout_toEndOf="@+id/bankcard_pay_img"
             android:layout_marginStart="17dp"
-            android:layout_marginTop="11dp">
+            android:layout_marginTop="11dp"
+            android:layout_toEndOf="@+id/bankcard_pay_img"
+            android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/tv_jifen"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/bankcard_text"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
-        <TextView
-            android:id="@+id/bankcard_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/color_666666"
-            android:textSize="16sp"
-            android:text="积分支付"
-            />
+                android:text="积分支付"
+                android:textColor="@color/color_666666"
+                android:textSize="16sp" />
         </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_666666"
-            android:textSize="10sp"
-            android:text="推荐安装微信5.0及以上版本的用户使用"
-            android:layout_below="@+id/ll_text"
             android:layout_alignStart="@+id/ll_text"
-            android:layout_marginTop="7dp" />
+            android:layout_below="@+id/ll_text"
+            android:layout_marginTop="7dp"
+            android:text="推荐安装微信5.0及以上版本的用户使用"
+            android:textColor="@color/color_666666"
+            android:textSize="10sp" />
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/jf_state"
+            android:layout_width="@dimen/px24"
+            android:layout_height="@dimen/px16"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/px56"
+            android:src="@mipmap/ic_launcher" />
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/hui"
-        android:layout_marginBottom="@dimen/dip_30"/>
+        android:layout_marginBottom="@dimen/dip_30"
+        android:background="@color/hui" />
+
     <Button
+        android:id="@+id/liji_play"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_1a1a1a"
         android:text="立即支付"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white" />
 </LinearLayout>

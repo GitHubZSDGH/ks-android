@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -50,6 +51,7 @@ import hlks.hualiangou.com.ks_android.zhifubao.AuthResult;
 import hlks.hualiangou.com.ks_android.zhifubao.PayResult;
 
 import static hlks.hualiangou.com.ks_android.App.baseActivity;
+import static hlks.hualiangou.com.ks_android.R.id.liji_play;
 import static hlks.hualiangou.com.ks_android.zhifubao.PayDemoActivity.RSA2_PRIVATE;
 
 /**
@@ -60,6 +62,12 @@ public class ConfimOrderActivity extends BaseActivity implements View.OnClickLis
     private RelativeLayout mHaveAdress;
     private LinearLayout mAddAdress;
     private ImageView mConfirmReturn;
+
+    private static final int PAY_TYPE_ZFB = 0x001;
+    private static final int PAY_TYPE_WX = 0x002;
+    private static final int PAY_TYPE_JF = 0x003;
+
+    private int payType;
     /**
      * 确定订单
      */
@@ -138,6 +146,10 @@ public class ConfimOrderActivity extends BaseActivity implements View.OnClickLis
     private Map<StoreBean, List<DetailPagesBean.MsgBean>> pageList;
     private ArrayList<DetailPagesBean.MsgBean> msg;
     private ArrayList<ShoppingCartBean.MsgBean> shopMsg;
+    private ImageView wxState;
+    private ImageView zfbState;
+    private ImageView jfState;
+    private ImageView lastState;
 
     @Override
     public int getLayoutId() {
@@ -428,7 +440,7 @@ public class ConfimOrderActivity extends BaseActivity implements View.OnClickLis
                                     JSONObject result = new JSONObject(response);
                                     //获取到订单号
                                     msg1 = result.optString("msg");
-                                    Log.e("sssss",msg1);
+                                    Log.e("sssss", msg1);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -447,18 +459,40 @@ public class ConfimOrderActivity extends BaseActivity implements View.OnClickLis
                 break;
 //            微信支付
             case R.id.weixin_pay:
-                myDialogJieSuan();
-                mPopupWindow.dismiss();
+                if (lastState != null) {
+                    lastState.setVisibility(View.GONE);
+                }
+                payType = PAY_TYPE_WX;
+                wxState.setVisibility(View.VISIBLE);
+                lastState = wxState;
+//                myDialogJieSuan();
+//                mPopupWindow.dismiss();
                 break;
             case R.id.alipay_pay:
+                payType = PAY_TYPE_ZFB;
+                if (lastState != null) {
+                    lastState.setVisibility(View.GONE);
+                }
+                zfbState.setVisibility(View.VISIBLE);
+                lastState = zfbState;
                 //这段代码不能动，会有全局bug 稍后修改
-                initPayOkHttp();
+//                initPayOkHttp();
 //                myDialogJieSuan();
-                mPopupWindow.dismiss();
+//                mPopupWindow.dismiss();
                 break;
 //            银联支付
             case R.id.yinlian_pay:
-                myDialogJieSuan();
+                if (lastState != null) {
+                    lastState.setVisibility(View.GONE);
+                }
+                payType = PAY_TYPE_JF;
+                jfState.setVisibility(View.VISIBLE);
+                lastState = jfState;
+//                myDialogJieSuan();
+//                mPopupWindow.dismiss();
+                break;
+            case R.id.liji_play:
+                initPayOkHttp();
                 mPopupWindow.dismiss();
                 break;
             case R.id.shoppingCart_title:
@@ -495,8 +529,16 @@ public class ConfimOrderActivity extends BaseActivity implements View.OnClickLis
                         if (response.getRet().equals("0")) {
 
                             String Alipaymsg = response.getMsg();
+                            switch (payType) {
+                                case PAY_TYPE_ZFB:
+                                    aliPay(Alipaymsg);
+                                    break;
+                                case PAY_TYPE_WX:
+                                    break;
+                                case PAY_TYPE_JF:
+                                    break;
+                            }
 
-                            aliPay(Alipaymsg);
 
                         }
 
@@ -517,6 +559,11 @@ public class ConfimOrderActivity extends BaseActivity implements View.OnClickLis
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
         TextView paymentMoney = contentView.findViewById(R.id.payment_money);
         ImageView payDelete = contentView.findViewById(R.id.pay_popup_delete);
+        wxState = contentView.findViewById(R.id.wx_state);
+        zfbState = contentView.findViewById(R.id.zfb_state);
+        jfState = contentView.findViewById(R.id.jf_state);
+        Button play = contentView.findViewById(liji_play);
+        play.setOnClickListener(this);
         RelativeLayout weiXinPay = contentView.findViewById(R.id.weixin_pay);
         RelativeLayout zhiFuBaoPay = contentView.findViewById(R.id.alipay_pay);
         RelativeLayout yinLianPay = contentView.findViewById(R.id.yinlian_pay);
