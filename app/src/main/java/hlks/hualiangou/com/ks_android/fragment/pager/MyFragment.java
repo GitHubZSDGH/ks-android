@@ -2,7 +2,9 @@ package hlks.hualiangou.com.ks_android.fragment.pager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
+import com.tsy.sdk.myokhttp.response.RawResponseHandler;
+
+import java.util.ArrayList;
+
+import hlks.hualiangou.com.ks_android.App;
 import hlks.hualiangou.com.ks_android.R;
 import hlks.hualiangou.com.ks_android.activity.LoginActivity;
 import hlks.hualiangou.com.ks_android.activity.main.AccountSettingActivity;
@@ -18,10 +26,16 @@ import hlks.hualiangou.com.ks_android.activity.main.MainIntegralActivity;
 import hlks.hualiangou.com.ks_android.activity.main.MainOrderActivity;
 import hlks.hualiangou.com.ks_android.base.BaseFragment;
 import hlks.hualiangou.com.ks_android.config.FragmentBuilder;
+import hlks.hualiangou.com.ks_android.fragment.mainintegral.MainIntegralFragmentL;
+import hlks.hualiangou.com.ks_android.modle.bean.MainIntegralBean;
+import hlks.hualiangou.com.ks_android.modle.bean.MyFragmentBean;
+import hlks.hualiangou.com.ks_android.modle.url.UrlUtilds;
 import hlks.hualiangou.com.ks_android.utils.KeyUtils;
 import hlks.hualiangou.com.ks_android.utils.SharedPreferencesUtils;
 import hlks.hualiangou.com.ks_android.utils.UserUtils;
 import hlks.hualiangou.com.ks_android.view.img.RoundedImageView;
+
+import static hlks.hualiangou.com.ks_android.App.baseActivity;
 
 /**
  * 项目名称:
@@ -62,6 +76,22 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
      */
     private TextView mQuanbuOrder;
     private ImageView mImageView6;
+    /**
+     * 56
+     */
+    private TextView mDaifukuanNum;
+    /**
+     * 56
+     */
+    private TextView mDaifahuoNum;
+    /**
+     * 56
+     */
+    private TextView mDashouhuoNum;
+    /**
+     * 56
+     */
+    private TextView mTuihuotuikuanNum;
 
     //获取布局
     @Override
@@ -110,6 +140,10 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
         mQuanbuOrder.setOnClickListener(this);
         mImageView6 = (ImageView) view.findViewById(R.id.imageView6);
         mImageView6.setOnClickListener(this);
+        mDaifukuanNum = (TextView) view.findViewById(R.id.daifukuan_num);
+        mDaifahuoNum = (TextView) view.findViewById(R.id.daifahuo_num);
+        mDashouhuoNum = (TextView) view.findViewById(R.id.dashouhuo_num);
+        mTuihuotuikuanNum = (TextView) view.findViewById(R.id.tuihuotuikuan_num);
     }
 
     @Override
@@ -117,6 +151,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
         if (!UserUtils.getToken().isEmpty()) {
 //            startActivity(new Intent(baseActivity, LoginActivity.class));
             mUserId.setText(UserUtils.getUserPhone().toString());
+            initOkhttp();
             return;
         } else {
             myDialogText();
@@ -215,6 +250,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
             }
         });
     }
+
     private void myDialogJieSuan() {
         AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog);
         builder.setView(R.layout.shop_dialog_custom);
@@ -235,5 +271,78 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
             }
         });
     }
+
+    private void initOkhttp() {
+        App.myOkHttp
+                .postParams()
+                .url(UrlUtilds.GET_MYSELF)
+                .addParam("api", "myself/myself")
+                .addParam("appid", UrlUtilds.APPID)
+                .addParam("t", String.valueOf(System.currentTimeMillis()))
+                .addParam("token", UserUtils.getToken())
+                .addParam("user_id", UserUtils.getUserId())
+                .enqueue(new GsonResponseHandler<MyFragmentBean>() {
+                    @Override
+                    public void onSuccess(int statusCode, MyFragmentBean response) {
+                        int waitpay = response.getMsg().getWait_pay();
+                        int waitship = response.getMsg().getWait_ship();
+                        int waitrece = response.getMsg().getWait_rece();
+                        int nocommon = response.getMsg().getNo_common();
+                        int refund = response.getMsg().getRefund();
+
+                        if (waitpay == 0) {
+                            mDaifukuanNum.setVisibility(View.GONE);
+                        } else if (waitpay > 0 || waitpay < 100) {
+                            mDaifukuanNum.setVisibility(View.VISIBLE);
+                            mDaifukuanNum.setText(waitpay + "");
+                        } else if (waitpay >= 100) {
+                            mDaifukuanNum.setVisibility(View.VISIBLE);
+                            mDaifukuanNum.setText("...");
+                        }
+                        if (waitship == 0) {
+                            mDaifahuoNum.setVisibility(View.GONE);
+                        } else if (waitship > 0 || waitship < 100) {
+                            mDaifahuoNum.setVisibility(View.VISIBLE);
+                            mDaifahuoNum.setText(waitship + "");
+                        } else if (waitship >= 100) {
+                            mDaifahuoNum.setVisibility(View.VISIBLE);
+                            mDaifahuoNum.setText("...");
+                        }
+                        if (waitrece == 0) {
+                            mDashouhuoNum.setVisibility(View.GONE);
+                        } else if (waitrece > 0 || waitrece < 100) {
+                            mDashouhuoNum.setVisibility(View.VISIBLE);
+                            mDashouhuoNum.setText(waitrece + "");
+                        } else if (waitrece >= 100) {
+                            mDashouhuoNum.setVisibility(View.VISIBLE);
+                            mDashouhuoNum.setText("...");
+                        }
+//                        if (nocommon == 0) {
+//                            mDaifukuanNum.setVisibility(View.GONE);
+//                        } else if (nocommon > 0 || nocommon < 100) {
+//                            mDaifukuanNum.setText(nocommon + "");
+//                        } else if (nocommon >= 100) {
+//                            mDaifukuanNum.setText("...");
+//                        }
+                        if (refund == 0) {
+                            mTuihuotuikuanNum.setVisibility(View.GONE);
+                        } else if (refund > 0 || refund < 100) {
+                            mTuihuotuikuanNum.setVisibility(View.VISIBLE);
+                            mTuihuotuikuanNum.setText(waitpay + "");
+                        } else if (refund >= 100) {
+                            mTuihuotuikuanNum.setVisibility(View.VISIBLE);
+                            mTuihuotuikuanNum.setText("...");
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, String error_msg) {
+
+                    }
+                });
+    }
+
 
 }

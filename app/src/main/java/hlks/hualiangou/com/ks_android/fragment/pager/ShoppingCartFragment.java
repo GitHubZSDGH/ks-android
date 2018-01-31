@@ -1,6 +1,7 @@
 package hlks.hualiangou.com.ks_android.fragment.pager;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -41,6 +42,8 @@ import hlks.hualiangou.com.ks_android.modle.bean.StoreBean;
 import hlks.hualiangou.com.ks_android.modle.url.UrlUtilds;
 import hlks.hualiangou.com.ks_android.utils.ShoppingUtils;
 import hlks.hualiangou.com.ks_android.utils.UserUtils;
+
+import static hlks.hualiangou.com.ks_android.App.baseActivity;
 
 /**
  * 项目名称:
@@ -325,7 +328,8 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
                      * 证明列表包含有积分商品 不可以一键选择
                      */
                     if (myAdapter.isJifen()) {
-                        ToastUtils.showSingleToast("购物车有积分商品，请单独购买");
+//                        ToastUtils.showSingleToast("购物车有积分商品，请单独购买");
+                        myDialogText1();
                         mAllSlect.setChecked(false);
                         return;
                     }
@@ -349,7 +353,27 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
             }
         });
     }
+    private void myDialogText1() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog);
+        builder.setView(R.layout.shop_dialog_custom);
+        final AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        TextView textView = (TextView) dialog.findViewById(R.id.home_dialog_determine);
+        textView.setVisibility(View.GONE);
+        TextView textView1 = (TextView) dialog.findViewById(R.id.home_dialog);
+        TextView textView2 = (TextView) dialog.findViewById(R.id.dialog_text);
+        textView2.setText("您选择了积分商品，TA只能单独购买");
+        textView1.setTextColor(Color.parseColor("#BEA571"));
+        textView1.setText("好的");
+        textView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
 
+    }
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

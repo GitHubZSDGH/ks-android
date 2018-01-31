@@ -187,8 +187,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="7dp">
+            android:layout_height="64dp"
+            >
 
             <RelativeLayout
                 android:id="@+id/daifukuan"
@@ -197,11 +197,23 @@
                 android:layout_weight="1"
                 android:paddingTop="7dp">
 
+                <TextView
+                    android:id="@+id/daifukuan_num"
+                    android:layout_width="@dimen/dip_14"
+                    android:layout_height="@dimen/dip_14"
+                    android:layout_alignTop="@+id/obligation"
+                    android:layout_toEndOf="@+id/textView8"
+                    android:background="@drawable/back_item_red_tr"
+                    android:gravity="center"
+                    android:text="56"
+                    android:textSize="@dimen/text_size_8"
+                    android:visibility="gone"/>
                 <ImageView
                     android:id="@+id/obligation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
+                    android:paddingTop="7dp"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/daifukuan" />
 
@@ -213,7 +225,8 @@
                     android:layout_centerHorizontal="true"
                     android:text="待付款"
                     android:textColor="#333333"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:id="@+id/textView8" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -228,9 +241,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
+                    android:paddingTop="7dp"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/daifahuo" />
 
+                <TextView
+                    android:id="@+id/daifahuo_num"
+                    android:layout_width="@dimen/dip_14"
+                    android:layout_height="@dimen/dip_14"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/textView6"
+                    android:background="@drawable/back_item_red_tr"
+                    android:gravity="center"
+                    android:text="56"
+                    android:textSize="@dimen/text_size_8"
+                    android:visibility="gone"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -239,7 +264,8 @@
                     android:layout_centerHorizontal="true"
                     android:text="待发货"
                     android:textColor="#333333"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:id="@+id/textView6" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -249,23 +275,38 @@
                 android:layout_weight="1"
                 android:paddingTop="7dp">
 
+                <TextView
+                    android:id="@+id/dashouhuo_num"
+                    android:layout_width="@dimen/dip_14"
+                    android:layout_height="@dimen/dip_14"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@+id/textView7"
+                    android:background="@drawable/back_item_red_tr"
+                    android:gravity="center"
+                    android:text="56"
+                    android:textSize="@dimen/text_size_8"
+                    android:visibility="gone"/>
+
                 <ImageView
                     android:id="@+id/tu2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
+                    android:paddingTop="7dp"
                     android:src="@drawable/daishouhuo" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tu2"
-                    android:layout_marginTop="@dimen/dip_4"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dip_4"
                     android:text="待收货"
                     android:textColor="#333333"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:id="@+id/textView7" />
 
             </RelativeLayout>
 
@@ -304,9 +345,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
+                    android:paddingTop="7dp"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/tuihuotuikuan" />
-
+                <TextView
+                    android:id="@+id/tuihuotuikuan_num"
+                    android:layout_width="@dimen/dip_14"
+                    android:layout_height="@dimen/dip_14"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="7dp"
+                    android:background="@drawable/back_item_red_tr"
+                    android:gravity="center"
+                    android:text="56"
+                    android:textSize="@dimen/text_size_8"
+                    android:visibility="gone"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

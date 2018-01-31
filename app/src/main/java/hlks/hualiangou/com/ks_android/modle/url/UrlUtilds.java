@@ -109,6 +109,10 @@ public class UrlUtilds {
      * 获取用户积分值
      */
     public final static String GET_USER_INTEGRAL = URL + "myself/userIntegral";
+    /**
+     * 我的界面
+     */
+    public final static String GET_MYSELF = URL + "myself/myself";
 
 }
 

@@ -14,12 +14,18 @@
 
     android:id="@+id/rl_layout"
     >
+
     <ImageView
         android:id="@+id/iv_img"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:scaleType="fitXY"
-        android:src="@drawable/default_errow"/>
+
+        android:src="@drawable/default_errow" />
     <TextView
         android:id="@+id/jifen_back"
         android:layout_width="match_parent"
@@ -31,6 +37,26 @@
         android:gravity="center"
         android:textSize="@dimen/text_size_10"
         android:background="#F9EFD9"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/paiming_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="83dp"
+        android:layout_marginEnd="83dp"
+        android:src="@drawable/first3"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/paiming_tow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/iv_img"
+        android:layout_alignTop="@+id/iv_img"
+        android:src="@drawable/second3"
         android:visibility="gone"/>
 </RelativeLayout>
 

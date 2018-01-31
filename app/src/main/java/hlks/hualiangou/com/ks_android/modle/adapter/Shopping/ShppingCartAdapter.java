@@ -1,6 +1,8 @@
 package hlks.hualiangou.com.ks_android.modle.adapter.Shopping;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,8 @@ import hlks.hualiangou.com.ks_android.modle.bean.ShoppingCartBean;
 import hlks.hualiangou.com.ks_android.modle.bean.StoreBean;
 import hlks.hualiangou.com.ks_android.modle.url.UrlUtilds;
 import hlks.hualiangou.com.ks_android.utils.ShoppingUtils;
+
+import static hlks.hualiangou.com.ks_android.App.baseActivity;
 
 /**
  * Created by localadmin on 2017/11/19.
@@ -273,7 +277,8 @@ public class ShppingCartAdapter extends BaseExpandableListAdapter implements Sho
 
 
                     if (getIsSelect(shopBean)) {
-                        ToastUtils.showSingleLongToast("积分商品请单独购买");
+
+                        myDialogText1();
                         finalShopViewHolder.shopSelect.setChecked(false);
                     } else {
                         finalShopViewHolder.shopSelect.setChecked(true);
@@ -321,7 +326,27 @@ public class ShppingCartAdapter extends BaseExpandableListAdapter implements Sho
         notifyDataSetChanged();
     }
 
+    private void myDialogText1() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog);
+        builder.setView(R.layout.shop_dialog_custom);
+        final AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        TextView textView = (TextView) dialog.findViewById(R.id.home_dialog_determine);
+        textView.setVisibility(View.GONE);
+        TextView textView1 = (TextView) dialog.findViewById(R.id.home_dialog);
+        TextView textView2 = (TextView) dialog.findViewById(R.id.dialog_text);
+        textView2.setText("您已选择了积分商品，不能再选非积分换购商品");
+        textView1.setTextColor(Color.parseColor("#BEA571"));
+        textView1.setText("好的");
+        textView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
 
+    }
     /**
      * 当前是否可以选择
      *
