@@ -225,7 +225,7 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
 
         List<DetailPagesBean.MsgBean.ShopSpecBean> shopSpec = msg.getShop_spec();
         View view = LayoutInflater.from(this).inflate(R.layout.shop_popup, null);
-        ImageView shopImage = view.findViewById(R.id.iv_shop_img);
+        final ImageView shopImage = view.findViewById(R.id.iv_shop_img);
         TextView shopMoney = view.findViewById(R.id.iv_shop_price);
         TextView shopAdeuate = view.findViewById(R.id.tv_adequate);
         final TextView textone = view.findViewById(R.id.textone);
@@ -240,9 +240,18 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
         LinearLayout shopAdd = view.findViewById(R.id.shop_lin_add);
 
         /**
-         * 图片不显示
+         * TODO 图片不显示
          */
-        Glide.with(DetailPagesActivity.this).load(UrlUtilds.IMG_URL + msg.getShop_image().get(0).getPath()).into(shopImage);
+        shopImage.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Glide.with(DetailPagesActivity.this)
+                        .load(UrlUtilds.IMG_URL + msg.getShop_image().get(0).getPath())
+                       .into(shopImage);
+            }
+        }, 100);
+
+//        shopImage.setImageURI(Uri.parse(UrlUtilds.IMG_URL + msg.getShop_image().get(0).getPath()));
 //        Log.e("initShopPage: ",UrlUtilds.IMG_URL + msg.getShop_image().get(0).getPath());
         //创建title
         if (msg != null && !msg.getShop_name().isEmpty() && !msg.getSpec_one().isEmpty()) {
