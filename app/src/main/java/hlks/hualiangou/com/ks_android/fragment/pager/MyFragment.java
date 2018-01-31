@@ -22,6 +22,7 @@ import hlks.hualiangou.com.ks_android.App;
 import hlks.hualiangou.com.ks_android.R;
 import hlks.hualiangou.com.ks_android.activity.LoginActivity;
 import hlks.hualiangou.com.ks_android.activity.main.AccountSettingActivity;
+import hlks.hualiangou.com.ks_android.activity.main.MainFootActivity;
 import hlks.hualiangou.com.ks_android.activity.main.MainIntegralActivity;
 import hlks.hualiangou.com.ks_android.activity.main.MainOrderActivity;
 import hlks.hualiangou.com.ks_android.base.BaseFragment;
@@ -183,6 +184,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 myDialogJieSuan();
                 break;
             case R.id.zuji:
+                startActivity(new Intent(baseActivity, MainFootActivity.class));
                 break;
             case R.id.daifukuan:
                 startActivity(new Intent(baseActivity, MainOrderActivity.class).putExtra("index", 1));

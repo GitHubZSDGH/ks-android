@@ -206,6 +206,7 @@
                     android:background="@drawable/back_item_red_tr"
                     android:gravity="center"
                     android:text="56"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_size_8"
                     android:visibility="gone"/>
                 <ImageView
@@ -254,6 +255,7 @@
                     android:background="@drawable/back_item_red_tr"
                     android:gravity="center"
                     android:text="56"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_size_8"
                     android:visibility="gone"/>
                 <TextView
@@ -285,6 +287,7 @@
                     android:background="@drawable/back_item_red_tr"
                     android:gravity="center"
                     android:text="56"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_size_8"
                     android:visibility="gone"/>
 
@@ -357,6 +360,7 @@
                     android:layout_marginEnd="7dp"
                     android:background="@drawable/back_item_red_tr"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     android:text="56"
                     android:textSize="@dimen/text_size_8"
                     android:visibility="gone"/>

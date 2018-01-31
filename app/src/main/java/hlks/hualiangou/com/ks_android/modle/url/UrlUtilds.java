@@ -113,6 +113,18 @@ public class UrlUtilds {
      * 我的界面
      */
     public final static String GET_MYSELF = URL + "myself/myself";
+    /**
+     *用户查看商品记录
+     */
+    public final static String GET_USER_SHOPHISTORY = URL + "shop/userShopHistory";
+    /**
+     * 查询用户足迹
+     */
+    public final static String GET_USER_HISTORY = URL + "shop/getUserHistory";
+    /**
+     * 删除足迹
+     */
+    public final static String GET_CHCK_HISTORY = URL + "shop/chckHistory";
 
 }
 
