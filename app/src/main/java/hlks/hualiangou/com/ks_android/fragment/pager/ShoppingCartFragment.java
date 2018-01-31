@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
 import com.tsy.sdk.myokhttp.util.ParamsUtils;
+import com.tsy.sdk.myokhttp.util.ToastUtils;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -176,7 +177,7 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onResume() {
         super.onResume();
-        if(isRefrush){
+        if (isRefrush) {
             isRefrush = false;
             loadShop();
         }
@@ -275,6 +276,7 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
             }
         });
     }
+
     private void myDialogDelete() {
         AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog);
         builder.setView(R.layout.shop_cart_delete);
@@ -318,6 +320,15 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
                     }
                     shopCount = 0;
                 } else {
+                    /**
+                     * 如果为true
+                     * 证明列表包含有积分商品 不可以一键选择
+                     */
+                    if (myAdapter.isJifen()) {
+                        ToastUtils.showSingleToast("购物车有积分商品，请单独购买");
+                        mAllSlect.setChecked(false);
+                        return;
+                    }
                     shopCount = 0;
                     for (StoreBean storeBean : storeBeanList) {
                         storeBean.setSelect(true);
@@ -404,7 +415,7 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
                     buyShopList.clear();
                 } else {
 
-                            myDialogDelete();
+                    myDialogDelete();
                 }
 
                 break;
@@ -421,6 +432,7 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
 
         }
     }
+
     private void myDialogJieSuan() {
         AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog);
         builder.setView(R.layout.shop_dialog_custom);
@@ -440,6 +452,7 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
             }
         });
     }
+
     @Override
     public void onCheckEd(int groupPosttion, int childPosition, boolean ischecked) {
         calculationMoney();
@@ -537,7 +550,8 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
         calculationMoney();
         allState();
     }
-//购物车 删除功能
+
+    //购物车 删除功能
     @Override
     public void delete(int groupPosition) {
         final StoreBean storeBean = storeBeanList.get(groupPosition);

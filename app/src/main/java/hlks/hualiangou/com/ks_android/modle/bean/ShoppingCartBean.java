@@ -117,7 +117,14 @@ public class ShoppingCartBean  {
         private String spike;
         private String image_path;
         private ShopSpecBean shop_spec;
+        /**
+         *  0 -N
+         *  1 -Y
+         */
         private int is_integral;
+        /**
+         *
+         */
         private String integral;
 
         public int getIs_integral() {

@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.tsy.sdk.myokhttp.util.ToastUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,22 @@ public class ShppingCartAdapter extends BaseExpandableListAdapter implements Sho
      */
     private Map<StoreBean, List<ShoppingCartBean.MsgBean>> shopList;
 
+
+    /**
+     * 只要一个商品有积分  就是true
+     */
+    private boolean isJifen;
+
+    public boolean isJifen() {
+        return isJifen;
+    }
+
+    /**
+     * 已经选择的的数量包含积分的
+     */
+    private int count;
+
+    private ShopState selectJifen = ShopState.CLICKDEFAULT;
     /**
      * 上下文对象
      */
@@ -54,6 +71,7 @@ public class ShppingCartAdapter extends BaseExpandableListAdapter implements Sho
         this.shopList = shopList;
         shoppingStateListener = this;
         this.mContext = mContext;
+        count = 0;
     }
 
     private StateListener stateListener;
@@ -149,6 +167,9 @@ public class ShppingCartAdapter extends BaseExpandableListAdapter implements Sho
     public View getChildView(final int groupPosition, final int childPosition, boolean b, View view, ViewGroup viewGroup) {
         final ShoppingCartBean.MsgBean shopBean = shopList.get(storeList.get(groupPosition)).get(childPosition);
         ShopViewHolder shopViewHolder = null;
+        if (!isJifen) {
+            isJifen = shopBean.getIs_integral() == 1 ? true : false;
+        }
         if (view == null) {
             view = LayoutInflater.from(mContext).inflate(R.layout.item_shop, null);
             shopViewHolder = new ShopViewHolder();
@@ -173,9 +194,9 @@ public class ShppingCartAdapter extends BaseExpandableListAdapter implements Sho
             shopViewHolder = (ShopViewHolder) view.getTag();
         }
         if (shopBean.isBianji()) {
-           shopViewHolder.itemShaoNo.setVisibility(View.VISIBLE);
+            shopViewHolder.itemShaoNo.setVisibility(View.VISIBLE);
             shopViewHolder.itemShaoYes.setVisibility(View.GONE);
-        }else{
+        } else {
             shopViewHolder.itemShaoNo.setVisibility(View.GONE);
             shopViewHolder.itemShaoYes.setVisibility(View.VISIBLE);
         }
@@ -184,12 +205,14 @@ public class ShppingCartAdapter extends BaseExpandableListAdapter implements Sho
         shopViewHolder.shopMoney.setText("￥" + shopBean.getShop_end_money());
         shopViewHolder.shopCountNum.setText(shopBean.getShop_num());
         shopViewHolder.shopCount.setText(shopBean.getShop_num());
-        shopViewHolder.shopSmallTitle.setText(shopBean.getShop_spec().getSpec_one_name()+("、"+shopBean.getShop_spec().getSpec_two_name()));
-        Glide.with(mContext).load(UrlUtilds.IMG_URL+shopBean.getImage_path()).into(shopViewHolder.shopImage);
-        Log.d("ShppingCartAdapter", "url++++++"+(UrlUtilds.IMG_URL + shopBean.getImage_path()));
-        if(shopBean.getIs_integral()!=0){
+        shopViewHolder.shopSmallTitle.setText(shopBean.getShop_spec().getSpec_one_name() + ("、" + shopBean.getShop_spec().getSpec_two_name()));
+        Glide.with(mContext).load(UrlUtilds.IMG_URL + shopBean.getImage_path()).into(shopViewHolder.shopImage);
+        Log.d("ShppingCartAdapter", "url++++++" + (UrlUtilds.IMG_URL + shopBean.getImage_path()));
+        if (shopBean.getIs_integral() != 0) {
             shopViewHolder.jifen.setVisibility(View.VISIBLE);
-            shopViewHolder.jifen.setText("可用 "+ shopBean.getIntegral() + " 积分兑换");
+            shopViewHolder.jifen.setText("可用 " + shopBean.getIntegral() + " 积分兑换");
+        } else {
+            shopViewHolder.jifen.setVisibility(View.GONE);
         }
 
         shopViewHolder.shopSelect.setChecked(shopBean.ischeck());
@@ -223,11 +246,55 @@ public class ShppingCartAdapter extends BaseExpandableListAdapter implements Sho
                 if (!finalShopViewHolder.shopSelect.isChecked()) {
                     finalShopViewHolder.shopSelect.setChecked(false);
                     shopBean.setIscheck(false);
+                    count--;
+                    /**
+                     * 当前是否积分商品
+                     * 积分商品数量-1
+                     */
+                    if (shopBean.getIs_integral() == 1) {
+                        selectJifen.num--;
+                        /**
+                         * 积分商品数量是否为0
+                         */
+                        if (selectJifen.num == 0) {
+                            selectJifen = ShopState.CLICKNOJIFEN;
+                        }
+                    }
+                    /**
+                     * 如果总数==0
+                     * 会把状态改为
+                     * 没有选择任何商品
+                     */
+                    if (count == 0) {
+                        selectJifen = ShopState.CLICKDEFAULT;
+                    }
                     stateListener.onCheckEd(groupPosition, childPosition, false);
                 } else {
-                    finalShopViewHolder.shopSelect.setChecked(true);
-                    shopBean.setIscheck(true);
-                    stateListener.onCheckEd(groupPosition, childPosition, true);
+
+
+                    if (getIsSelect(shopBean)) {
+                        ToastUtils.showSingleLongToast("积分商品请单独购买");
+                        finalShopViewHolder.shopSelect.setChecked(false);
+                    } else {
+                        finalShopViewHolder.shopSelect.setChecked(true);
+                        shopBean.setIscheck(true);
+                        /**
+                         * 如果当前点击的是积分商品
+                         * 状态更改为已选择积分商品状态
+                         * 数量++
+                         *
+                         * 反之状态改为选择没有积分商品
+                         */
+                        if (shopBean.getIs_integral() == 1) {
+                            selectJifen = ShopState.CLICKJIFEN;
+                            selectJifen.num++;
+                        } else {
+                            selectJifen = ShopState.CLICKNOJIFEN;
+                        }
+                        count++;
+                        stateListener.onCheckEd(groupPosition, childPosition, true);
+                    }
+
                 }
             }
         });
@@ -254,6 +321,31 @@ public class ShppingCartAdapter extends BaseExpandableListAdapter implements Sho
         notifyDataSetChanged();
     }
 
+
+    /**
+     * 当前是否可以选择
+     *
+     * @param shopBean
+     * @return
+     */
+    private boolean getIsSelect(ShoppingCartBean.MsgBean shopBean) {
+        /**
+         * 当前的状态是有积分商品
+         * 当前点击的没有积分
+         */
+        if ((selectJifen == ShopState.CLICKJIFEN) && shopBean.getIs_integral() != 1) {
+            return true;
+        }
+        /**
+         * 没有积分商品
+         * 当前选择的是有积分的
+         */
+        if (selectJifen == ShopState.CLICKNOJIFEN && shopBean.getIs_integral() == 1) {
+            return true;
+        }
+        return false;
+    }
+
     class StoreViewHolder {
         TextView storeTitle;
         CheckBox storeSelect;
@@ -274,7 +366,7 @@ public class ShppingCartAdapter extends BaseExpandableListAdapter implements Sho
         TextView shopGuige;
         TextView jifen;
         ImageView shopGuigeSelect;
-        LinearLayout itemShaoYes,itemShaoNo;
+        LinearLayout itemShaoYes, itemShaoNo;
 
 
     }
@@ -289,12 +381,19 @@ public class ShppingCartAdapter extends BaseExpandableListAdapter implements Sho
         void delete(int groupPosition);
     }
 
-     private void upDate(ShoppingCartBean.MsgBean msgBean){
+    private void upDate(ShoppingCartBean.MsgBean msgBean) {
 
-         ShoppingUtils.update(msgBean);
+        ShoppingUtils.update(msgBean);
 
 
+    }
 
-     }
+    enum ShopState {
+        CLICKDEFAULT, CLICKJIFEN, CLICKNOJIFEN;
+        /**
+         * 已经选择积分商品
+         */
+        int num = 0;
+    }
 
 }
