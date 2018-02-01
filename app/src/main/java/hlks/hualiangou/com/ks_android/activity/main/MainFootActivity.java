@@ -104,7 +104,8 @@ public class MainFootActivity extends BaseActivity implements View.OnClickListen
                             FootFragment footFragment = new FootFragment();
 
                             Bundle bundle = new Bundle();
-//                            bundle.putParcelable("foot",response.getMsg().getResult().get());
+                            bundle.putString("foot",response.getMsg().getTime().get(i).getValue());
+                            footFragment.setArguments(bundle);
                             listFragment.add(footFragment);
                         }
                         MyAdapter myAdapter = new MyAdapter(getSupportFragmentManager(), listTitle, listFragment);
