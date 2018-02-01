@@ -1,5 +1,8 @@
 package hlks.hualiangou.com.ks_android.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -89,7 +92,8 @@ public class MyFootBean {
             }
         }
 
-        public static class ResultBean {
+        public static class ResultBean implements Parcelable {
+
             /**
              * history_id : 43
              * shop_id : 47
@@ -199,6 +203,49 @@ public class MyFootBean {
             public void setIntegral(String integral) {
                 this.integral = integral;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeInt(this.history_id);
+                dest.writeInt(this.shop_id);
+                dest.writeString(this.create_time);
+                dest.writeString(this.shop_name);
+                dest.writeString(this.shop_end_money);
+                dest.writeString(this.image_path);
+                dest.writeInt(this.is_integral);
+                dest.writeString(this.integral);
+            }
+
+            public ResultBean() {
+            }
+
+            protected ResultBean(Parcel in) {
+                this.history_id = in.readInt();
+                this.shop_id = in.readInt();
+                this.create_time = in.readString();
+                this.shop_name = in.readString();
+                this.shop_end_money = in.readString();
+                this.image_path = in.readString();
+                this.is_integral = in.readInt();
+                this.integral = in.readString();
+            }
+
+            public static final Parcelable.Creator<ResultBean> CREATOR = new Parcelable.Creator<ResultBean>() {
+                @Override
+                public ResultBean createFromParcel(Parcel source) {
+                    return new ResultBean(source);
+                }
+
+                @Override
+                public ResultBean[] newArray(int size) {
+                    return new ResultBean[size];
+                }
+            };
         }
     }
 }

@@ -1,5 +1,6 @@
 package hlks.hualiangou.com.ks_android.fragment;
 
+import android.os.Bundle;
 import android.view.View;
 
 import hlks.hualiangou.com.ks_android.R;
@@ -35,6 +36,12 @@ public class FootFragment extends BaseFragment {
 
     @Override
     public void setListener() {
+
+    }
+
+    @Override
+    public void getBundle(Bundle bundle) {
+        super.getBundle(bundle);
 
     }
 }

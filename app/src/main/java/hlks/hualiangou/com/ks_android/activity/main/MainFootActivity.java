@@ -1,5 +1,6 @@
 package hlks.hualiangou.com.ks_android.activity.main;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -99,6 +100,9 @@ public class MainFootActivity extends BaseActivity implements View.OnClickListen
                         }
                         for (int i = 0; i < listTitle.size(); i++) {
                             FootFragment footFragment = new FootFragment();
+
+                            Bundle bundle = new Bundle();
+//                            bundle.putParcelable("foot",response.getMsg().getResult().get());
                             listFragment.add(footFragment);
                         }
                         MyAdapter myAdapter = new MyAdapter(getSupportFragmentManager(), listTitle, listFragment);
