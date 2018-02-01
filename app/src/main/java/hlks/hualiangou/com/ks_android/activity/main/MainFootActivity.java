@@ -3,6 +3,7 @@ package hlks.hualiangou.com.ks_android.activity.main;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
@@ -42,7 +43,7 @@ public class MainFootActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void loadData() {
-
+        initOkhttp();
     }
 
     @Override
@@ -74,7 +75,7 @@ public class MainFootActivity extends BaseActivity implements View.OnClickListen
                 .enqueue(new RawResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, String response) {
-
+                        Log.e( "onSuccess: ", response.toString());
                     }
 
                     @Override

@@ -247,7 +247,7 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
             public void run() {
                 Glide.with(DetailPagesActivity.this)
                         .load(UrlUtilds.IMG_URL + msg.getShop_image().get(0).getPath())
-                       .into(shopImage);
+                        .into(shopImage);
             }
         }, 100);
 
@@ -476,6 +476,22 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
                                 .setBundle(bundle)
                                 .add(R.id.shop_details_fragment)
                                 .commit();
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                super.run();
+                                try {
+                                    Thread.sleep(3000);//休眠3秒
+                                    initOkhttp();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                /**
+                                 * 要执行的操作
+                                 */
+                            }
+                        }.start();
+
                     }
 
                     @Override
@@ -485,11 +501,35 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
 
                     @Override
                     public void onSuccfulString(int code, String message) {
-                        Log.e( "onSuccfulString: ", message);
+                        Log.e("onSuccfulString: ", message);
                         myDialogText1();
                     }
                 });
     }
+
+    private void initOkhttp() {
+        App.myOkHttp
+                .postParams()
+                .url(UrlUtilds.GET_USER_SHOPHISTORY)
+                .addParam("api", "shop/userShopHistory")
+                .addParam("appid", UrlUtilds.APPID)
+                .addParam("t", String.valueOf(System.currentTimeMillis()))
+                .addParam("token", UserUtils.getToken())
+                .addParam("user_id", UserUtils.getUserId())
+                .addParam("shop_id",msg.getId())
+                .enqueue(new RawResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, String response) {
+                        Log.e("onSuccess: ", response.toString());
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, String error_msg) {
+
+                    }
+                });
+    }
+
     private void myDialogText1() {
         AlertDialog.Builder builder = new AlertDialog.Builder(baseActivity, R.style.MyCommonDialog);
         builder.setView(R.layout.shop_dialog_custom);
@@ -512,6 +552,7 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
         });
 
     }
+
     @Override
     public void setListener() {
 
