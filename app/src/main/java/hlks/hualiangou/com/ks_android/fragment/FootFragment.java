@@ -59,6 +59,7 @@ public class FootFragment extends BaseFragment {
                 .addParam("api", "shop/getUserHistory")
                 .addParam("appid", UrlUtilds.APPID)
                 .addParam("t", String.valueOf(System.currentTimeMillis()))
+                .addParam("time","2018-01-31")
                 .addParam("token", UserUtils.getToken())
                 .addParam("user_id", UserUtils.getUserId())
                 .enqueue(new GsonResponseHandler<MyFootBean>() {
