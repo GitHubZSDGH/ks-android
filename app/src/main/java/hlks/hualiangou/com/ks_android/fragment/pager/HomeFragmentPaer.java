@@ -224,6 +224,13 @@ private ObservableScrollView scrollView;
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        initOkHttp(null);
+        initOkHttpbottom(null);
+    }
+
+    @Override
     public void loadData() {
         initOkHttp(null);
         initOkHttpbottom(null);

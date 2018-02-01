@@ -3,8 +3,17 @@ package hlks.hualiangou.com.ks_android.fragment;
 import android.os.Bundle;
 import android.view.View;
 
+import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
+
+import java.util.List;
+
+import hlks.hualiangou.com.ks_android.App;
 import hlks.hualiangou.com.ks_android.R;
+import hlks.hualiangou.com.ks_android.activity.main.MainFootActivity;
 import hlks.hualiangou.com.ks_android.base.BaseFragment;
+import hlks.hualiangou.com.ks_android.bean.MyFootBean;
+import hlks.hualiangou.com.ks_android.modle.url.UrlUtilds;
+import hlks.hualiangou.com.ks_android.utils.UserUtils;
 
 /**
  * /**
@@ -31,17 +40,39 @@ public class FootFragment extends BaseFragment {
 
     @Override
     public void loadData() {
-
+        initOkhttp();
     }
 
     @Override
     public void setListener() {
 
     }
-
     @Override
     public void getBundle(Bundle bundle) {
         super.getBundle(bundle);
 
     }
+    private void initOkhttp() {
+        App.myOkHttp
+                .postParams()
+                .url(UrlUtilds.GET_USER_HISTORY)
+                .addParam("api", "shop/getUserHistory")
+                .addParam("appid", UrlUtilds.APPID)
+                .addParam("t", String.valueOf(System.currentTimeMillis()))
+                .addParam("token", UserUtils.getToken())
+                .addParam("user_id", UserUtils.getUserId())
+                .enqueue(new GsonResponseHandler<MyFootBean>() {
+                    @Override
+                    public void onSuccess(int statusCode, MyFootBean response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, String error_msg) {
+
+                    }
+                });
+    }
+
+
 }

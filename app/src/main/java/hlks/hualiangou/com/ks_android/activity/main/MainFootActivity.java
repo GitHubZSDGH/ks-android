@@ -60,6 +60,8 @@ public class MainFootActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void loadData() {
+        mMainFootTab.setTabMode(TabLayout.MODE_SCROLLABLE);
+
         initOkhttp();
     }
 
