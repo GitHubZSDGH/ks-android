@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +23,12 @@ import hlks.hualiangou.com.ks_android.R;
 import hlks.hualiangou.com.ks_android.base.BaseActivity;
 import hlks.hualiangou.com.ks_android.base.BaseFragment;
 import hlks.hualiangou.com.ks_android.bean.MyFootBean;
+import hlks.hualiangou.com.ks_android.event.MainFootBean;
 import hlks.hualiangou.com.ks_android.fragment.FootFragment;
 import hlks.hualiangou.com.ks_android.modle.url.UrlUtilds;
 import hlks.hualiangou.com.ks_android.utils.UserUtils;
 
 public class MainFootActivity extends BaseActivity implements View.OnClickListener {
-
     private RelativeLayout mGoBack;
     /**
      * 编辑
@@ -78,7 +80,16 @@ public class MainFootActivity extends BaseActivity implements View.OnClickListen
             case R.id.go_back:
                 finish();
                 break;
+            //编辑
             case R.id.main_foot_edit:
+                if ("编辑".equals(mMainFootEdit.getText().toString().trim())) {
+                    EventBus.getDefault().post(new MainFootBean(true));
+                    mMainFootEdit.setText("完成");
+                }else{
+                    EventBus.getDefault().post(new MainFootBean(false));
+                    mMainFootEdit.setText("编辑");
+                }
+
                 break;
         }
     }
@@ -98,13 +109,13 @@ public class MainFootActivity extends BaseActivity implements View.OnClickListen
                         List<MyFootBean.MsgBean.TimeBean> timeList = response.getMsg().getTime();
                         for (MyFootBean.MsgBean.TimeBean timeBean : timeList) {
                             listTitle.add(timeBean.getKey());
-                            Log.e("TAG","title==》"+timeBean.getKey());
+                            Log.e("TAG", "title==》" + timeBean.getKey());
                         }
                         for (int i = 0; i < listTitle.size(); i++) {
                             FootFragment footFragment = new FootFragment();
 
                             Bundle bundle = new Bundle();
-                            bundle.putString("foot",response.getMsg().getTime().get(i).getValue());
+                            bundle.putString("foot", response.getMsg().getTime().get(i).getValue());
                             footFragment.setArguments(bundle);
                             listFragment.add(footFragment);
                         }
@@ -148,4 +159,5 @@ public class MainFootActivity extends BaseActivity implements View.OnClickListen
             return listTitle.get(position);
         }
     }
+
 }

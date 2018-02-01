@@ -3,6 +3,8 @@ package hlks.hualiangou.com.ks_android.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.List;
 
 /**
@@ -139,6 +141,16 @@ public class MyFootBean {
              * 积分数量
              */
             private String integral;
+            @Expose
+            private boolean isSelect;
+
+            public boolean isSelect() {
+                return isSelect;
+            }
+
+            public void setSelect(boolean select) {
+                isSelect = select;
+            }
 
             public int getHistory_id() {
                 return history_id;
