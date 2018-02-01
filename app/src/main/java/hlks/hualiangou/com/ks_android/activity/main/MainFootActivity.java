@@ -9,11 +9,13 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
 import com.tsy.sdk.myokhttp.response.RawResponseHandler;
 
 import hlks.hualiangou.com.ks_android.App;
 import hlks.hualiangou.com.ks_android.R;
 import hlks.hualiangou.com.ks_android.base.BaseActivity;
+import hlks.hualiangou.com.ks_android.bean.MyFootBean;
 import hlks.hualiangou.com.ks_android.modle.url.UrlUtilds;
 import hlks.hualiangou.com.ks_android.utils.UserUtils;
 
@@ -26,7 +28,10 @@ public class MainFootActivity extends BaseActivity implements View.OnClickListen
     private TextView mMainFootEdit;
     private TableLayout mMainFootTab;
     private ViewPager mMainFootPager;
-
+    /**
+     * 我的足迹的实体类
+     */
+    private MyFootBean myFootBean;
     @Override
     public int getLayoutId() {
         return R.layout.activity_main_foot;
@@ -72,10 +77,10 @@ public class MainFootActivity extends BaseActivity implements View.OnClickListen
                 .addParam("t", String.valueOf(System.currentTimeMillis()))
                 .addParam("token", UserUtils.getToken())
                 .addParam("user_id", UserUtils.getUserId())
-                .enqueue(new RawResponseHandler() {
+                .enqueue(new GsonResponseHandler<MyFootBean>() {
                     @Override
-                    public void onSuccess(int statusCode, String response) {
-                        Log.e( "onSuccess: ", response.toString());
+                    public void onSuccess(int statusCode, MyFootBean response) {
+
                     }
 
                     @Override

@@ -116,7 +116,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/px56"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/tick" />
     </RelativeLayout>
 
     <View
@@ -169,7 +169,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/px56"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/tick" />
     </RelativeLayout>
 
     <View
@@ -233,7 +233,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/px56"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/tick" />
     </RelativeLayout>
 
     <View
