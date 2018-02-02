@@ -46,7 +46,6 @@ public class FootFragment extends BaseFragment {
     private ListView listView;
     private MyAdapter myAdapter;
     private List<MyFootBean.MsgBean.ResultBean> result;
-    private MyFootBean.MsgBean.ResultBean resultBean;
 
     @Override
     public int getLayoutId() {
@@ -71,8 +70,8 @@ public class FootFragment extends BaseFragment {
     }
     public void expressitemClick(int postion){
         Intent intent = new Intent(baseActivity, DetailPagesActivity.class);
-        intent.putExtra("shop_id", String.valueOf(resultBean.getShop_id()));
-        Log.e( "expressitemClick: ",resultBean.getShop_id()+"" );
+        intent.putExtra("shop_id", String.valueOf(result.get(postion).getShop_id()));
+        Log.e( "expressitemClick: ",result.get(postion).getShop_id()+"" );
         startActivity(intent);}
     @Override
     public void setListener() {
