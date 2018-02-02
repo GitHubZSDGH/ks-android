@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <CheckBox
         android:id="@+id/foot_checkBox"
@@ -20,12 +21,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/foot_img"
+        android:layout_marginLeft="@dimen/dip_12"
         android:text="dsadsadsadsa" />
 
     <TextView
         android:id="@+id/foot_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dip_12"
+        android:layout_marginTop="@dimen/dip_12"
+        android:textColor="@color/color_e53e42"
         android:layout_below="@id/foot_title"
         android:layout_toRightOf="@id/foot_img"
         android:text="dsadsadsadsa" />

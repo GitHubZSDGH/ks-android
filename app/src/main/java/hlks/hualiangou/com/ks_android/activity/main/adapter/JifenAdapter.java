@@ -22,10 +22,10 @@ public class JifenAdapter extends ListAdapter<MainIntegralBean.MsgBean.IntegralL
         viewHolder.setText(R.id.shop_name_tv,integralListBean.getIntegral_use());
         if (!integralListBean.getDetails_staff().isEmpty()||integralListBean.getDetails_staff()=="1"
                 ||integralListBean.getDetails_staff().equals(1)){
-        viewHolder.setText(R.id.main_integral_num,"+"+integralListBean.getIntegral_num());
+        viewHolder.setText(R.id.main_integral_num,"-"+integralListBean.getIntegral_num());
         }else if (!integralListBean.getDetails_staff().isEmpty()||integralListBean.getDetails_staff()=="2"
                 ||integralListBean.getDetails_staff().equals(2)){
-            viewHolder.setText(R.id.main_integral_num,"-"+integralListBean.getIntegral_num());
+            viewHolder.setText(R.id.main_integral_num,"+"+integralListBean.getIntegral_num());
         }
         viewHolder.setText(R.id.shop_time_tv,integralListBean.getCreate_time());
 

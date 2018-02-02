@@ -72,20 +72,61 @@
         android:id="@+id/main_foot_tab"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dip_34"
+        app:tabMode="scrollable"
         >
 
     </android.support.design.widget.TabLayout>
     <android.support.v4.view.ViewPager
         android:id="@+id/main_foot_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         >
 
     </android.support.v4.view.ViewPager>
     <RelativeLayout
+        android:id="@+id/delete_pop"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dip_40"
-        >
+        android:layout_height="@dimen/dip_46"
+        android:background="@color/white"
+        android:visibility="gone">
+    <CheckBox
+        android:id="@+id/all_select"
+        android:layout_width="@dimen/dip_20"
+        android:layout_height="@dimen/dip_20"
+        android:layout_marginLeft="@dimen/dip_12"
+        android:layout_marginTop="@dimen/dip_16"
+        android:background="@drawable/shoppingcheckbox"
+        android:button="@null"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="11dp"
+            android:layout_toEndOf="@+id/all_select"
+            android:text="全选"
+            android:textColor="@color/color_1a1a1a"
+            android:textSize="@dimen/dip_14"
+            android:id="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView9"
+            android:layout_alignBottom="@+id/textView9"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="24dp"
+            android:paddingRight="@dimen/dip_12"
+            android:paddingLeft="@dimen/dip_12"
+            android:paddingBottom="@dimen/dip_6"
+            android:paddingTop="@dimen/dip_6"
+            android:background="@color/color_bea571"
+            android:text="删除"
+            android:textColor="@color/color_1a1a1a"
+            android:textSize="@dimen/dip_14" />
+
 
     </RelativeLayout>
 </LinearLayout>

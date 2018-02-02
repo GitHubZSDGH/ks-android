@@ -99,7 +99,6 @@
             <!--android:layout_height="1dp"-->
             <!--android:background="#e5e5e5" />-->
 
-
         <LinearLayout
 
             android:id="@+id/ll_good_detail_bottom"
@@ -135,18 +134,36 @@
                     android:layout_marginBottom="@dimen/spacing_smallest"
                     android:layout_marginTop="@dimen/spacing_smallest"
                     android:background="@color/grey_line_bg" />
+                 <RelativeLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content">
 
+                     <TextView
+                         android:id="@+id/add_shopcar_num"
+                         android:layout_width="@dimen/dip_14"
+                         android:layout_height="@dimen/dip_14"
+                         android:layout_alignParentStart="true"
+                         android:layout_alignParentTop="true"
+                         android:layout_marginStart="34dp"
+                         android:background="@drawable/back_item_red_tr"
+                         android:gravity="center"
+                         android:text="5"
+                         android:textSize="@dimen/text_size_8"
+                         android:textColor="@color/white"
+                         android:visibility="gone"/>
                 <TextView
                     android:id="@+id/tv_good_detail_shop"
                     style="@style/greyTextStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/spacing_smallest"
-                    android:layout_marginRight="@dimen/spacing_smallest"
+                    android:paddingLeft="@dimen/spacing_smallest"
+                    android:paddingRight="@dimen/spacing_smallest"
+                    android:paddingTop="@dimen/dip_8"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/shopping_cart1"
                     android:gravity="center"
                     android:text="购物车" />
+                 </RelativeLayout>
 
                 <View
                     android:layout_width="0.5dp"
@@ -162,6 +179,7 @@
                     android:layout_marginLeft="@dimen/spacing_smallest"
                     android:layout_marginRight="@dimen/spacing_smallest"
                     android:layout_weight="1"
+                    android:layout_marginTop="@dimen/dip_6"
                     android:gravity="center"
                     android:orientation="vertical">
 

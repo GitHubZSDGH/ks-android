@@ -45,15 +45,15 @@ public class BadgeView extends TextView {
                     new LayoutParams(
                             ViewGroup.LayoutParams.WRAP_CONTENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT,
-                            Gravity.LEFT | Gravity.TOP);
+                            Gravity.CENTER | Gravity.CENTER);
             setLayoutParams(layoutParams);
         }
 
         // set default font
         setTextColor(Color.WHITE);
         setTypeface(Typeface.DEFAULT_BOLD);
-        setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
-        setPadding(dip2Px(5), dip2Px(1), dip2Px(5), dip2Px(1));
+        setTextSize(TypedValue.COMPLEX_UNIT_SP, 8);
+        setPadding(dip2Px(2), dip2Px(1), dip2Px(2), dip2Px(1));
 
         // set default background
         setBackground(9, Color.parseColor("#d3321b"));

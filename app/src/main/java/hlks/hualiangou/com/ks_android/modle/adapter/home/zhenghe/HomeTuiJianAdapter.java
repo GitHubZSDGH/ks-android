@@ -41,6 +41,9 @@ public class HomeTuiJianAdapter extends BaseRecyclerAdapter<HomefragmentBean.Msg
             TextView jifen = (TextView) holder.findViewById(R.id.jifen_back);
             jifen.setVisibility(View.VISIBLE);
             jifen.setText("可用 "+ modle.getIntegral() + " 积分兑换");
+        }else {
+            TextView jifen = (TextView) holder.findViewById(R.id.jifen_back);
+            jifen.setVisibility(View.GONE);
         }
        if (position==0){
       imageView.setVisibility(View.GONE);

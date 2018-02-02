@@ -124,11 +124,11 @@ public class OrderAdapter extends ListAdapter<OrderDataBean.MsgBean.OrderListBea
                 }
             } else {
                 money = shopBean.getShopMoney();
-                freight = "\t(含运费￥"+shopBean.getFreight()+")";
+                freight = "\t(含运费¥"+shopBean.getFreight()+")";
             }
 
 
-            String content = "共" + shopBean.getShopNum() + "件商品\t合计：￥<big>" + money + "</big>" + freight;
+            String content = "共" + shopBean.getShopNum() + "件商品\t合计：¥<big>" + money + "</big>" + freight;
             storeMoney.setText((Html.fromHtml(content)));
         } else {
             storeMoney.setVisibility(View.GONE);
@@ -139,7 +139,7 @@ public class OrderAdapter extends ListAdapter<OrderDataBean.MsgBean.OrderListBea
         viewHolder.setImage(R.id.item_order_shop_head, UrlUtilds.IMG_URL + shopBean.getImage_path());
         viewHolder.setText(R.id.item_order_shop_name, shopBean.getShop_name());
         viewHolder.setText(R.id.item_order_shop_lab, shopBean.getSpec_one_name() + shopBean.getSpec_two_name());
-        viewHolder.setText(R.id.item_order_shop_money, "￥" + shopBean.getShop_price());
+        viewHolder.setText(R.id.item_order_shop_money, "¥" + shopBean.getShop_price());
         viewHolder.setText(R.id.item_order_shop_num, "x" + String.valueOf(shopBean.getShop_num()));
 
     }

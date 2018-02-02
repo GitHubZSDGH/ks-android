@@ -236,6 +236,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
                 <TextView
+                    android:id="@+id/shop_lift_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:button="@null"
@@ -251,12 +252,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
                 <TextView
+                    android:id="@+id/shop_right_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:button="@null"
                     android:text="商品评价"
                     android:textSize="15sp"
-                    android:textColor="@color/color_bea571"
+                    android:textColor="@color/color_1a1a1a"
                     android:layout_centerInParent="true"
                     />
 

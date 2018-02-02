@@ -148,7 +148,9 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
     private TextView mMainIntegralXq;
     private LinearLayout mJifenKuang;
 
-
+    private TextView mAddShopcarNum;
+    private TextView mShopLift;
+    private TextView mShopRight;
     @Override
     public int getLayoutId() {
         return R.layout.detail_pages_activityone;
@@ -159,6 +161,7 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
     public void initView() {
 //        mshopImage = new ArrayList<>();
         buyTextView = (TextView) findViewById(R.id.tv_good_detail_buy);
+        mAddShopcarNum = (TextView) findViewById(R.id.add_shopcar_num);
         buyTextView.setOnClickListener(this);
         //获取时间
         Date dt = new Date();
@@ -205,6 +208,11 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
         mKuaidiJiage = (TextView) findViewById(R.id.kuaidi_jiage);
         mXiaoliangNab = (TextView) findViewById(R.id.xiaoliang_nab);
         mFahuodidian = (TextView) findViewById(R.id.fahuodidian);
+        /**
+         * zuoyou
+         */
+        mShopLift = (TextView) findViewById(R.id.shop_lift_tv);
+        mShopRight = (TextView) findViewById(R.id.shop_right_tv);
         //Fragment
         shopXiangQing = (RelativeLayout) findViewById(R.id.shop_details);
         shopPingJian = (RelativeLayout) findViewById(R.id.shop_evaluate);
@@ -634,6 +642,8 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.shop_details:
                 Bundle bundle = new Bundle();
+                mShopLift.setTextColor(getResources().getColor(R.color.color_bea571));
+                mShopRight.setTextColor(getResources().getColor(R.color.color_1a1a1a));
                 bundle.putParcelableArrayList("shopImage", (ArrayList<? extends Parcelable>) mshopImage);
                 FragmentBuilder.getInstance(baseActivity)
                         .start(XiangQingFragment.class)
@@ -642,6 +652,8 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
                         .commit();
                 break;
             case R.id.shop_evaluate:
+                mShopRight.setTextColor(getResources().getColor(R.color.color_bea571));
+                mShopLift.setTextColor(getResources().getColor(R.color.color_1a1a1a));
                 FragmentBuilder.getInstance(baseActivity)
                         .start(PingLunFragment.class)
                         .add(R.id.shop_details_fragment)
@@ -679,6 +691,13 @@ public class DetailPagesActivity extends BaseActivity implements View.OnClickLis
                     public void onSuccess(int statusCode, String response) {
                         Log.d("DetailPagesActivity", response.toString().trim());
                         myDialogJieSuan();
+                        mAddShopcarNum.setVisibility(View.VISIBLE);
+                        int a = Integer.parseInt(shopNum.getText().toString().trim());
+                        if (a<100){
+                        mAddShopcarNum.setText(shopNum.getText().toString().trim());
+                        }else {
+                            mAddShopcarNum.setText("99+");
+                        }
                     }
 
                     @Override

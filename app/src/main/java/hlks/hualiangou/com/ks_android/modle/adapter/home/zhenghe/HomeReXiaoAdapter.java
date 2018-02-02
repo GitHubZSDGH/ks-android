@@ -34,6 +34,9 @@ public class HomeReXiaoAdapter extends BaseRecyclerAdapter<HomefragmentBeanbotto
             TextView jifen = (TextView) holder.findViewById(R.id.jifen_back);
             jifen.setVisibility(View.VISIBLE);
             jifen.setText("可用 "+ modle.getIntegral() + " 积分兑换");
+        }else {
+            TextView jifen = (TextView) holder.findViewById(R.id.jifen_back);
+            jifen.setVisibility(View.GONE);
         }
     }
 

@@ -8,10 +8,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
+import com.tsy.sdk.myokhttp.response.RawResponseHandler;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -23,6 +25,7 @@ import hlks.hualiangou.com.ks_android.R;
 import hlks.hualiangou.com.ks_android.base.BaseActivity;
 import hlks.hualiangou.com.ks_android.base.BaseFragment;
 import hlks.hualiangou.com.ks_android.bean.MyFootBean;
+import hlks.hualiangou.com.ks_android.event.FootpFragment;
 import hlks.hualiangou.com.ks_android.event.MainFootBean;
 import hlks.hualiangou.com.ks_android.fragment.FootFragment;
 import hlks.hualiangou.com.ks_android.modle.url.UrlUtilds;
@@ -42,6 +45,12 @@ public class MainFootActivity extends BaseActivity implements View.OnClickListen
      * 我的足迹的实体类
      */
     private MyFootBean myFootBean;
+    private CheckBox mAllSelect;
+    /**
+     * 删除
+     */
+    private TextView mDeleteBtn;
+    private RelativeLayout mDeletePop;
 
     @Override
     public int getLayoutId() {
@@ -58,6 +67,10 @@ public class MainFootActivity extends BaseActivity implements View.OnClickListen
         mMainFootEdit.setOnClickListener(this);
         mMainFootTab = (TabLayout) findViewById(R.id.main_foot_tab);
         mMainFootPager = (ViewPager) findViewById(R.id.main_foot_pager);
+        mAllSelect = (CheckBox) findViewById(R.id.all_select);
+        mDeleteBtn = (TextView) findViewById(R.id.delete_btn);
+        mDeleteBtn.setOnClickListener(this);
+        mDeletePop = (RelativeLayout) findViewById(R.id.delete_pop);
     }
 
     @Override
@@ -85,14 +98,24 @@ public class MainFootActivity extends BaseActivity implements View.OnClickListen
                 if ("编辑".equals(mMainFootEdit.getText().toString().trim())) {
                     EventBus.getDefault().post(new MainFootBean(true));
                     mMainFootEdit.setText("完成");
-                }else{
+                    mDeletePop.setVisibility(View.VISIBLE);
+                } else {
                     EventBus.getDefault().post(new MainFootBean(false));
                     mMainFootEdit.setText("编辑");
+                    mDeletePop.setVisibility(View.GONE);
                 }
 
                 break;
+            case R.id.delete_btn:
+                EventBus.getDefault().post(new FootpFragment());
+                break;
         }
     }
+
+
+
+
+
 
     private void initOkhttp() {
         App.myOkHttp
@@ -129,6 +152,14 @@ public class MainFootActivity extends BaseActivity implements View.OnClickListen
 
                     }
                 });
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO:OnCreate Method has been created, run FindViewById again to generate code
+        setContentView(R.layout.activity_main_foot);
+        initView();
     }
 
     class MyAdapter extends FragmentPagerAdapter {

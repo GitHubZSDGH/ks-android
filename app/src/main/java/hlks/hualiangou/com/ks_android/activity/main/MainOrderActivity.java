@@ -66,7 +66,7 @@ public class MainOrderActivity extends BaseActivity implements View.OnClickListe
          * 全部订单、待付款、待发货、待收货、待评价
          */
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             Bundle bundle = new Bundle();
             bundle.putString("orderType", String.valueOf((i + 1)));
             OrderFragment orderFragment = new OrderFragment();
@@ -74,16 +74,16 @@ public class MainOrderActivity extends BaseActivity implements View.OnClickListe
             mFragmentList.add(orderFragment);
         }
 
-        mPageTitleList.add("全部");
+        mPageTitleList.add("全部订单");
         mPageTitleList.add("待付款");
         mPageTitleList.add("待发货");
         mPageTitleList.add("待收货");
-        mPageTitleList.add("待评价");
+//        mPageTitleList.add("待评价");
         mBadgeCountList.add(0);
         mBadgeCountList.add(0);
+        mBadgeCountList.add(66);
         mBadgeCountList.add(6);
-        mBadgeCountList.add(6);
-        mBadgeCountList.add(6);
+//        mBadgeCountList.add(6);
         mPagerAdapter = new SimpleFragmentPagerAdapter(this, getSupportFragmentManager(),
                 mFragmentList, mPageTitleList, mBadgeCountList);
         mMainOrderVp.setAdapter(mPagerAdapter);
@@ -116,7 +116,7 @@ public class MainOrderActivity extends BaseActivity implements View.OnClickListe
             mBadgeViews = new ArrayList<BadgeView>();
             for (int i = 0; i < mFragmentList.size(); i++) {
                 BadgeView tmp = new BadgeView(this);
-                tmp.setBadgeMargin(0, 4, 8, 0);
+                tmp.setBadgeMargin(0, 0, 0, 0);
                 tmp.setTextSize(8);
                 mBadgeViews.add(tmp);
             }
