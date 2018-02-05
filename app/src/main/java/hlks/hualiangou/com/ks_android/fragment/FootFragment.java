@@ -3,6 +3,7 @@ package hlks.hualiangou.com.ks_android.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +17,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import hlks.hualiangou.com.ks_android.App;
@@ -46,6 +46,7 @@ public class FootFragment extends BaseFragment {
     private ListView listView;
     private MyAdapter myAdapter;
     private List<MyFootBean.MsgBean.ResultBean> result;
+    private String value;
 
     @Override
     public int getLayoutId() {
@@ -96,18 +97,26 @@ public class FootFragment extends BaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     private void delete(FootpFragment footpFragment) {
-        List<String> ids = new ArrayList<>();
+        /**
+         * id
+         */
+        String ids = "";
+        StringBuffer buffer = new StringBuffer();
         for (MyFootBean.MsgBean.ResultBean resultBean : result) {
             if (resultBean.isSelect()) {
-                ids.add(String.valueOf(resultBean.getHistory_id()));
+               buffer.append(String.valueOf(resultBean.getHistory_id())).append(",");
             }
         }
-//网络请求
+        if(!TextUtils.isEmpty(buffer)){
+            ids = buffer.deleteCharAt((buffer.length() - 1)).toString();
+        }
 
+//网络请求
+        initDeleteOkhttp(ids);
     }
 
 
-    private void initDeleteOkhttp() {
+    private void initDeleteOkhttp(String ids) {
         App.myOkHttp
                 .postParams()
                 .url(UrlUtilds.GET_CHCK_HISTORY)
@@ -115,11 +124,12 @@ public class FootFragment extends BaseFragment {
                 .addParam("appid", UrlUtilds.APPID)
                 .addParam("t", String.valueOf(System.currentTimeMillis()))
                 .addParam("token", UserUtils.getToken())
+                .addParam("values",ids)
                 .addParam("user_id", UserUtils.getUserId())
                 .enqueue(new RawResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, String response) {
-
+                        initOkhttp(value);
                     }
 
                     @Override
@@ -132,7 +142,7 @@ public class FootFragment extends BaseFragment {
     @Override
     public void getBundle(Bundle bundle) {
         super.getBundle(bundle);
-        String value = bundle.getString("foot");
+        value = bundle.getString("foot");
         initOkhttp(value);
 
 
